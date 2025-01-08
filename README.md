@@ -1,33 +1,15 @@
 # The Path (AI-Pi)
 
-A research project exploring personalized AI opponents in gaming through edge computing. Using the Raspberry Pi platform and AI HAT+ hardware, this project aims to create engaging AI opponents that learn and adapt to each player's style - all while running locally on affordable hardware.
+## Overview
 
-## Project Overview
-
-The Path (AI-Pi) investigates how dedicated AI hardware can enable sophisticated, personalized gaming experiences without cloud dependencies. By combining edge AI processing with rich turn-based combat mechanics, the project creates AI opponents that evolve through gameplay while maintaining the responsiveness and privacy benefits of local processing.
-
-## Research Focus
-
-- **Edge AI Gaming**: Exploring how dedicated AI hardware can enable sophisticated gaming experiences without cloud dependencies
-- **Adaptive Difficulty**: Creating AI opponents that naturally adjust to player skill levels
-- **Learning from Play**: Collecting and analyzing gameplay data to improve AI behavior over time
-- **Hardware Optimization**: Maximizing AI performance on resource-constrained edge devices
+The Path (AI-Pi) is a research project exploring edge AI capabilities through a turn-based combat system running on Raspberry Pi hardware. The project demonstrates sophisticated AI behavior running entirely on local hardware, providing unique insights into edge AI gaming.
 
 ## Key Features
 
-- Edge AI processing using Raspberry Pi 5 and AI HAT+
-- Sophisticated turn-based combat system featuring:
-  - Strategic class-based character system
-  - Complex buff/debuff mechanics
-  - Probability-based turn order influenced by speed
-  - Comprehensive status effect system
-- Adaptive AI opponents with configurable difficulty levels
-- Local gameplay data collection and analysis
-- Research-focused architecture for AI behavior study
-
-## Project Status
-
-This is an active research project investigating the potential of edge AI in gaming. The project aims to demonstrate that sophisticated AI opponents can run effectively on accessible hardware, opening new possibilities for AI integration in games.
+- **Edge AI Gaming**: Run sophisticated AI opponents entirely on Raspberry Pi
+- **Adaptive Behavior**: AI adapts to player skill and style
+- **Hardware Optimized**: Designed for Raspberry Pi 5 with AI HAT+
+- **Research Focus**: Explore edge AI capabilities and limitations
 
 ## Project Heritage
 
@@ -39,23 +21,75 @@ The Path (AI-Pi) combines the technical architecture insights from the Go implem
 
 ## Documentation
 
-The project's detailed documentation is maintained in the `docs` directory:
+### Overview
+- [Project Scope](docs/overview/project-scope.md)
+- [System Architecture](docs/overview/system-architecture.md)
+- [Research Objectives](docs/overview/research-objectives.md)
 
-- [`mvp-scope.md`](docs/mvp-scope.md) - Detailed project roadmap and implementation timeline, including core features and AI system specifications
-- [`game-design-document.md`](docs/game-design-document.md) - Comprehensive game mechanics, combat system, and player interaction design
-- [`ai-behavior-research.md`](docs/ai-behavior-research.md) - Research findings and implementation details for the AI behavior system
-- [`ai-specifications.md`](docs/ai-specifications.md) - Technical specifications for the AI system, including training data structure and reward calculations
-- [`hardware-specifications.md`](docs/hardware-specifications.md) - Detailed hardware requirements and configuration for the Raspberry Pi 5 and AI HAT+
-- [`data-schema.md`](docs/data-schema.md) - Database schemas and data structures for game state, replays, and AI training
+### Technical Documentation
+- [Data Schemas](docs/technical/data-schemas/)
+- [AI System](docs/technical/ai-system/)
+- [Hardware](docs/technical/hardware/)
 
-See the [`docs/README.md`](docs/README.md) for an overview of how these documents work together.
+### Implementation Guides
+- [Server](docs/implementation/server/architecture.md)
+- [Client](docs/implementation/client/architecture.md)
+- [Testing](docs/implementation/testing/overview.md)
+
+### Meta Documentation
+- [Contributing Guide](docs/meta/contributing.md)
+- [Style Guide](docs/meta/style-guide.md)
+
+## Getting Started
+
+1. **Hardware Requirements**
+   - Raspberry Pi 5 (8GB recommended)
+   - AI HAT+ module
+   - Active cooling solution
+   - Optional: 7-inch touchscreen
+
+2. **Software Setup**
+   ```bash
+   # Clone repository
+   git clone https://github.com/MaterDev/thepath-ai_pi.git
+   cd thepath-ai_pi
+
+   # Install dependencies
+   # Server (Go)
+   go mod download
+
+   # Client (TypeScript)
+   npm install
+
+   # AI System (Python)
+   pip install -r requirements.txt
+   ```
+
+3. **Configuration**
+   - Follow the [hardware configuration guide](docs/technical/hardware/configuration.md)
+   - Set up development environment using [contributing guide](docs/meta/contributing.md)
+   - Review [system architecture](docs/overview/system-architecture.md)
+
+## Development
+
+- Follow the [style guide](docs/meta/style-guide.md)
+- Write tests following [testing guide](docs/implementation/testing/overview.md)
+- Submit changes according to [contributing guide](docs/meta/contributing.md)
+
+## Research
+
+The project explores several key areas:
+- Edge AI performance characteristics
+- Adaptive gaming AI behavior
+- Hardware optimization techniques
+- Player interaction patterns
+
+See [research objectives](docs/overview/research-objectives.md) for details.
 
 ## License
 
-This project is licensed under the Mater Development General Use License (MDGUL) v1.1. This is a custom license that allows for personal and educational use while requiring explicit permission for commercial use, redistribution, or creation of derivative works. See the [LICENSE](LICENSE) file for the full terms.
+[MIT License](LICENSE)
 
-## Acknowledgments
+## Contributing
 
-This project is being developed with assistance from:
-- Codeium - AI-powered code completion and analysis
-- Windsurf - The world's first agentic IDE
+We welcome contributions! Please see our [contributing guide](docs/meta/contributing.md) for details.
