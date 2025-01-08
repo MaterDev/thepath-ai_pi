@@ -39,12 +39,16 @@ The Path (AI-Pi) combines the technical architecture insights from the Go implem
 
 ## Documentation
 
-Detailed documentation can be found in the `docs` directory:
-- Game Design and Mechanics
-- AI Behavior Research
-- Hardware Specifications
-- Data Schema
-- MVP Scope
+The project's detailed documentation is maintained in the `docs` directory:
+
+- [`mvp-scope.md`](docs/mvp-scope.md) - Detailed project roadmap and implementation timeline, including core features and AI system specifications
+- [`game-design-document.md`](docs/game-design-document.md) - Comprehensive game mechanics, combat system, and player interaction design
+- [`ai-behavior-research.md`](docs/ai-behavior-research.md) - Research findings and implementation details for the AI behavior system
+- [`ai-specifications.md`](docs/ai-specifications.md) - Technical specifications for the AI system, including training data structure and reward calculations
+- [`hardware-specifications.md`](docs/hardware-specifications.md) - Detailed hardware requirements and configuration for the Raspberry Pi 5 and AI HAT+
+- [`data-schema.md`](docs/data-schema.md) - Database schemas and data structures for game state, replays, and AI training
+
+See the [`docs/README.md`](docs/README.md) for an overview of how these documents work together.
 
 ## License
 
