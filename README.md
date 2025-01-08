@@ -48,7 +48,7 @@ Detailed documentation can be found in the `docs` directory:
 
 ## License
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0).
+This project is licensed under the Mater Development General Use License (MDGUL) v1.1. This is a custom license that allows for personal and educational use while requiring explicit permission for commercial use, redistribution, or creation of derivative works. See the [LICENSE](LICENSE) file for the full terms.
 
 ## Acknowledgments
 
