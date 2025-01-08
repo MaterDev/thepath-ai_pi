@@ -2,6 +2,8 @@
 
 An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demonstrating sophisticated AI behavior running entirely on local hardware.
 
+![Cover Image](images/cover.png)
+
 ## Quick Links
 - [Project Scope](docs/overview/project-scope.md)
 - [Setup Guide](docs/implementation/setup/project-setup.md)
