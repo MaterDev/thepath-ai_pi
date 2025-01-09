@@ -6,6 +6,8 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
 
 ## Quick Links
 - [Project Scope](docs/overview/project-scope.md)
+- [AI Development Index](docs/AI_DEVELOPMENT_INDEX.md)
+- [Development Log](docs/meta/development-log.md)
 - [Setup Guide](docs/implementation/setup/project-setup.md)
 - [Contributing](docs/meta/contributing.md)
 - [Style Guide](docs/meta/style-guide.md)
@@ -25,10 +27,18 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
 - Status effects
 
 ### Character System
-- Multiple classes
-- Stat-based progression
-- Equipment system
-- Skill trees
+- Six unique character classes
+- Role-based gameplay mechanics
+- Complementary team compositions
+- Strategic counter-play system
+
+### Character Classes
+- **Conjuror**: Mid-range spell weaver focusing on damage and control
+- **Crystal Vanguard**: Frontline protector with defensive capabilities
+- **Zealot**: Aggressive skirmisher with high mobility
+- **Wraithwood Seer**: Tactical support with control abilities
+- **Primal Shifter**: Adaptable warrior with transformation powers
+- **The Blessed**: Strategic enabler with utility and support
 
 ### Game Client
 - Responsive UI (<16ms)
