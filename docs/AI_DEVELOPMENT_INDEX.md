@@ -10,6 +10,39 @@ This document serves as a master reference for AI agents (like Windsurf) during 
 
 IMPORTANT: This document should be kept in context during all development sessions.
 
+## Development Guidelines
+
+### AI Agent Directives
+```yaml
+Context_Management:
+  - Keep this entire document in context during all sessions
+  - Reference related documents when making changes
+  - Update development log after EACH session
+  - Maintain documentation alignment
+
+Development_Log:
+  location: "docs/meta/development-log.md"
+  update_frequency: "After each session"
+  required_sections:
+    - Key Activities
+    - Files Modified
+    - Key Decisions
+    - Insights
+    - Next Steps
+
+Documentation_Updates:
+  - Cross-reference all changes
+  - Maintain version alignment
+  - Update related documents
+  - Verify performance requirements
+
+Quality_Standards:
+  - Test coverage >80%
+  - Documentation alignment
+  - Performance validation
+  - Code review process
+```
+
 ## Core Specifications
 
 ### Performance Requirements
@@ -366,7 +399,70 @@ Stats:
     - accuracy
 ```
 
-## AI Behavior Patterns
+### Character Classes
+```yaml
+Classes:
+  Conjuror:
+    doc: "docs/character_classes/conjuror_bio.yml"
+    role: "Damage/Control"
+    theme: "Arcane manipulation and energy control"
+    combat_style: "Mid-range spell weaver"
+    difficulty: "Medium"
+
+  Crystal_Vanguard:
+    doc: "docs/character_classes/crystal_vanguard_bio.yml"
+    role: "Tank/Support"
+    theme: "Crystal-based defense and protection"
+    combat_style: "Frontline protector"
+    difficulty: "Low"
+
+  Zealot:
+    doc: "docs/character_classes/zealot_bio.yml"
+    role: "Damage/Mobility"
+    theme: "Fanatical combat prowess"
+    combat_style: "Aggressive skirmisher"
+    difficulty: "High"
+
+  Wraithwood_Seer:
+    doc: "docs/character_classes/wraithwood_seer_bio.yml"
+    role: "Support/Control"
+    theme: "Natural magic and foresight"
+    combat_style: "Tactical support"
+    difficulty: "Medium"
+
+  Primal_Shifter:
+    doc: "docs/character_classes/primal_shifter_bio.yml"
+    role: "Tank/Damage"
+    theme: "Bestial transformation"
+    combat_style: "Adaptable warrior"
+    difficulty: "High"
+
+  The_Blessed:
+    doc: "docs/character_classes/the_blessed_bio.yml"
+    role: "Support/Utility"
+    theme: "Divine blessings and protection"
+    combat_style: "Strategic enabler"
+    difficulty: "Medium"
+
+Class_System:
+  doc_root: "docs/character_classes/"
+  balance_considerations:
+    - Each class must have clear strengths and weaknesses
+    - Roles should complement each other in team composition
+    - Difficulty ratings affect AI behavior adaptation
+    - Combat styles should enable diverse strategies
+
+  class_relationships:
+    strong_against:
+      Conjuror: ["The_Blessed", "Wraithwood_Seer"]
+      Crystal_Vanguard: ["Conjuror", "Zealot"]
+      Zealot: ["The_Blessed", "Primal_Shifter"]
+      Wraithwood_Seer: ["Primal_Shifter", "Crystal_Vanguard"]
+      Primal_Shifter: ["Conjuror", "The_Blessed"]
+      The_Blessed: ["Crystal_Vanguard", "Wraithwood_Seer"]
+```
+
+### AI Behavior Patterns
 
 ### Personality Types
 ```yaml
@@ -574,61 +670,47 @@ Alerts:
     temperature: "> 80°C"
 ```
 
-## Documentation Updates
+## Project State
 
-### When to Update
-1. New feature implementation
-2. Performance requirement changes
-3. API modifications
-4. Architecture changes
-5. Dependency updates
-
-### Update Process
-1. Identify affected documents using Documentation Map
-2. Update specifications in this index
-3. Update affected documents
-4. Validate cross-references
-5. Update implementation if needed
-
-### Version Control
+### Current Phase
 ```yaml
-Documentation:
-  branch: "docs/*"
-  review: Required
-  update_index: true
+Phase: "Initial Setup"
+Week: 1
+Status: "In Progress"
+Focus: "Documentation and Architecture"
 
-Implementation:
-  branch: "feature/*"
-  review: Required
-  docs_update: Required
+Current_Priorities:
+  - Establish development environment
+  - Complete documentation structure
+  - Define core systems
+  - Plan AI integration
+
+Recent_Changes:
+  - Created AI Development Index
+  - Established project scope
+  - Set up documentation structure
+  - Created development log
 ```
 
-## AI Development Guidelines
+### Development Progress
+```yaml
+Documentation:
+  status: "In Progress"
+  completion: 80%
+  next_steps:
+    - Complete API specifications
+    - Finalize data schemas
+    - Detail hardware configuration
 
-### 1. Context Management
-- Keep this index in context
-- Reference relevant docs for each task
-- Validate against specifications
-- Update documentation when deviating
-
-### 2. Implementation Flow
-1. Check specifications in this index
-2. Reference detailed docs
-3. Validate against requirements
-4. Implement following guidelines
-5. Update docs if needed
-
-### 3. Documentation First
-- Update docs before implementation
-- Keep specifications synchronized
-- Maintain cross-references
-- Follow update process
-
-### 4. Error Prevention
-- Validate against performance requirements
-- Check API consistency
-- Verify state management
-- Test hardware compatibility
+Implementation:
+  status: "Planning"
+  completion: 0%
+  next_steps:
+    - Set up development environment
+    - Initialize core repositories
+    - Configure hardware
+    - Begin server implementation
+```
 
 ## Quick Reference
 
