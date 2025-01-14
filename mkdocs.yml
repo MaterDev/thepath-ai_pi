@@ -1,0 +1,73 @@
+site_name: The Path (AI-Pi)
+theme:
+  name: material
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.indexes
+  - navigation.instant
+  - navigation.tracking
+  - toc.follow
+  - search.suggest
+  - search.highlight
+  - navigation.tabs.sticky
+  palette:
+  - scheme: default
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+docs_dir: docs
+site_dir: site
+nav:
+- Overview:
+  - Project Scope: overview/project-scope.md
+  - Research Objectives: overview/research-objectives.md
+- Development Logs:
+  - Overview: meta/logs/index.md
+  - January 13, 2025: meta/logs/2025-01-13.md
+  - January 09, 2025: meta/logs/2025-01-09.md
+  - January 08, 2025: meta/logs/2025-01-08.md
+- Implementation:
+  - Setup: implementation/setup/project-setup.md
+- Technical:
+  - Dependencies: technical/dependencies.md
+  - Hardware: technical/hardware/configuration.md
+- Character Classes:
+  - Conjuror: character_classes/conjuror.md
+  - Crystal Vanguard: character_classes/crystal_vanguard.md
+  - Zealot: character_classes/zealot.md
+  - Wraithwood Seer: character_classes/wraithwood_seer.md
+  - Primal Shifter: character_classes/primal_shifter.md
+  - The Blessed: character_classes/the_blessed.md
+- Development:
+  - AI Development Index: AI_DEVELOPMENT_INDEX.md
+  - Style Guide: meta/style-guide.md
+markdown_extensions:
+- pymdownx.highlight:
+    anchor_linenums: true
+- pymdownx.superfences
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.tabbed:
+    alternate_style: true
+- admonition
+- footnotes
+- toc:
+    permalink: true
+    title: On this page
+- attr_list
+- md_in_html
+- def_list
+plugins:
+- search
+- awesome-pages
+- tags

@@ -68,6 +68,36 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
    - Install [Dependencies](docs/technical/dependencies.md)
    - Configure [Hardware](docs/technical/hardware/configuration.md)
 
+## Documentation Site
+
+This project uses MkDocs with Material theme for documentation. To view the documentation locally:
+
+1. **Install Dependencies**
+   ```bash
+   pip install mkdocs-material
+   ```
+
+2. **Start Documentation Server**
+   ```bash
+   mkdocs serve
+   ```
+
+3. **View Documentation**
+   - Open http://127.0.0.1:8000 in your browser
+   - Documentation will auto-reload when files change
+
+4. **Build Static Site**
+   ```bash
+   mkdocs build
+   ```
+
+The documentation site includes:
+- Full-text search
+- Dark/light mode
+- Mobile-friendly design
+- Auto-generated navigation
+- Code syntax highlighting
+
 ## Development Timeline
 
 - **Phase 1 (Weeks 1-2)**: Core Systems
