@@ -28,6 +28,7 @@ theme:
 docs_dir: docs
 site_dir: site
 nav:
+- Home: index.md
 - Overview:
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md
