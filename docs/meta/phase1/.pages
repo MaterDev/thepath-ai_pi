@@ -1,0 +1,8 @@
+title: Phase 1
+arrange:
+    - index.md
+    - 1-project-setup.md
+    - 2-game-state.md
+    - 3-communication.md
+    - 4-ai-integration.md
+    - 5-turn-system.md
