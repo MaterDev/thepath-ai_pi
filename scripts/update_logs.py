@@ -29,9 +29,9 @@ def update_mkdocs():
     with open("mkdocs.yml", "r") as f:
         config = yaml.safe_load(f)
     
-    # Update Development Logs section
+    # Update Logs section
     for section in config["nav"]:
-        if isinstance(section, dict) and "Development Logs" in section:
+        if isinstance(section, dict) and "Logs" in section:
             logs_section = [{"Overview": "meta/logs/index.md"}]
             
             # Add all log files
@@ -39,8 +39,21 @@ def update_mkdocs():
                 display_date = date.strftime("%B %d, %Y")
                 logs_section.append({display_date: f"meta/logs/{file.name}"})
             
-            section["Development Logs"] = logs_section
+            section["Logs"] = logs_section
             break
+    else:
+        # If Logs section doesn't exist, create it after Overview
+        logs_section = [{"Overview": "meta/logs/index.md"}]
+        for date, file in log_files:
+            display_date = date.strftime("%B %d, %Y")
+            logs_section.append({display_date: f"meta/logs/{file.name}"})
+        
+        # Find Overview section index
+        for i, section in enumerate(config["nav"]):
+            if isinstance(section, dict) and "Overview" in section:
+                # Insert Logs section after Overview
+                config["nav"].insert(i + 1, {"Logs": logs_section})
+                break
     
     # Write updated config
     with open("mkdocs.yml", "w") as f:
