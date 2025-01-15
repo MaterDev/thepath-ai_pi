@@ -1,0 +1,107 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+.env
+.venv
+env/
+venv/
+ENV/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Documentation build
+/site/
+docs/_build/
+*.pyc
+docs/gen_logs.py
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+__pycache__/
+
+# Build outputs
+/dist/
+/build/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Environment
+.env*
+!.env.example
+*.env
+.env.local
+.env.*.local
+
+# Testing
+.coverage
+.pytest_cache/
+coverage.xml
+.tox/
+htmlcov/
+
+# AI/ML
+*.pt
+*.pth
+*.onnx
+*.tflite
+checkpoints/
+runs/
+wandb/
+mlruns/
+
+# Hardware specific
+*.o
+*.ko
+*.obj
+*.elf
+*.bin
+*.hex
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~.nib
+
+# MkDocs specific
+/site/
+.cache/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Project specific
+.coverage
+coverage.xml
