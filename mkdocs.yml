@@ -39,6 +39,8 @@ nav:
   - January 08, 2025: meta/logs/2025-01-08.md
 - Implementation:
   - Setup: implementation/setup/project-setup.md
+  - Planning:
+    - Phase 1 Tasks: implementation/planning/phase1-tasks.md
 - Technical:
   - Dependencies: technical/dependencies.md
   - Hardware: technical/hardware/configuration.md
