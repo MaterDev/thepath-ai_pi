@@ -5,34 +5,39 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
 ![Cover Image](images/cover.png)
 
 ## Quick Links
+
 - [Project Scope](docs/overview/project-scope.md)
 - [AI Development Index](docs/AI_DEVELOPMENT_INDEX.md)
-- [Development Log](docs/meta/development-log.md)
-- [Setup Guide](docs/implementation/setup/project-setup.md)
+- [Development Logs](docs/meta/logs/index.md)
+- [Setup Guide](docs/meta/implementation/setup/project-setup.md)
 - [Contributing](docs/meta/contributing.md)
 - [Style Guide](docs/meta/style-guide.md)
 
 ## Core Features
 
 ### Edge AI Combat System
+
 - Real-time AI decision making (<100ms)
 - Adaptive difficulty (0.2-0.95)
 - Personality-based behavior
 - Hardware acceleration
 
 ### Turn-Based Combat
+
 - Speed-based turn order
 - Action point system
 - Reaction mechanics
 - Status effects
 
 ### Character System
+
 - Six unique character classes
 - Role-based gameplay mechanics
 - Complementary team compositions
 - Strategic counter-play system
 
 ### Character Classes
+
 - **Conjuror**: Mid-range spell weaver focusing on damage and control
 - **Crystal Vanguard**: Frontline protector with defensive capabilities
 - **Zealot**: Aggressive skirmisher with high mobility
@@ -41,6 +46,7 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
 - **The Blessed**: Strategic enabler with utility and support
 
 ### Game Client
+
 - Responsive UI (<16ms)
 - Real-time updates
 - Combat animations
@@ -64,7 +70,7 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
    ```
 
 3. **Next Steps**
-   - Review [Project Setup](docs/implementation/setup/project-setup.md)
+   - Review [Project Setup](docs/meta/implementation/setup/project-setup.md)
    - Install [Dependencies](docs/technical/dependencies.md)
    - Configure [Hardware](docs/technical/hardware/configuration.md)
 
