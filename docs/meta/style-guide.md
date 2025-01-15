@@ -3,10 +3,12 @@
 ## Overview
 
 This style guide ensures consistent code quality across The Path (AI-Pi) project:
+
 - Code formatting
 - Naming conventions
 - Documentation standards
 - Best practices
+
 
 ## General Guidelines
 
@@ -28,6 +30,7 @@ src/
     └── utils/      # Utilities
 ```
 
+
 ### 2. File Naming
 
 ```
@@ -46,6 +49,7 @@ ai_agent.py
 model_trainer.py
 data_processor.py
 ```
+
 
 ## Language-Specific Guidelines
 
@@ -89,6 +93,7 @@ const (
 )
 ```
 
+
 ### 2. TypeScript Style
 
 ```typescript
@@ -131,6 +136,7 @@ const DEFAULT_CONFIG: GameConfig = {
 };
 ```
 
+
 ### 3. Python Style
 
 ```python
@@ -163,6 +169,7 @@ StateVector = np.ndarray
 ActionSpace = List[Action]
 RewardSignal = float
 ```
+
 
 ## Documentation Standards
 
@@ -207,6 +214,7 @@ class ModelTrainer:
         return loss.item()
 ```
 
+
 ### 2. API Documentation
 
 ```typescript
@@ -245,6 +253,7 @@ interface NetworkManager {
 }
 ```
 
+
 ## Best Practices
 
 ### 1. Error Handling
@@ -278,6 +287,7 @@ def process_state(state: GameState) -> Action:
         raise
 ```
 
+
 ### 2. Testing Patterns
 
 ```python
@@ -301,6 +311,7 @@ class TestAIAgent(unittest.TestCase):
         self.assertIsNotNone(action)
         self.assertTrue(self.is_valid_action(action))
 ```
+
 
 ## Related Documentation
 - [Contributing Guide](contributing.md)
