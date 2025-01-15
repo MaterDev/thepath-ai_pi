@@ -32,16 +32,24 @@ nav:
 - Overview:
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md
-- Development Logs:
+- Logs:
   - Overview: meta/logs/index.md
   - January 15, 2025: meta/logs/2025-01-15.md
   - January 13, 2025: meta/logs/2025-01-13.md
   - January 09, 2025: meta/logs/2025-01-09.md
   - January 08, 2025: meta/logs/2025-01-08.md
-- Implementation:
-  - Setup: implementation/setup/project-setup.md
+- Development:
+  - Setup: meta/implementation/setup/project-setup.md
   - Planning:
-    - Phase 1 Tasks: implementation/planning/phase1-tasks.md
+    - Phase 1:
+      - Overview: meta/phase1/index.md
+      - Project Setup: meta/phase1/1-project-setup.md
+      - Game State: meta/phase1/2-game-state.md
+      - Communication: meta/phase1/3-communication.md
+      - AI Integration: meta/phase1/4-ai-integration.md
+      - Turn System: meta/phase1/5-turn-system.md
+  - AI Development Index: AI_DEVELOPMENT_INDEX.md
+  - Style Guide: meta/style-guide.md
 - Technical:
   - Dependencies: technical/dependencies.md
   - Hardware: technical/hardware/configuration.md
@@ -52,9 +60,6 @@ nav:
   - Wraithwood Seer: character_classes/wraithwood_seer.md
   - Primal Shifter: character_classes/primal_shifter.md
   - The Blessed: character_classes/the_blessed.md
-- Development:
-  - AI Development Index: AI_DEVELOPMENT_INDEX.md
-  - Style Guide: meta/style-guide.md
 markdown_extensions:
 - pymdownx.highlight:
     anchor_linenums: true
