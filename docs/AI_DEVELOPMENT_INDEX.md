@@ -2,45 +2,129 @@
 
 ## Purpose
 
-This document serves as a master reference for AI agents (like Windsurf) during development of The Path (AI-Pi). It provides:
-1. Quick access to critical specifications
-2. Documentation update guidelines
-3. Implementation priorities
-4. Cross-reference validation
+This document serves as a master reference for AI agents during development of The Path (AI-Pi). It indexes essential resources and documentation across the project.
 
-IMPORTANT: This document should be kept in context during all development sessions.
+## Project Resources
 
-## Development Guidelines
-
-### AI Agent Directives
+### Repository Structure
 ```yaml
-Context_Management:
-  - Keep this entire document in context during all sessions
-  - Reference related documents when making changes
-  - Update development log after EACH session
-  - Maintain documentation alignment
+Root_Directories:
+  docs: "Documentation and specifications"
+  server: "Go server implementation"
+  client: "TypeScript/React client"
+  ai: "Python AI components"
+  scripts: "Build and utility scripts"
 
-Development_Log:
-  location: "docs/meta/development-log.md"
-  update_frequency: "After each session"
+Documentation_Structure:
+  overview: "High-level project documentation"
+  technical: "Technical specifications and APIs"
+  implementation: "Implementation details and planning"
+  meta: "Development logs and metadata"
+  character_classes: "Game character specifications"
+```
+
+### Core Documentation
+```yaml
+Architecture:
+  system_overview: "docs/overview/system-architecture.md"
+  server_design: "docs/implementation/server/architecture.md"
+  client_design: "docs/implementation/client/architecture.md"
+  ai_design: "docs/implementation/ai/architecture.md"
+
+Technical_Specs:
+  api_endpoints: "docs/technical/api/endpoints.md"
+  game_state: "docs/technical/game/state.md"
+  turn_system: "docs/technical/game/turns.md"
+  ai_interface: "docs/technical/ai/interface.md"
+```
+
+### System Components
+```yaml
+Game_State:
+  components:
+    - Character state management
+    - Turn system
+    - Combat actions
+    - State synchronization
+  key_docs: "docs/technical/game/state.md"
+
+Communication:
+  protocols:
+    - WebSocket events
+    - REST endpoints
+    - State synchronization
+  key_docs: "docs/technical/api/endpoints.md"
+
+AI_System:
+  components:
+    - Model inference
+    - Decision making
+    - Hardware acceleration
+    - Performance monitoring
+  key_docs: "docs/technical/ai/core.md"
+
+Game_Systems:
+  components:
+    - Turn management
+    - Combat mechanics
+    - Character classes
+    - Status effects
+  key_docs: "docs/technical/game/systems.md"
+```
+
+### Technical Requirements
+```yaml
+Performance:
+  ai_response_time_max: 100ms
+  server_update_time_max: 50ms
+  client_frame_time_max: 16ms
+
+Hardware:
+  platform: "Raspberry Pi 5"
+  ram: "8GB"
+  accelerator: "AI HAT+"
+  cooling: "Active"
+
+Dependencies:
+  server: "Go 1.21+"
+  client: "Node.js 18+"
+  ai: "Python 3.11+"
+  database: "MongoDB 6+"
+```
+
+### Development Resources
+```yaml
+Test_Suites:
+  locations:
+    server: "server/tests/"
+    client: "client/tests/"
+    ai: "ai/tests/"
+  requirements:
+    coverage_minimum: 80%
+    critical_coverage: 90%
+
+Documentation_Standards:
   required_sections:
-    - Key Activities
-    - Files Modified
-    - Key Decisions
-    - Insights
-    - Next Steps
-
-Documentation_Updates:
-  - Cross-reference all changes
-  - Maintain version alignment
-  - Update related documents
-  - Verify performance requirements
+    - Purpose
+    - Technical Requirements
+    - Implementation Details
+    - Test Coverage
+    - Performance Metrics
 
 Quality_Standards:
-  - Test coverage >80%
-  - Documentation alignment
-  - Performance validation
-  - Code review process
+  code:
+    - Automated linting
+    - Type safety
+    - Error handling
+    - Performance monitoring
+  testing:
+    - Unit test coverage
+    - Integration tests
+    - Performance validation
+  documentation:
+    - Technical accuracy
+    - Implementation alignment
+    - Cross-reference validation
 ```
 
 ## Core Specifications
@@ -107,237 +191,6 @@ Data:
 Setup:
   project: "docs/implementation/setup/project-setup.md"
   dependencies: "docs/technical/dependencies.md"
-```
-
-## Implementation Priorities
-
-### 1. Core Systems
-```yaml
-Priority: HIGHEST
-Components:
-  - Game state management
-  - WebSocket communication
-  - Basic AI integration
-  - State serialization
-Dependencies:
-  - Go server
-  - TypeScript client
-  - Python AI system
-References:
-  - system-architecture.md
-  - game-state.md
-  - endpoints.md
-```
-
-### 2. AI Integration
-```yaml
-Priority: HIGH
-Components:
-  - Transformer model
-  - Hardware acceleration
-  - Difficulty system
-  - State processing
-Dependencies:
-  - AI HAT+ setup
-  - Python environment
-  - Model optimization
-References:
-  - ai-models.md
-  - behavior-model.md
-  - hardware/configuration.md
-```
-
-### 3. User Interface
-```yaml
-Priority: HIGH
-Components:
-  - React components
-  - Redux state
-  - WebSocket client
-  - Game visualization
-Dependencies:
-  - Node.js setup
-  - TypeScript config
-  - Asset pipeline
-References:
-  - client/architecture.md
-  - api/endpoints.md
-```
-
-## Development Timeline Reference
-
-### Phase 1 (Weeks 1-2)
-```yaml
-Critical_Tasks:
-  setup:
-    days: "1-2"
-    priority: HIGHEST
-    dependencies: []
-  
-  architecture:
-    days: "3-5"
-    priority: HIGHEST
-    dependencies: ["setup"]
-  
-  game_loop:
-    days: "6-8"
-    priority: HIGHEST
-    dependencies: ["architecture"]
-  
-  ai_integration:
-    days: "9-10"
-    priority: HIGHEST
-    dependencies: ["game_loop"]
-
-Validation_Points:
-  - Repository structure
-  - Development environment
-  - Basic server functionality
-  - WebSocket communication
-  - Game state management
-  - Initial AI response time
-```
-
-### Phase 2 (Weeks 3-4)
-```yaml
-Critical_Tasks:
-  combat:
-    days: "11-13"
-    priority: HIGH
-    dependencies: ["game_loop"]
-  
-  characters:
-    days: "14-16"
-    priority: HIGH
-    dependencies: ["combat"]
-  
-  ai_enhancement:
-    days: "17-19"
-    priority: HIGH
-    dependencies: ["characters"]
-  
-  client:
-    days: "20"
-    priority: HIGH
-    dependencies: ["combat", "characters"]
-
-Validation_Points:
-  - Combat mechanics
-  - Character system
-  - AI personality system
-  - Client responsiveness
-```
-
-### Phase 3 (Weeks 5-6)
-```yaml
-Critical_Tasks:
-  enhanced_combat:
-    days: "21-23"
-    priority: MEDIUM
-    dependencies: ["combat", "ai_enhancement"]
-  
-  ai_refinement:
-    days: "24-26"
-    priority: MEDIUM
-    dependencies: ["ai_enhancement"]
-  
-  polish:
-    days: "27-28"
-    priority: MEDIUM
-    dependencies: ["enhanced_combat", "ai_refinement"]
-  
-  launch:
-    days: "29-30"
-    priority: MEDIUM
-    dependencies: ["polish"]
-
-Validation_Points:
-  - Advanced features
-  - AI performance
-  - System optimization
-  - Launch readiness
-```
-
-## Task Dependencies
-
-### Core Systems
-```yaml
-Dependencies:
-  state_management:
-    requires: ["server_setup"]
-    blocks: ["game_loop"]
-  
-  websocket:
-    requires: ["server_setup"]
-    blocks: ["client_development"]
-  
-  ai_system:
-    requires: ["hardware_setup"]
-    blocks: ["combat_system"]
-```
-
-### Game Features
-```yaml
-Dependencies:
-  combat:
-    requires: ["state_management", "ai_system"]
-    blocks: ["advanced_features"]
-  
-  characters:
-    requires: ["combat"]
-    blocks: ["ai_personality"]
-  
-  client:
-    requires: ["websocket", "combat"]
-    blocks: ["polish"]
-```
-
-### AI Features
-```yaml
-Dependencies:
-  basic_ai:
-    requires: ["hardware_setup", "state_management"]
-    blocks: ["personality_system"]
-  
-  personality:
-    requires: ["basic_ai", "characters"]
-    blocks: ["ai_refinement"]
-  
-  refinement:
-    requires: ["personality", "combat"]
-    blocks: ["launch"]
-```
-
-## Validation Rules
-
-### 1. Performance Checks
-```yaml
-Validate:
-  - AI response times <= 100ms
-  - Server updates <= 50ms
-  - Client frames <= 16ms
-  - Memory usage <= 512MB
-Location: "docs/technical/hardware/monitoring.md"
-```
-
-### 2. API Consistency
-```yaml
-Validate:
-  - WebSocket event schemas
-  - REST endpoint formats
-  - Error handling patterns
-  - Data type definitions
-Location: "docs/technical/api/endpoints.md"
-```
-
-### 3. State Management
-```yaml
-Validate:
-  - Game state structure
-  - Action validation
-  - State transitions
-  - Serialization
-Location: "docs/technical/data-schemas/game-state.md"
 ```
 
 ## Game Mechanics Reference
@@ -668,48 +521,6 @@ Alerts:
     memory: "> 80%"
     cpu: "> 80%"
     temperature: "> 80°C"
-```
-
-## Project State
-
-### Current Phase
-```yaml
-Phase: "Initial Setup"
-Week: 1
-Status: "In Progress"
-Focus: "Documentation and Architecture"
-
-Current_Priorities:
-  - Establish development environment
-  - Complete documentation structure
-  - Define core systems
-  - Plan AI integration
-
-Recent_Changes:
-  - Created AI Development Index
-  - Established project scope
-  - Set up documentation structure
-  - Created development log
-```
-
-### Development Progress
-```yaml
-Documentation:
-  status: "In Progress"
-  completion: 80%
-  next_steps:
-    - Complete API specifications
-    - Finalize data schemas
-    - Detail hardware configuration
-
-Implementation:
-  status: "Planning"
-  completion: 0%
-  next_steps:
-    - Set up development environment
-    - Initialize core repositories
-    - Configure hardware
-    - Begin server implementation
 ```
 
 ## Quick Reference
