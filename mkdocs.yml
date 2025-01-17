@@ -1,4 +1,8 @@
 site_name: The Path (AI-Pi)
+site_url: https://materdev.github.io/thepath-ai_pi/
+repo_url: https://github.com/MaterDev/thepath-ai_pi
+repo_name: MaterDev/thepath-ai_pi
+
 theme:
   name: material
   features:
