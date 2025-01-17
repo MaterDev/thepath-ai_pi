@@ -1,6 +1,10 @@
 # The Path (AI-Pi)
 
-An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demonstrating sophisticated AI behavior running entirely on local hardware.
+![The Path (AI-Pi)](images/cover.png)
+
+> Pushing the boundaries of edge AI gaming on Raspberry Pi hardware.
+
+Welcome to The Path (AI-Pi) documentation. This site contains comprehensive information about the project, including technical details, setup guides, development logs, and research objectives.
 
 ## Quick Links
 
@@ -36,3 +40,7 @@ An edge AI-powered turn-based combat game running on Raspberry Pi hardware, demo
 - [Development Logs](meta/logs/index.md)
 - [Contributing](meta/contributing.md)
 - [Style Guide](meta/style-guide.md)
+
+## Latest Updates
+
+Check our [development logs](meta/logs/index.md) for the most recent changes and [social updates](meta/social/index.md) for project announcements.

@@ -73,6 +73,16 @@ nav:
   - January 13, 2025: meta/logs/2025-01-13.md
   - January 09, 2025: meta/logs/2025-01-09.md
   - January 08, 2025: meta/logs/2025-01-08.md
+- Social Updates:
+  - Overview: meta/social/index.md
+  - LinkedIn:
+    - Overview: meta/social/linkedin/index.md
+    - January 17, 2025: meta/social/linkedin/2025-01-17.md
+    - January 14, 2025: meta/social/linkedin/2025-01-14.md
+    - January 08, 2025: meta/social/linkedin/2025-01-08.md
+    - January 07, 2025: meta/social/linkedin/2025-01-07.md
+    - January 03, 2025: meta/social/linkedin/2025-01-03.md
+    - December 27, 2024: meta/social/linkedin/2024-12-27.md
 - Development:
   - Setup: meta/implementation/setup/project-setup.md
   - Planning:
