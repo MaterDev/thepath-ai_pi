@@ -17,22 +17,57 @@ theme:
     - search.highlight
     - navigation.tabs.sticky
   palette:
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    # Default to dark mode
+    - scheme: slate
       primary: indigo
       accent: indigo
       toggle:
         icon: material/brightness-7
+        name: Switch to light mode
+    # Light mode toggle option
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
         name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - def_list
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+
+plugins:
+  - search
+  - awesome-pages
 
 docs_dir: docs
 site_dir: site
@@ -69,22 +104,3 @@ nav:
   - Wraithwood Seer: character_classes/wraithwood_seer.md
   - Primal Shifter: character_classes/primal_shifter.md
   - The Blessed: character_classes/the_blessed.md
-markdown_extensions:
-- pymdownx.highlight:
-    anchor_linenums: true
-- pymdownx.superfences
-- pymdownx.inlinehilite
-- pymdownx.snippets
-- pymdownx.tabbed:
-    alternate_style: true
-- admonition
-- footnotes
-- toc:
-    permalink: true
-    title: On this page
-- attr_list
-- md_in_html
-- def_list
-plugins:
-- search
-- awesome-pages
