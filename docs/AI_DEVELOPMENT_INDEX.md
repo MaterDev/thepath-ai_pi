@@ -10,121 +10,118 @@ This document serves as a master reference for AI agents during development of T
 ```yaml
 Root_Directories:
   docs: "Documentation and specifications"
-  server: "Go server implementation"
-  client: "TypeScript/React client"
-  ai: "Python AI components"
+  src: "Source code"
+  tests: "Test files"
   scripts: "Build and utility scripts"
+  images: "Project images and assets"
 
 Documentation_Structure:
   overview: "High-level project documentation"
   technical: "Technical specifications and APIs"
   implementation: "Implementation details and planning"
-  meta: "Development logs and metadata"
+  meta:
+    logs: "Development logs"
+    social: "Social media updates"
+    contributing: "Contribution guidelines"
   character_classes: "Game character specifications"
 ```
 
 ### Core Documentation
 ```yaml
-Architecture:
-  system_overview: "docs/overview/system-architecture.md"
-  server_design: "docs/implementation/server/architecture.md"
-  client_design: "docs/implementation/client/architecture.md"
-  ai_design: "docs/implementation/ai/architecture.md"
+Project_Overview:
+  documentation_site: "https://materdev.github.io/thepath-ai_pi/"
+  project_scope: "docs/overview/project-scope.md"
+  research_objectives: "docs/overview/research-objectives.md"
+  development_logs: "docs/meta/logs/index.md"
+  social_updates: "docs/meta/social/index.md"
 
-Technical_Specs:
-  api_endpoints: "docs/technical/api/endpoints.md"
-  game_state: "docs/technical/game/state.md"
-  turn_system: "docs/technical/game/turns.md"
-  ai_interface: "docs/technical/ai/interface.md"
+Development_Guidelines:
+  contributing: "docs/meta/contributing.md"
+  style_guide: "docs/meta/style-guide.md"
+  setup_guide: "docs/meta/implementation/setup/project-setup.md"
 ```
 
-### System Components
+### Documentation Standards
 ```yaml
-Game_State:
-  components:
-    - Character state management
-    - Turn system
-    - Combat actions
-    - State synchronization
-  key_docs: "docs/technical/game/state.md"
+Log_Format:
+  structure:
+    - Session overview with YAML metadata
+    - Focus areas
+    - Changes made
+    - Technical details
+    - Challenges and solutions
+    - Resources
+  location: "docs/meta/logs/*.md"
 
-Communication:
-  protocols:
-    - WebSocket events
-    - REST endpoints
-    - State synchronization
-  key_docs: "docs/technical/api/endpoints.md"
+Social_Updates:
+  structure:
+    - YAML frontmatter (date, platform, type, hashtags)
+    - Content in code blocks
+    - Hashtags
+  location: "docs/meta/social/linkedin/*.md"
+```
 
-AI_System:
-  components:
-    - Model inference
-    - Decision making
-    - Hardware acceleration
-    - Performance monitoring
-  key_docs: "docs/technical/ai/core.md"
+### Development Workflow
+```yaml
+Documentation:
+  automated_updates:
+    - Log navigation
+    - Social media posts
+    - Site deployment
+  tools:
+    - MkDocs Material theme
+    - GitHub Pages
+    - GitHub Actions
 
-Game_Systems:
-  components:
-    - Turn management
-    - Combat mechanics
-    - Character classes
-    - Status effects
-  key_docs: "docs/technical/game/systems.md"
+Version_Control:
+  branch_strategy:
+    main: "Primary development branch"
+  commit_conventions:
+    - "docs: Documentation updates"
+    - "feat: New features"
+    - "fix: Bug fixes"
+    - "chore: Maintenance"
 ```
 
 ### Technical Requirements
 ```yaml
-Performance:
-  ai_response_time_max: 100ms
-  server_update_time_max: 50ms
-  client_frame_time_max: 16ms
+Development:
+  python: "3.11+"
+  raspberry_pi: "5"
+  make: "Required for build scripts"
 
-Hardware:
-  platform: "Raspberry Pi 5"
-  ram: "8GB"
-  accelerator: "AI HAT+"
-  cooling: "Active"
-
-Dependencies:
-  server: "Go 1.21+"
-  client: "Node.js 18+"
-  ai: "Python 3.11+"
-  database: "MongoDB 6+"
+Documentation:
+  mkdocs: "Latest"
+  mkdocs_material: "Latest"
+  mkdocs_awesome_pages: "Latest"
+  python_yaml: "Latest"
 ```
 
-### Development Resources
+### Project Phases
 ```yaml
-Test_Suites:
-  locations:
-    server: "server/tests/"
-    client: "client/tests/"
-    ai: "ai/tests/"
-  requirements:
-    coverage_minimum: 80%
-    critical_coverage: 90%
+Phase_1:
+  focus: "Core Systems"
+  status: "In Progress"
+  tracking: "docs/overview/project-scope.md"
 
-Documentation_Standards:
-  required_sections:
-    - Purpose
-    - Technical Requirements
-    - Implementation Details
-    - Test Coverage
-    - Performance Metrics
+Phase_2:
+  focus: "Game Features"
+  status: "Planned"
+  tracking: "docs/overview/project-scope.md"
 
-Quality_Standards:
-  code:
-    - Automated linting
-    - Type safety
-    - Error handling
-    - Performance monitoring
-  testing:
-    - Unit test coverage
-    - Integration tests
-    - Performance validation
-  documentation:
-    - Technical accuracy
-    - Implementation alignment
-    - Cross-reference validation
+Phase_3:
+  focus: "Polish & Launch"
+  status: "Planned"
+  tracking: "docs/overview/project-scope.md"
+```
+
+### Resources
+```yaml
+External_Links:
+  mkdocs: "https://www.mkdocs.org/"
+  mkdocs_material: "https://squidfunk.github.io/mkdocs-material/"
+  github_pages: "https://docs.github.com/en/pages"
+  github_actions: "https://docs.github.com/en/actions"
 ```
 
 ## Core Specifications
