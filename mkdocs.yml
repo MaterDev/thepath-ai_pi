@@ -4,7 +4,7 @@ repo_url: https://github.com/MaterDev/thepath-ai_pi
 repo_name: MaterDev/thepath-ai_pi
 
 theme:
-  name: dracula
+  name: material
   features:
     - navigation.tabs
     - navigation.sections
@@ -16,6 +16,23 @@ theme:
     - search.suggest
     - search.highlight
     - navigation.tabs.sticky
+  palette:
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
 
 docs_dir: docs
 site_dir: site
