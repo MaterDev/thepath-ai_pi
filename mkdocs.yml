@@ -2,69 +2,63 @@ site_name: The Path (AI-Pi)
 site_url: https://materdev.github.io/thepath-ai_pi/
 repo_url: https://github.com/MaterDev/thepath-ai_pi
 repo_name: MaterDev/thepath-ai_pi
-
 theme:
   name: material
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - navigation.indexes
-    - navigation.instant
-    - navigation.tracking
-    - toc.follow
-    - search.suggest
-    - search.highlight
-    - navigation.tabs.sticky
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.indexes
+  - navigation.instant
+  - navigation.tracking
+  - toc.follow
+  - search.suggest
+  - search.highlight
+  - navigation.tabs.sticky
   palette:
-    # Default to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to light mode
-    # Light mode toggle option
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to dark mode
+  - scheme: slate
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-7
+      name: Switch to light mode
+  - scheme: default
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to dark mode
   font:
     text: Roboto
     code: Roboto Mono
-
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-  - admonition
-  - pymdownx.details
-  - pymdownx.tabbed:
-      alternate_style: true
-  - tables
-  - footnotes
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
-  - attr_list
-  - def_list
-  - md_in_html
-  - toc:
-      permalink: true
-      title: On this page
-
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences
+- admonition
+- pymdownx.details
+- pymdownx.tabbed:
+    alternate_style: true
+- tables
+- footnotes
+- pymdownx.critic
+- pymdownx.caret
+- pymdownx.keys
+- pymdownx.mark
+- pymdownx.tilde
+- attr_list
+- def_list
+- md_in_html
+- toc:
+    permalink: true
+    title: On this page
 plugins:
-  - search
-  - awesome-pages
-
+- search
+- awesome-pages
 docs_dir: docs
 site_dir: site
 nav:
@@ -74,6 +68,7 @@ nav:
   - Research Objectives: overview/research-objectives.md
 - Logs:
   - Overview: meta/logs/index.md
+  - January 17, 2025: meta/logs/2025-01-17.md
   - January 15, 2025: meta/logs/2025-01-15.md
   - January 13, 2025: meta/logs/2025-01-13.md
   - January 09, 2025: meta/logs/2025-01-09.md
