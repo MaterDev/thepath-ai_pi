@@ -33,6 +33,7 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-dracula-theme
           pip install mkdocs-awesome-pages-plugin
+          pip install mkdocs-tags-plugin
           pip install pyyaml
 
       - name: Update logs
