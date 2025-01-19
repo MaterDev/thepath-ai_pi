@@ -12,6 +12,14 @@ description: [Brief description of main focus]
 
 # Development Log: [Month Day, Year]
 
+## Session Overview
+```yaml
+type: [Type of work, e.g., Documentation, Implementation, Infrastructure]
+duration: [Duration in hours]
+hashtags: [comma-separated-tags]
+blockers: [Any blockers or None]
+```
+
 ## Session Focus
 * [Key area 1]
 * [Key area 2]
@@ -65,7 +73,13 @@ Each log entry should:
     * Include title and description
     * Use consistent date format (Month DD, YYYY)
 
-2. **Have Clear Sections**
+2. **Include Session Overview**
+    * Type of work being done
+    * Duration of session
+    * Relevant hashtags
+    * Any blockers encountered
+
+3. **Have Clear Sections**
     * Session Focus
     * Changes Made (with categories)
     * Technical Details
@@ -73,18 +87,18 @@ Each log entry should:
     * Next Steps
     * References
 
-3. **Use Proper Formatting**
+4. **Use Proper Formatting**
     * Use markdown headers consistently
     * Include bullet points for lists
     * Format code blocks with appropriate syntax
     * Use relative links for cross-references
 
-4. **Be Detailed but Concise**
+5. **Be Detailed but Concise**
     * Focus on significant changes
     * Include enough context to understand the changes
     * Link to detailed documentation rather than repeating it
 
-5. **Include Cross-References**
+6. **Include Cross-References**
     * Link to related documentation
     * Reference previous logs when relevant
     * Link to specific commits or PRs when applicable
