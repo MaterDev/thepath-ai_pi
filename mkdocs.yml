@@ -70,29 +70,6 @@ nav:
 - Overview:
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md
-- Technical:
-  - Setup:
-    - Overview: technical/setup/index.md
-    - Repository: technical/setup/repository.md
-    - Development: technical/setup/development.md
-    - Docker: technical/setup/docker.md
-    - CI/CD: technical/setup/ci-cd.md
-  - Architecture:
-    - Overview: technical/architecture/index.md
-    - Client: technical/architecture/client.md
-    - Server: technical/architecture/server.md
-    - AI System: technical/architecture/ai.md
-  - Data Schemas:
-    - Overview: technical/data-schemas/index.md
-    - Game State: technical/data-schemas/game-state.md
-    - AI Models: technical/data-schemas/ai-models.md
-    - Replay System: technical/data-schemas/replay-system.md
-  - Health Monitoring:
-    - Overview: technical/health/index.md
-    - Client: technical/health/client.md
-    - Server: technical/health/server.md
-    - AI System: technical/health/ai.md
-- AI Development Index: AI_DEVELOPMENT_INDEX.md
 - Logs:
   - Overview: meta/logs/index.md
   - January 17, 2025: meta/logs/2025-01-17.md
@@ -110,6 +87,28 @@ nav:
     - January 07, 2025: meta/social/linkedin/2025-01-07.md
     - January 03, 2025: meta/social/linkedin/2025-01-03.md
     - December 27, 2024: meta/social/linkedin/2024-12-27.md
+- AI Development Index: AI_DEVELOPMENT_INDEX.md
+- Technical:
+  - Setup:
+    - Docker: technical/setup/docker.md
+  - AI System:
+    - Behavior Model: technical/ai-system/behavior-model.md
+    - Difficulty System: technical/ai-system/difficulty-system.md
+    - Training Pipeline: technical/ai-system/training-pipeline.md
+  - Data Schemas:
+    - Game State: technical/data-schemas/game-state.md
+    - AI Models: technical/data-schemas/ai-models.md
+    - Replay System: technical/data-schemas/replay-system.md
+  - Hardware:
+    - Raspberry Pi 5: technical/hardware/raspberry-pi-5.md
+    - AI HAT Plus: technical/hardware/ai-hat-plus.md
+  - Health Monitoring:
+    - Overview: technical/health/index.md
+    - Client: technical/health/client.md
+    - Server: technical/health/server.md
+    - AI System: technical/health/ai.md
+  - Client:
+    - UI Specification: technical/client/ui-specification.md
 - Development:
   - Setup: meta/implementation/setup/project-setup.md
   - Planning:
