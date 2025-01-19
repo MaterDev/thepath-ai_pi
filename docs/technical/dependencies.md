@@ -8,19 +8,16 @@ This document lists all project dependencies and their versions to ensure consis
 
 ```go
 // go.mod
-module github.com/MaterDev/thepath-ai_pi
+module github.com/mater-dev/thepath-ai_pi
 
 go 1.21
 
 require (
     github.com/gorilla/websocket v1.5.1
     github.com/gin-gonic/gin v1.9.1
+    github.com/golang-jwt/jwt/v5 v5.2.0
+    github.com/google/uuid v1.5.0
     go.mongodb.org/mongo-driver v1.13.1
-    github.com/stretchr/testify v1.8.4
-    github.com/spf13/viper v1.18.2
-    github.com/prometheus/client_golang v1.17.0
-    github.com/sirupsen/logrus v1.9.3
-    golang.org/x/sync v0.5.0
 )
 ```
 
@@ -34,11 +31,13 @@ require (
     "redux": "^5.0.0",
     "react-redux": "^9.0.4",
     "@reduxjs/toolkit": "^2.0.1",
+    "@mui/material": "^5.15.0",
+    "@mui/icons-material": "^5.15.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "typescript": "^5.3.3",
     "axios": "^1.6.2",
-    "socket.io-client": "^4.7.2",
-    "tailwindcss": "^3.3.6",
-    "three.js": "^0.159.0"
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",
@@ -59,47 +58,155 @@ require (
 # requirements.txt
 
 # Core Dependencies
-numpy==1.26.2
-torch==2.1.1
-transformers==4.35.2
-scikit-learn==1.3.2
+tensorflow-lite==2.14.0
+numpy==1.24.3
 pandas==2.1.3
+scikit-learn==1.3.2
+python-socketio==5.10.0
+pydantic==2.5.2
+```
 
-# Hardware Acceleration
-tflite-runtime==2.14.0
-onnxruntime==1.16.3
-tensorrt==8.6.1
+## Hardware Dependencies
 
-# Data Management
-pymongo==4.6.1
-redis==5.0.1
-pyyaml==6.0.1
+```yaml
+Raspberry_Pi_5:
+  model: "BCM2712"
+  cpu: "2.4GHz quad-core 64-bit Arm Cortex-A76"
+  memory: "8GB LPDDR4X-4267"
+  gpu: "VideoCore VII"
+  graphics_apis:
+    - "OpenGL ES 3.1"
+    - "Vulkan 1.2"
+  pcie: "PCIe 2.0 x1"
+  power: "5V/5A USB-C (PD)"
 
-# Monitoring & Logging
-prometheus-client==0.19.0
-tensorboard==2.15.1
-wandb==0.16.1
+AI_HAT_Plus:
+  model: "26 TOPS variant"
+  accelerator: "Hailo-8"
+  interface: "PCIe 2.0 x1"
+  power_modes:
+    - "26 TOPS @ 10.4W"
+    - "19.5 TOPS @ 7.8W"
+    - "13 TOPS @ 5.2W"
+```
 
-# Testing
-pytest==7.4.3
-pytest-cov==4.1.0
-pytest-asyncio==0.21.1
+## Graphics Dependencies
 
-# Development
-black==23.11.0
-isort==5.12.0
-mypy==1.7.1
-pylint==3.0.2
+```yaml
+Vulkan_SDK: ">=1.2"
+OpenGL_ES: ">=3.1"
+GPU_Memory: "1GB reserved"
+```
+
+## Performance Requirements
+
+```yaml
+Minimum_Performance:
+  cpu_frequency: "2.4GHz"
+  memory_bandwidth: "34.1 GB/s"
+  gpu_features:
+    - "Vulkan 1.2 support"
+    - "4Kp60 rendering"
+  ai_performance: "26 TOPS"
+  pcie_bandwidth: "5 Gbps"
+```
+
+## WebSocket Protocol
+
+### Connection Events
+```typescript
+interface WebSocketEvents {
+    // Authentication
+    'auth:login': { token: string }
+    'auth:logout': void
+    
+    // Battle Management
+    'battle:create': void
+    'battle:join': { battleId: string }
+    'battle:leave': void
+    'battle:forfeit': void
+    
+    // Game Actions
+    'action:submit': {
+        type: 'ATTACK' | 'DEFEND' | 'SPECIAL'
+        targetId?: string
+        data?: Record<string, any>
+    }
+    
+    // State Updates
+    'state:update': {
+        battleState: BattleState
+        playerState: PlayerState
+        turnState: {
+            currentTurn: string  // playerId
+            timeRemaining?: number
+            isPlayerTurn: boolean
+        }
+    }
+    
+    // Status Updates
+    'status:waiting': void  // AI is thinking
+    'status:ready': void    // Player can take action
+    'status:error': { message: string }
+    'status:victory': void
+    'status:defeat': void
+}
+
+interface BattleState {
+    id: string
+    players: {
+        id: string
+        name: string
+        health: number
+        status: string[]
+    }[]
+    round: number
+    status: 'ACTIVE' | 'FINISHED'
+}
+
+interface PlayerState {
+    health: number
+    energy: number
+    status: string[]
+    availableActions: string[]
+}
+```
+
+### Example Flow
+```typescript
+// 1. Connect and authenticate
+socket.emit('auth:login', { token: 'user-jwt' })
+
+// 2. Create or join battle
+socket.emit('battle:create')
+// or
+socket.emit('battle:join', { battleId: 'existing-id' })
+
+// 3. Receive initial state
+socket.on('state:update', (state) => {
+    if (state.turnState.isPlayerTurn) {
+        // Enable UI actions
+    } else {
+        // Disable UI, show waiting state
+    }
+})
+
+// 4. Submit action when it's player's turn
+socket.emit('action:submit', {
+    type: 'ATTACK',
+    targetId: 'opponent-id'
+})
+
+// 5. Handle game end
+socket.on('status:victory', () => {
+    // Show victory screen
+})
+socket.on('status:defeat', () => {
+    // Show defeat screen
+})
 ```
 
 ## System Requirements
-
-### Hardware
-- Raspberry Pi 5 (8GB RAM recommended)
-- AI HAT+ module
-- Active cooling solution
-- 32GB+ MicroSD card
-- Optional: 7-inch touchscreen
 
 ### Operating System
 - Raspberry Pi OS (64-bit)

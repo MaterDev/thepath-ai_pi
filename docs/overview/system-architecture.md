@@ -18,77 +18,59 @@ graph TD
 ### Core Components
 
 1. **Game Server (Go)**
-   - Handles game state management (<50ms updates)
+   - Handles game state management
    - WebSocket communication
    - JSON state serialization
    - Turn sequencing
    - Action validation
 
 2. **AI Engine (Python)**
-   - Transformer-based behavior model
-   - Hardware-accelerated inference (<100ms)
+   - TensorFlow Lite inference
    - Dynamic difficulty (0.2-0.95)
    - Personality system
-   - Training pipeline
+   - Training pipeline (Mac Mini M1)
 
 3. **Game Client (TypeScript)**
-   - React-based UI (<16ms frame time)
+   - React with Material-UI
    - Redux state management
    - WebSocket communication
-   - Replay visualization
+   - Simple battle UI
 
 4. **Hardware Layer**
    - Raspberry Pi 5 (8GB)
    - AI HAT+ acceleration
    - Active cooling
-   - Local storage (512MB limit)
+   - Local storage
 
 ## Data Flow
 
 1. **Game State Management**
    ```
-   Client Action -> Server Validation (<50ms) -> State Update -> AI Processing (<100ms) -> Response
+   Client Action -> Server Validation -> State Update -> AI Processing -> Response
    ```
 
 2. **AI Decision Pipeline**
    ```
-   State Input -> Feature Extraction -> Hardware Inference -> Action Selection -> Validation
+   State Input -> Feature Extraction -> TFLite Inference -> Action Selection -> Validation
    ```
 
-3. **Replay System**
+3. **Battle System**
    ```
-   Game State -> MongoDB -> Analytics -> Training Data -> Model Updates
+   User Login -> Create/Join Battle -> Turn Exchange -> Battle End -> Stats Update
    ```
-
-## Performance Requirements
-
-### 1. Response Times
-- Client frame time: <16ms
-- Server updates: <50ms
-- AI decisions: <100ms
-- Network RTT: <100ms
-
-### 2. Resource Usage
-- Memory: <512MB
-- CPU: <80%
-- GPU: Available via AI HAT+
-- Storage: Local + Cloud
-
-### 3. Scalability
-- Concurrent games: 4+
-- Active clients: 8+
-- Replay storage: Cloud-based
-- Analytics: Batch processing
 
 ## Integration Points
 
 ### 1. Server-Client
 ```typescript
 interface GameConnection {
-    // WebSocket connection
-    connect(): Promise<void>
-    send(action: GameAction): Promise<void>
-    onUpdate(handler: (state: GameState) => void): void
+    // WebSocket connection for battle management
+    connect(token: string): Promise<void>
+    createBattle(): Promise<string>
+    joinBattle(battleId: string): Promise<void>
+    submitAction(action: GameAction): Promise<void>
+    forfeit(): Promise<void>
+    onStateUpdate(handler: (state: GameState) => void): void
 }
 ```
 
@@ -96,30 +78,38 @@ interface GameConnection {
 ```python
 class AIInterface:
     """AI engine interface"""
-    async def process_state(
+    async def process_turn(
         self, 
         state: GameState,
-        difficulty: float  # 0.2-0.95
-    ) -> Action:
-        """Process game state and return action"""
-        pass
+        difficulty: float
+    ) -> GameAction:
+        """Process game state and return next action"""
 ```
 
-### 3. Data Storage
-```go
-type DataStore interface {
-    // Game state persistence
-    SaveState(state *GameState) error
-    LoadState(id string) (*GameState, error)
-    
-    // Replay management
-    SaveReplay(replay *GameReplay) error
-    GetReplay(id string) (*GameReplay, error)
+### 3. Client UI States
+```typescript
+interface UIState {
+    // Simple UI states
+    isPlayerTurn: boolean
+    isWaiting: boolean
+    availableActions: string[]
+    battleStatus: 'active' | 'victory' | 'defeat'
 }
 ```
 
-## Related Documentation
-- [Project Scope](project-scope.md)
-- [Server Architecture](../implementation/server/architecture.md)
-- [AI Implementation](../implementation/ai/architecture.md)
-- [Client Architecture](../implementation/client/architecture.md)
+## Performance Considerations
+
+1. **AI Processing**
+   - TensorFlow Lite optimization
+   - Batch inference when needed
+   - Simple state management
+
+2. **Client Interface**
+   - Material-UI components
+   - Basic animations for state changes
+   - Disabled controls during AI turns
+
+3. **Data Management**
+   - Local game state
+   - Basic user authentication
+   - Battle history storage

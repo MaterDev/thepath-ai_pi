@@ -70,6 +70,28 @@ nav:
 - Overview:
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md
+- Technical:
+  - Setup:
+    - Overview: technical/setup/index.md
+    - Repository: technical/setup/repository.md
+    - Development: technical/setup/development.md
+    - Docker: technical/setup/docker.md
+    - CI/CD: technical/setup/ci-cd.md
+  - Architecture:
+    - Overview: technical/architecture/index.md
+    - Client: technical/architecture/client.md
+    - Server: technical/architecture/server.md
+    - AI System: technical/architecture/ai.md
+  - Data Schemas:
+    - Overview: technical/data-schemas/index.md
+    - Game State: technical/data-schemas/game-state.md
+    - AI Models: technical/data-schemas/ai-models.md
+    - Replay System: technical/data-schemas/replay-system.md
+  - Health Monitoring:
+    - Overview: technical/health/index.md
+    - Client: technical/health/client.md
+    - Server: technical/health/server.md
+    - AI System: technical/health/ai.md
 - AI Development Index: AI_DEVELOPMENT_INDEX.md
 - Logs:
   - Overview: meta/logs/index.md
@@ -99,9 +121,6 @@ nav:
       - AI Integration: meta/phase1/4-ai-integration.md
       - Turn System: meta/phase1/5-turn-system.md
   - Style Guide: meta/style-guide.md
-- Technical:
-  - Dependencies: technical/dependencies.md
-  - Hardware: technical/hardware/configuration.md
 - Character Classes:
   - Conjuror: character_classes/conjuror.md
   - Crystal Vanguard: character_classes/crystal_vanguard.md

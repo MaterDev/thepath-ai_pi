@@ -4,6 +4,19 @@
 
 This document serves as a master reference for AI agents during development of The Path (AI-Pi). It indexes essential resources and documentation across the project.
 
+## Quick Links
+
+### Essential Documentation
+- [Project Scope](overview/project-scope.md)
+- [Research Objectives](overview/research-objectives.md)
+- [System Architecture](overview/system-architecture.md)
+- [Development Logs](meta/logs/index.md)
+
+### Core Systems
+- [AI Architecture](meta/implementation/ai/architecture.md)
+- [Client Architecture](meta/implementation/client/architecture.md)
+- [Server Architecture](meta/implementation/server/architecture.md)
+
 ## Project Resources
 
 ### Repository Structure
@@ -19,543 +32,172 @@ Documentation_Structure:
   overview: "High-level project documentation"
   technical: "Technical specifications and APIs"
   implementation: "Implementation details and planning"
-  meta:
-    logs: "Development logs"
-    social: "Social media updates"
-    contributing: "Contribution guidelines"
-  character_classes: "Game character specifications"
+  meta: "Project metadata and phase documentation"
+  health: "Service health monitoring"
 ```
 
-### Core Documentation
-```yaml
-Project_Overview:
-  documentation_site: "https://materdev.github.io/thepath-ai_pi/"
-  project_scope: "docs/overview/project-scope.md"
-  research_objectives: "docs/overview/research-objectives.md"
-  development_logs: "docs/meta/logs/index.md"
-  social_updates: "docs/meta/social/index.md"
+## System Architecture
 
-Development_Guidelines:
-  contributing: "docs/meta/contributing.md"
-  style_guide: "docs/meta/style-guide.md"
-  setup_guide: "docs/meta/implementation/setup/project-setup.md"
+### AI Pipeline
+```yaml
+Training_Environment:
+  platform: "Mac Mini M1"
+  components:
+    - training_pipeline: "technical/ai-system/training-pipeline.md"
+    - ai_models: "technical/data-schemas/ai-models.md"
+    - behavior_model: "technical/ai-system/behavior-model.md"
+
+Inference_Environment:
+  platform: "Raspberry Pi 5"
+  components:
+    - hardware: "technical/hardware/raspberry-pi-5.md"
+    - ai_hat: "technical/hardware/ai-hat-plus.md"
+    - difficulty: "technical/ai-system/difficulty-system.md"
 ```
 
-### Documentation Standards
+### Game Systems
 ```yaml
-Log_Format:
-  structure:
-    - Session overview with YAML metadata
-    - Focus areas
-    - Changes made
-    - Technical details
-    - Challenges and solutions
-    - Resources
-  location: "docs/meta/logs/*.md"
+State_Management:
+  components:
+    - game_state: "technical/data-schemas/game-state.md"
+    - replay_system: "technical/data-schemas/replay-system.md"
 
-Social_Updates:
-  structure:
-    - YAML frontmatter (date, platform, type, hashtags)
-    - Content in code blocks
-    - Hashtags
-  location: "docs/meta/social/linkedin/*.md"
+Battle_System:
+  components:
+    - turn_system: "meta/phase1/5-turn-system.md"
+    - communication: "meta/phase1/3-communication.md"
 ```
 
-### Development Workflow
+### Infrastructure
 ```yaml
-Documentation:
-  automated_updates:
-    - Log navigation
-    - Social media posts
-    - Site deployment
-  tools:
-    - MkDocs Material theme
-    - GitHub Pages
-    - GitHub Actions
+Development_Environment:
+  components:
+    - docker: "technical/setup/docker.md"
+    - setup: "meta/phase1/1-project-setup.md"
 
-Version_Control:
-  branch_strategy:
-    main: "Primary development branch"
-  commit_conventions:
-    - "docs: Documentation updates"
-    - "feat: New features"
-    - "fix: Bug fixes"
-    - "chore: Maintenance"
+Health_Monitoring:
+  components:
+    - overview: "technical/health/index.md"
+    - ai_service: "technical/health/ai.md"
+    - client: "technical/health/client.md"
+    - server: "technical/health/server.md"
 ```
 
-### Technical Requirements
-```yaml
-Development:
-  python: "3.11+"
-  raspberry_pi: "5"
-  make: "Required for build scripts"
+## Implementation Guide
 
-Documentation:
-  mkdocs: "Latest"
-  mkdocs_material: "Latest"
-  mkdocs_awesome_pages: "Latest"
-  python_yaml: "Latest"
+### Phase 1: Core Systems
+```yaml
+Setup:
+  document: "meta/phase1/1-project-setup.md"
+  components:
+    - docker_containers: "Container configuration"
+    - service_setup: "Service initialization"
+    - health_monitoring: "Health check system"
+
+Game_State:
+  document: "meta/phase1/2-game-state.md"
+  components:
+    - state_management: "State handling"
+    - data_schemas: "Data structures"
+    - persistence: "Data storage"
+
+Communication:
+  document: "meta/phase1/3-communication.md"
+  components:
+    - websocket: "WebSocket protocol"
+    - events: "Event handling"
+    - recovery: "Error recovery"
+
+AI_Integration:
+  document: "meta/phase1/4-ai-integration.md"
+  components:
+    - model_deployment: "Model setup"
+    - inference: "Inference pipeline"
+    - optimization: "Performance tuning"
+
+Turn_System:
+  document: "meta/phase1/5-turn-system.md"
+  components:
+    - mechanics: "Battle mechanics"
+    - actions: "Action handling"
+    - transitions: "State transitions"
 ```
 
-### Project Phases
+### Technology Stack
 ```yaml
-Phase_1:
-  focus: "Core Systems"
-  status: "In Progress"
-  tracking: "docs/overview/project-scope.md"
-
-Phase_2:
-  focus: "Game Features"
-  status: "Planned"
-  tracking: "docs/overview/project-scope.md"
-
-Phase_3:
-  focus: "Polish & Launch"
-  status: "Planned"
-  tracking: "docs/overview/project-scope.md"
-```
-
-### Resources
-```yaml
-External_Links:
-  mkdocs: "https://www.mkdocs.org/"
-  mkdocs_material: "https://squidfunk.github.io/mkdocs-material/"
-  github_pages: "https://docs.github.com/en/pages"
-  github_actions: "https://docs.github.com/en/actions"
-```
-
-## Core Specifications
-
-### Performance Requirements
-```yaml
-AI:
-  response_time_max: 100ms
-  memory_limit: 512MB
-  difficulty_range: [0.2, 0.95]
+Client:
+  framework: "React + TypeScript"
+  ui: "Material-UI"
+  state: "Redux"
+  protocol: "WebSocket"
 
 Server:
-  update_time_max: 50ms
-  concurrent_games: 4
-  websocket_protocol: true
+  language: "Go"
+  database: "MongoDB"
+  protocol: "WebSocket"
+  container: "Docker"
 
-Client:
-  frame_time_max: 16ms
-  react_redux: true
-  typescript: true
-
-Hardware:
-  platform: "Raspberry Pi 5"
-  ram: "8GB"
-  accelerator: "AI HAT+"
-  cooling: "Active"
-```
-
-### Critical Paths
-```yaml
-Documentation:
-  overview: "docs/overview/"
-  technical: "docs/technical/"
-  implementation: "docs/implementation/"
-  meta: "docs/meta/"
-
-Source:
-  server: "server/"
-  client: "client/"
-  ai: "ai/"
-  scripts: "scripts/"
-```
-
-## Documentation Map
-
-### Key Documents
-```yaml
-Architecture:
-  system: "docs/overview/system-architecture.md"
-  server: "docs/implementation/server/architecture.md"
-  client: "docs/implementation/client/architecture.md"
-  ai: "docs/implementation/ai/architecture.md"
-
-APIs:
-  endpoints: "docs/technical/api/endpoints.md"
-  websocket: "docs/technical/api/endpoints.md#websocket-events"
-  rest: "docs/technical/api/endpoints.md#rest-endpoints"
-
-Data:
-  schemas: "docs/technical/data-schemas/"
-  game_state: "docs/technical/data-schemas/game-state.md"
-  ai_models: "docs/technical/data-schemas/ai-models.md"
-
-Setup:
-  project: "docs/implementation/setup/project-setup.md"
-  dependencies: "docs/technical/dependencies.md"
-```
-
-## Game Mechanics Reference
-
-### Combat System
-```yaml
-Turn_Based:
-  order: "Speed-based probability"
-  actions_per_turn: 1
-  reaction_system: true
-
-Actions:
-  attack:
-    targeting: "Single/AOE"
-    damage_types: ["Physical", "Magical", "True"]
-  defend:
-    duration: "Until next turn"
-    bonus: "50% damage reduction"
-  ability:
-    cooldown: true
-    resource_cost: true
-    targeting: "Varied"
-  item:
-    inventory_limit: 6
-    use_time: "1 action"
-
-Status_Effects:
-  duration: "1-5 turns"
-  stacking: "Some effects"
-  cleansing: "Specific abilities"
+AI_Service:
+  runtime: "Python"
+  model: "TensorFlow Lite"
+  training: "Mac Mini M1"
+  inference: "Raspberry Pi 5"
 ```
 
 ### Character System
 ```yaml
 Classes:
-  warrior:
-    focus: "Physical damage/Tank"
-    difficulty: 0.3
-  mage:
-    focus: "Magical damage/Control"
-    difficulty: 0.7
-  rogue:
-    focus: "Speed/Critical hits"
-    difficulty: 0.8
-  support:
-    focus: "Healing/Buffs"
-    difficulty: 0.6
-
-Stats:
-  primary:
-    - health
-    - attack
-    - defense
-    - speed
-  secondary:
-    - critical_chance
-    - dodge
-    - resistance
-    - accuracy
+  conjuror:
+    document: "character_classes/conjuror.md"
+  crystal_vanguard:
+    document: "character_classes/crystal_vanguard.md"
+  primal_shifter:
+    document: "character_classes/primal_shifter.md"
+  the_blessed:
+    document: "character_classes/the_blessed.md"
+  wraithwood_seer:
+    document: "character_classes/wraithwood_seer.md"
+  zealot:
+    document: "character_classes/zealot.md"
 ```
 
-### Character Classes
+## Development Resources
+
+### Documentation Tree
 ```yaml
-Classes:
-  Conjuror:
-    doc: "docs/character_classes/conjuror_bio.yml"
-    role: "Damage/Control"
-    theme: "Arcane manipulation and energy control"
-    combat_style: "Mid-range spell weaver"
-    difficulty: "Medium"
-
-  Crystal_Vanguard:
-    doc: "docs/character_classes/crystal_vanguard_bio.yml"
-    role: "Tank/Support"
-    theme: "Crystal-based defense and protection"
-    combat_style: "Frontline protector"
-    difficulty: "Low"
-
-  Zealot:
-    doc: "docs/character_classes/zealot_bio.yml"
-    role: "Damage/Mobility"
-    theme: "Fanatical combat prowess"
-    combat_style: "Aggressive skirmisher"
-    difficulty: "High"
-
-  Wraithwood_Seer:
-    doc: "docs/character_classes/wraithwood_seer_bio.yml"
-    role: "Support/Control"
-    theme: "Natural magic and foresight"
-    combat_style: "Tactical support"
-    difficulty: "Medium"
-
-  Primal_Shifter:
-    doc: "docs/character_classes/primal_shifter_bio.yml"
-    role: "Tank/Damage"
-    theme: "Bestial transformation"
-    combat_style: "Adaptable warrior"
-    difficulty: "High"
-
-  The_Blessed:
-    doc: "docs/character_classes/the_blessed_bio.yml"
-    role: "Support/Utility"
-    theme: "Divine blessings and protection"
-    combat_style: "Strategic enabler"
-    difficulty: "Medium"
-
-Class_System:
-  doc_root: "docs/character_classes/"
-  balance_considerations:
-    - Each class must have clear strengths and weaknesses
-    - Roles should complement each other in team composition
-    - Difficulty ratings affect AI behavior adaptation
-    - Combat styles should enable diverse strategies
-
-  class_relationships:
-    strong_against:
-      Conjuror: ["The_Blessed", "Wraithwood_Seer"]
-      Crystal_Vanguard: ["Conjuror", "Zealot"]
-      Zealot: ["The_Blessed", "Primal_Shifter"]
-      Wraithwood_Seer: ["Primal_Shifter", "Crystal_Vanguard"]
-      Primal_Shifter: ["Conjuror", "The_Blessed"]
-      The_Blessed: ["Crystal_Vanguard", "Wraithwood_Seer"]
+Structure:
+  overview: "Project overview and objectives"
+  technical:
+    ai-system: "AI system implementation"
+    data-schemas: "Data structures and models"
+    hardware: "Hardware specifications"
+    health: "Health monitoring"
+    setup: "Development setup"
+  meta:
+    phase1: "Phase 1 implementation"
 ```
 
-### AI Behavior Patterns
-
-### Personality Types
+### Analysis
 ```yaml
-Aggressive:
-  attack_priority: 0.8
-  defense_priority: 0.2
-  risk_taking: 0.7
-
-Defensive:
-  attack_priority: 0.3
-  defense_priority: 0.8
-  risk_taking: 0.2
-
-Balanced:
-  attack_priority: 0.5
-  defense_priority: 0.5
-  risk_taking: 0.5
-
-Strategic:
-  attack_priority: 0.6
-  defense_priority: 0.6
-  risk_taking: 0.4
+Documents:
+  analysis: "meta/analysis/documentation-analysis.md"
+  research: "overview/research-objectives.md"
+  architecture: "overview/system-architecture.md"
 ```
 
-### Learning Parameters
+### Development Logs
 ```yaml
-Adaptation:
-  rate: 0.1
-  window_size: 10
-  metrics:
-    - player_health
-    - damage_dealt
-    - survival_time
-    - objective_completion
-
-Pattern_Recognition:
-  features:
-    - action_sequences
-    - resource_management
-    - positioning
-    - target_selection
-  
-Response_Adjustment:
-  confidence_threshold: 0.7
-  exploration_rate: 0.2
-  memory_length: 50
+Latest_Updates:
+  - "meta/logs/2025-01-17.md"
+  - "meta/logs/2025-01-15.md"
+  - "meta/logs/2025-01-13.md"
 ```
 
-## Testing Requirements
-
-### Unit Tests
+## Version History
 ```yaml
-Coverage:
-  server: ">= 80%"
-  client: ">= 75%"
-  ai: ">= 85%"
-
-Critical_Paths:
-  - State management
-  - Action validation
-  - AI decisions
-  - Network handling
+Versions:
+  v2.0: "Updated for Docker and health monitoring"
+  v1.2: "Enhanced architecture docs"
+  v1.1: "Added implementation phases"
+  v1.0: "Initial documentation"
 ```
-
-### Integration Tests
-```yaml
-Scenarios:
-  - Full game flow
-  - AI adaptation
-  - Network resilience
-  - State synchronization
-
-Performance_Tests:
-  - Response times
-  - Memory usage
-  - Concurrent games
-  - Hardware utilization
-```
-
-### User Acceptance
-```yaml
-Criteria:
-  - Response time feels instant
-  - AI behavior feels natural
-  - UI is intuitive
-  - Game is engaging
-
-Metrics:
-  - User session length
-  - Return rate
-  - Completion rate
-  - Difficulty satisfaction
-```
-
-## Development Workflow
-
-### Feature Implementation
-```yaml
-Steps:
-  1: Review specifications
-  2: Update documentation
-  3: Implement tests
-  4: Develop feature
-  5: Validate performance
-  6: Update AI index
-
-Validation:
-  - Performance requirements
-  - API consistency
-  - Documentation alignment
-  - Test coverage
-```
-
-### Code Review Process
-```yaml
-Checklist:
-  - Documentation updated
-  - Tests added
-  - Performance validated
-  - API consistency
-  - Error handling
-  - Security checks
-
-Priority:
-  critical:
-    - State management
-    - AI behavior
-    - Network code
-  high:
-    - UI components
-    - Game logic
-    - Data handling
-```
-
-## Security Considerations
-
-### Data Protection
-```yaml
-Sensitive_Data:
-  - Player credentials
-  - Game statistics
-  - AI training data
-  - Performance metrics
-
-Encryption:
-  websocket: "TLS 1.3"
-  storage: "AES-256"
-  api: "HTTPS only"
-```
-
-### Access Control
-```yaml
-Authentication:
-  method: "JWT"
-  expiry: "24h"
-  refresh: true
-
-Authorization:
-  roles:
-    - player
-    - admin
-    - system
-  scope_based: true
-```
-
-## Error Recovery
-
-### Failure Modes
-```yaml
-Network:
-  - Connection loss
-  - High latency
-  - Packet loss
-  - State desync
-
-Hardware:
-  - Memory exhaustion
-  - CPU throttling
-  - Storage limits
-  - Temperature limits
-
-Recovery:
-  - State restoration
-  - Graceful degradation
-  - Auto-reconnect
-  - Data consistency
-```
-
-### Monitoring
-```yaml
-Metrics:
-  - Response times
-  - Error rates
-  - Resource usage
-  - User engagement
-
-Alerts:
-  performance:
-    ai_response: "> 100ms"
-    server_update: "> 50ms"
-    client_frame: "> 16ms"
-  hardware:
-    memory: "> 80%"
-    cpu: "> 80%"
-    temperature: "> 80°C"
-```
-
-## Quick Reference
-
-### Critical Limits
-```yaml
-AI:
-  response: 100ms
-  memory: 512MB
-  difficulty: [0.2, 0.95]
-
-Server:
-  updates: 50ms
-  memory: 512MB
-  concurrent: 4
-
-Client:
-  frames: 16ms
-  memory: 256MB
-```
-
-### Key Paths
-```yaml
-Docs: "docs/"
-Server: "server/"
-Client: "client/"
-AI: "ai/"
-```
-
-### Main APIs
-```yaml
-WebSocket: "/game"
-REST: "/api/v1"
-AI: "/ai/v1"
-```
-
-## Related Documentation
-- [Project Scope](docs/overview/project-scope.md)
-- [System Architecture](docs/overview/system-architecture.md)
-- [API Endpoints](docs/technical/api/endpoints.md)
-- [Setup Guide](docs/implementation/setup/project-setup.md)
