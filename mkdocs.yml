@@ -34,7 +34,7 @@ theme:
     text: Roboto
     code: Roboto Mono
 extra_css:
-  - stylesheets/extra.css
+- stylesheets/extra.css
 markdown_extensions:
 - pymdownx.highlight:
     anchor_linenums: true
@@ -72,6 +72,7 @@ nav:
   - Research Objectives: overview/research-objectives.md
 - Logs:
   - Overview: meta/logs/index.md
+  - January 19, 2025: meta/logs/2025-01-19.md
   - January 17, 2025: meta/logs/2025-01-17.md
   - January 15, 2025: meta/logs/2025-01-15.md
   - January 13, 2025: meta/logs/2025-01-13.md
