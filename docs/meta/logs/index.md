@@ -62,32 +62,32 @@ description: [Brief description of main focus]
 Each log entry should:
 
 1. **Start with YAML Frontmatter**
-   - Include title and description
-   - Use consistent date format (Month DD, YYYY)
+    * Include title and description
+    * Use consistent date format (Month DD, YYYY)
 
 2. **Have Clear Sections**
-   - Session Focus
-   - Changes Made (with categories)
-   - Technical Details
-   - Challenges and Solutions
-   - Next Steps
-   - References
+    * Session Focus
+    * Changes Made (with categories)
+    * Technical Details
+    * Challenges and Solutions
+    * Next Steps
+    * References
 
 3. **Use Proper Formatting**
-   - Use markdown headers consistently
-   - Include bullet points for lists
-   - Format code blocks with appropriate syntax
-   - Use relative links for cross-references
+    * Use markdown headers consistently
+    * Include bullet points for lists
+    * Format code blocks with appropriate syntax
+    * Use relative links for cros   *references
 
 4. **Be Detailed but Concise**
-   - Focus on significant changes
-   - Include enough context to understand the changes
-   - Link to detailed documentation rather than repeating it
+    * Focus on significant changes
+    * Include enough context to understand the changes
+    * Link to detailed documentation rather than repeating it
 
-5. **Include Cross-References**
-   - Link to related documentation
-   - Reference previous logs when relevant
-   - Link to specific commits or PRs when applicable
+5. **Include Cros   *References**
+    * Link to related documentation
+    * Reference previous logs when relevant
+    * Link to specific commits or PRs when applicable
 
 ## Recent Updates
 
