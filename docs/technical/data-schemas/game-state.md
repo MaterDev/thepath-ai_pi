@@ -2,118 +2,159 @@
 
 ## Overview
 
-This document defines the core data structures used throughout the game system. These schemas are designed to be:
-- Language-agnostic (implemented in both Go and Python)
-- Serializable (JSON-compatible)
-- Validated (with clear rules)
-- Versioned (for future evolution)
+This document defines the core data structures used in the battle system. These schemas are designed to be:
+- Simple and focused on battles
+- Language-agnostic (Go/Python)
+- JSON-serializable
+- WebSocket-friendly
 
 ## Core Types
 
 ```go
-// Base types used throughout the system
+// Base types
 type ID string          // Unique identifier
 type Timestamp int64    // Unix milliseconds
-type Version string     // Semantic version
+type ActionType string  // Type of action
 
-// Common interfaces that all major types implement
+// Common interfaces
 type Serializable interface {
     Marshal() ([]byte, error)
     Unmarshal([]byte) error
-}
-
-type Validatable interface {
-    Validate() error
 }
 ```
 
 ## Battle State
 
-The core game state during combat:
-
 ```go
+// Main battle state
 type BattleState struct {
-    ID              ID                      `json:"id"`
-    Version         Version                 `json:"version"`
-    Timestamp       Timestamp               `json:"timestamp"`
-    Characters      map[ID]*CharacterState  `json:"characters"`
-    TurnOrder       []ID                    `json:"turnOrder"`
-    CurrentTurn     int                     `json:"currentTurn"`
-    Round           int                     `json:"round"`
-    Status          BattleStatus            `json:"status"`
-    Environment     *EnvironmentState       `json:"environment,omitempty"`
+    ID          ID                      `json:"id"`
+    Timestamp   Timestamp               `json:"timestamp"`
+    Players     map[ID]*PlayerState     `json:"players"`
+    TurnOrder   []ID                    `json:"turnOrder"`
+    CurrentTurn ID                      `json:"currentTurn"`
+    Round       int                     `json:"round"`
+    Status      BattleStatus            `json:"status"`
 }
 
 type BattleStatus string
 
 const (
     BattleStatusActive   BattleStatus = "ACTIVE"
-    BattleStatusPaused   BattleStatus = "PAUSED"
-    BattleStatusComplete BattleStatus = "COMPLETE"
+    BattleStatusFinished BattleStatus = "FINISHED"
+)
+
+// Player state in battle
+type PlayerState struct {
+    ID       ID       `json:"id"`
+    Name     string   `json:"name"`
+    Health   int      `json:"health"`
+    Energy   int      `json:"energy"`
+    Status   []string `json:"status"`    // Active effects
+    IsAI     bool     `json:"isAI"`
+}
+
+// Available actions
+type Action struct {
+    Type     ActionType `json:"type"`
+    TargetID ID         `json:"targetId,omitempty"`
+    Data     any        `json:"data,omitempty"`
+}
+
+const (
+    ActionTypeAttack  ActionType = "ATTACK"
+    ActionTypeDefend  ActionType = "DEFEND"
+    ActionTypeSpecial ActionType = "SPECIAL"
 )
 ```
 
-## Character State
-
-Individual character status and capabilities:
+## Battle Events
 
 ```go
-type CharacterState struct {
-    ID          ID              `json:"id"`
-    Name        string          `json:"name"`
-    Stats       Stats           `json:"stats"`
-    Status      []StatusEffect  `json:"status"`
-    Position    Position        `json:"position"`
-    Actions     []Action        `json:"actions"`
-    Cooldowns   map[ID]int      `json:"cooldowns"`
+// Event sent over WebSocket
+type BattleEvent struct {
+    Type      string          `json:"type"`
+    BattleID  ID             `json:"battleId"`
+    Timestamp Timestamp       `json:"timestamp"`
+    Data      any            `json:"data"`
 }
 
-type Stats struct {
-    Health      int     `json:"health"`
-    MaxHealth   int     `json:"maxHealth"`
-    Attack      int     `json:"attack"`
-    Defense     int     `json:"defense"`
-    Speed       int     `json:"speed"`
-    Initiative  float64 `json:"initiative"`
+// Event types
+const (
+    EventTurnStart    = "TURN_START"
+    EventActionTaken  = "ACTION_TAKEN"
+    EventStatusUpdate = "STATUS_UPDATE"
+    EventBattleEnd    = "BATTLE_END"
+)
+
+// Action result
+type ActionResult struct {
+    Success     bool   `json:"success"`
+    Message     string `json:"message,omitempty"`
+    Damage      int    `json:"damage,omitempty"`
+    StatusAdded string `json:"statusAdded,omitempty"`
 }
 ```
 
-## Implementation Guidelines
+## Battle Configuration
 
-For AI-assisted development:
+```go
+// Initial battle setup
+type BattleConfig struct {
+    PlayerID    ID      `json:"playerId"`
+    Difficulty  float64 `json:"difficulty"`  // 0.2-0.95
+    AIPersona   string  `json:"aiPersona,omitempty"`
+}
 
-1. **Type Safety**
-   - Always use defined types
-   - Implement proper validation
-   - Handle all error cases
-   - Check for nil pointers
+// Battle result
+type BattleResult struct {
+    BattleID    ID      `json:"battleId"`
+    Winner      ID      `json:"winner"`
+    Duration    int     `json:"duration"`    // Rounds
+    PlayerStats Stats   `json:"playerStats"`
+    AIStats     Stats   `json:"aiStats"`
+}
 
-2. **Serialization**
-   - Use standard JSON tags
-   - Handle optional fields
-   - Version all schemas
-   - Validate after deserialize
+type Stats struct {
+    DamageDealt   int `json:"damageDealt"`
+    DamageTaken   int `json:"damageTaken"`
+    ActionsUsed   int `json:"actionsUsed"`
+    RoundsPlayed  int `json:"roundsPlayed"`
+}
+```
 
-3. **State Management**
-   - Deep copy when needed
-   - Validate state transitions
-   - Track modifications
-   - Maintain immutability
+## Example Usage
 
-4. **Error Handling**
-   ```go
-   // Example validation implementation
-   func (s *BattleState) Validate() error {
-       if s.ID == "" {
-           return errors.New("battle state must have an ID")
-       }
-       if len(s.Characters) == 0 {
-           return errors.New("battle must have at least one character")
-       }
-       // ... additional validation
-       return nil
-   }
-   ```
+```go
+// Initialize battle
+battle := &BattleState{
+    ID:        NewID(),
+    Timestamp: Now(),
+    Players:   make(map[ID]*PlayerState),
+    Status:    BattleStatusActive,
+}
+
+// Add player
+battle.Players[playerID] = &PlayerState{
+    ID:     playerID,
+    Name:   "Player",
+    Health: 100,
+    Energy: 100,
+}
+
+// Add AI opponent
+battle.Players[aiID] = &PlayerState{
+    ID:     aiID,
+    Name:   "AI Opponent",
+    Health: 100,
+    Energy: 100,
+    IsAI:   true,
+}
+
+// Set turn order
+battle.TurnOrder = []ID{playerID, aiID}
+battle.CurrentTurn = playerID
+```
 
 ## Related Schemas
 - [AI Models Schema](ai-models.md)
@@ -123,3 +164,4 @@ For AI-assisted development:
 - v1.0: Initial schema definition
 - v1.1: Added environment state
 - v1.2: Enhanced status effects
+- v2.0: Updated game state schema to focus on core battle mechanics
