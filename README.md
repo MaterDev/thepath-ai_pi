@@ -72,6 +72,19 @@ Common workflows:
    - `update_logs.py`: Updates mkdocs.yml with latest log files and social media posts
    - `gen_logs.py`: Helper script to generate new log entries with consistent formatting
 
+## Image Assets
+
+This project uses AI-generated images from Midjourney and DALL-E. To protect privacy and security:
+
+1. All images are automatically checked for metadata using `make check-images`
+2. Metadata is removed using `make scrub-images` to prevent accidental sharing of:
+   - Account identifiers
+   - API keys
+   - Generation prompts
+   - Service-specific data
+
+Always run these commands before committing new images.
+
 ## Project Origins
 
 This project represents the evolution of turn-based battle mechanics through several research spikes:

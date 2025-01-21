@@ -4,9 +4,43 @@ The code for this documentation contains scripts designed to maintain the qualit
 
 ## Methodology
 
-- **Automation**: The scripts automate routine checks and updates, reducing manual effort and minimizing errors.
-- **Validation**: Ensures that all documentation meets predefined standards and guidelines, catching issues early in the development process.
-- **Logging**: Maintains a comprehensive record of changes and updates, providing transparency and traceability.
-- **Integration**: Seamlessly integrates with existing workflows and tools, enhancing efficiency and collaboration.
+Our documentation system is built on several key principles:
 
-These methodologies work together to provide a robust framework for managing documentation, ensuring that it remains a reliable resource for both developers and AI systems.
+1. **Automated Validation**: Scripts verify documentation structure, links, and content integrity
+2. **Consistent Formatting**: Tools ensure uniform style and presentation
+3. **Privacy Protection**: Automated removal of sensitive metadata from AI-generated images
+4. **Version Control**: Systematic tracking of documentation changes
+
+## Script Categories
+
+### Image Management (`image_management/`)
+Tools for handling images in documentation:
+- Metadata scrubbing (especially for Midjourney and DALL-E generated images)
+- Format validation
+- Size optimization
+
+### Documentation Validation (`doc_validation/`)
+Scripts that verify documentation quality:
+- Link checking
+- Format validation
+- Structure verification
+
+### Log Management (`log_management/`)
+Tools for maintaining development logs:
+- Log file creation and updates
+- Format standardization
+- Content organization
+
+## Best Practices
+
+1. Run validation scripts before committing changes
+2. Always check images for metadata using `make check-images`
+3. Keep logs updated with significant changes
+4. Follow the established documentation structure
+
+## Getting Started
+
+See individual script directories for detailed usage instructions:
+- [Image Management Documentation](image_management/README.md)
+- [Documentation Validation Guide](doc_validation/README.md)
+- [Log Management Guide](log_management/README.md)

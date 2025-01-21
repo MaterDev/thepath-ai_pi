@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat
+.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat check-images scrub-images
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -27,6 +27,8 @@ help:
 	@echo "  make test         - Run tests"
 	@echo "  make clean        - Clean build artifacts"
 	@echo "  make autoformat   - Auto-format Python code"
+	@echo "  make check-images - Check for images with metadata"
+	@echo "  make scrub-images - Remove metadata from images"
 
 # Initial setup
 setup: install docs-deps
@@ -93,6 +95,17 @@ lint: autoformat
 test:
 	@echo "$(COLOR_YELLOW)Running tests...$(COLOR_RESET)"
 	pytest
+
+check-images:
+	@echo "$(COLOR_YELLOW)Checking for images with metadata...$(COLOR_RESET)"
+	@python docs/scripts/image_management/scrub_metadata.py --directory . --check
+
+scrub-images:
+	@echo "$(COLOR_YELLOW)Checking for images with metadata...$(COLOR_RESET)"
+	@python docs/scripts/image_management/scrub_metadata.py --directory . --dry-run
+	@echo "$(COLOR_YELLOW)Do you want to proceed with removing metadata? [y/N]$(COLOR_RESET)" && read ans && [ $${ans:-N} = y ]
+	@echo "$(COLOR_YELLOW)Scrubbing metadata from images...$(COLOR_RESET)"
+	@python docs/scripts/image_management/scrub_metadata.py --directory .
 
 # Default target
 .DEFAULT_GOAL := help
