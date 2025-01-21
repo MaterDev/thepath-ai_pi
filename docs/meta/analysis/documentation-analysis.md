@@ -24,13 +24,11 @@ Root_Structure:
       - replay-system.md
     api/: "API specifications"
     hardware/: "Hardware requirements"
-  character_classes/:
-    - conjuror.md
-    - crystal_vanguard.md
-    - primal_shifter.md
-    - the_blessed.md
-    - wraithwood_seer.md
-    - zealot.md
+  combat_system/:
+    classes/
+  meta/:
+    logs/
+    social/
 ```
 
 ## 2. Detailed Cross-Reference Matrix
@@ -43,13 +41,13 @@ Root_Structure:
 |-----------|---------------|-------------------|--------------|
 | Project Structure | - All documentation files | - Directory structure accuracy<br>- File naming conventions<br>- Documentation completeness | - MkDocs configuration<br>- Repository structure |
 | Technical Requirements | - technical/dependencies.md<br>- requirements.txt | - Python 3.11+ compatibility<br>- Raspberry Pi 5 specs<br>- Build tool versions | - Development environment<br>- Hardware specifications |
-| Documentation Standards | - technical/*.md<br>- character_classes/*.md | - YAML frontmatter<br>- Markdown formatting<br>- Code block usage | - MkDocs Material theme<br>- MkDocs plugins |
+| Documentation Standards | - technical/*.md<br>- combat_system/**/*.md | - YAML frontmatter<br>- Markdown formatting<br>- Code block usage | - MkDocs Material theme<br>- MkDocs plugins |
 
 #### Project Scope
 
 | Component | Related Files | Verification Points | Dependencies |
 |-----------|---------------|-------------------|--------------|
-| Game Mechanics | - character_classes/*.md<br>- technical/ai-system/*.md | - Character ability consistency<br>- AI behavior alignment<br>- Game balance | - Game state schema<br>- AI models |
+| Game Mechanics | - combat_system/**/*.md<br>- technical/ai-system/*.md | - Character ability consistency<br>- AI behavior alignment<br>- Game balance | - Game state schema<br>- AI models |
 | Technical Goals | - research-objectives.md<br>- system-architecture.md | - Feature completeness<br>- Technical feasibility<br>- Implementation timeline | - Development roadmap<br>- System capabilities |
 | Hardware Integration | - technical/hardware/*<br>- technical/dependencies.md | - Hardware compatibility<br>- Performance requirements<br>- Resource usage | - Raspberry Pi specs<br>- System requirements |
 
@@ -63,16 +61,11 @@ Root_Structure:
 | Difficulty System | - difficulty-system.md<br>- game-state.md | - Difficulty levels<br>- Adaptation mechanics<br>- Performance metrics | - AI behavior model<br>- Player feedback |
 | Training Pipeline | - training-pipeline.md<br>- replay-system.md | - Training data flow<br>- Model validation<br>- Performance optimization | - Data schemas<br>- Hardware resources |
 
-#### Character System
+#### Combat System
 
-| Character Class | Related Technical Files | Verification Points | Balance Considerations |
-|----------------|------------------------|-------------------|---------------------|
-| Conjuror | - ai-models.md<br>- game-state.md | - Spell mechanics<br>- Resource management<br>- AI interaction | - Damage output<br>- Resource efficiency |
-| Crystal Vanguard | - ai-models.md<br>- game-state.md | - Defense mechanics<br>- Shield system<br>- Position tracking | - Damage mitigation<br>- Movement speed |
-| Primal Shifter | - ai-models.md<br>- game-state.md | - Form changes<br>- Ability transitions<br>- State management | - Form balance<br>- Transformation timing |
-| The Blessed | - ai-models.md<br>- game-state.md | - Healing mechanics<br>- Buff system<br>- Target selection | - Healing output<br>- Support efficiency |
-| Wraithwood Seer | - ai-models.md<br>- game-state.md | - Vision mechanics<br>- Prediction system<br>- Information sharing | - Information value<br>- Utility balance |
-| Zealot | - ai-models.md<br>- game-state.md | - Combat mechanics<br>- Resource system<br>- AI behavior | - Damage scaling<br>- Survival mechanics |
+| System | Primary Doc | Key Aspects | Parameters |
+|--------|------------|-------------|------------|
+| Combat System | combat_system/balance_and_meta.md | - Game Balance<br>- AI Interaction<br>- Combat Mechanics | - Class abilities<br>- Interaction rules<br>- Balance parameters |
 
 ## 3. Verification Checklist
 
@@ -86,7 +79,7 @@ Root_Structure:
 ### 3.2 Technical Consistency
 
 - [ ] AI system specifications match implementation
-- [ ] Character mechanics are fully documented
+- [ ] Combat mechanics are fully documented
 - [ ] Hardware requirements are consistently defined
 - [ ] API specifications are complete and accurate
 
@@ -109,7 +102,7 @@ Root_Structure:
 ### 4.1 High Priority
 
 1. Verify version requirements across all documents
-2. Check character system implementation details
+2. Check combat system implementation details
 3. Validate AI system documentation
 4. Review hardware compatibility specifications
 
@@ -138,8 +131,8 @@ Primary_Context:
     - system-architecture.md: "Technical foundation"
   
   context_groups:
-    character_system:
-      primary: "character_classes/README.md"
+    combat_system:
+      primary: "combat_system/balance_and_meta.md"
       secondary: 
         - "technical/data-schemas/game-state.md"
         - "technical/ai-system/behavior-model.md"
@@ -164,21 +157,21 @@ Key concepts and their locations for AI agent reference:
 |---------|-----------------|------------------|----------------------|
 | Game State | technical/data-schemas/game-state.md | - Character States<br>- AI Behavior<br>- Game Loop | - State transitions<br>- Data persistence<br>- State validation |
 | AI Behavior | technical/ai-system/behavior-model.md | - Decision Making<br>- Game State<br>- Character Classes | - Model architecture<br>- Training data<br>- Performance metrics |
-| Character System | character_classes/README.md | - Game Balance<br>- AI Interaction<br>- Combat Mechanics | - Class abilities<br>- Interaction rules<br>- Balance parameters |
+| Combat System | combat_system/balance_and_meta.md | - Game Balance<br>- AI Interaction<br>- Combat Mechanics | - Class abilities<br>- Interaction rules<br>- Balance parameters |
 
 ### 5.3 Version Control Tags
 ```yaml
 Documentation_Tags:
   major_versions:
     - v1.0: "Initial system architecture"
-    - v1.1: "Character system implementation"
+    - v1.1: "Combat system implementation"
     - v1.2: "AI behavior model integration"
   
   semantic_tags:
     architecture: "System design documents"
     ai_model: "AI implementation details"
     game_mechanics: "Game system specifications"
-    character_design: "Character class details"
+    combat_design: "Combat system details"
 ```
 
 ### 5.4 AI Agent Guidelines

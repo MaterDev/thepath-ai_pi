@@ -148,17 +148,15 @@ AI_Service:
 ```yaml
 Classes:
   conjuror:
-    document: "character_classes/conjuror.md"
+    document: "combat_system/classes/conjuror.md"
   crystal_vanguard:
-    document: "character_classes/crystal_vanguard.md"
+    document: "combat_system/classes/crystal_vanguard.md"
   primal_shifter:
-    document: "character_classes/primal_shifter.md"
+    document: "combat_system/classes/primal_shifter.md"
   the_blessed:
-    document: "character_classes/the_blessed.md"
-  wraithwood_seer:
-    document: "character_classes/wraithwood_seer.md"
+    document: "combat_system/classes/the_blessed.md"
   zealot:
-    document: "character_classes/zealot.md"
+    document: "combat_system/classes/zealot.md"
 ```
 
 ## Development Resources
@@ -200,4 +198,3 @@ Versions:
   v1.2: "Enhanced architecture docs"
   v1.1: "Added implementation phases"
   v1.0: "Initial documentation"
-```

@@ -20,13 +20,13 @@ Welcome to The Path (AI-Pi) documentation. This site contains comprehensive info
 - Personality-based behavior
 - Hardware-accelerated inference
 
-### Character Classes
-- [Conjuror](character_classes/conjuror.md) - Mid-range spell weaver
-- [Crystal Vanguard](character_classes/crystal_vanguard.md) - Frontline protector
-- [Zealot](character_classes/zealot.md) - Aggressive skirmisher
-- [Wraithwood Seer](character_classes/wraithwood_seer.md) - Tactical support
-- [Primal Shifter](character_classes/primal_shifter.md) - Adaptable warrior
-- [The Blessed](character_classes/the_blessed.md) - Strategic enabler
+### Combat System
+- [Combat Balance & Meta](combat_system/balance_and_meta.md) - System overview and balance
+- [Conjuror](combat_system/classes/conjuror.md) - Mid-range spell weaver
+- [Crystal Vanguard](combat_system/classes/crystal_vanguard.md) - Frontline protector
+- [Zealot](combat_system/classes/zealot.md) - Aggressive skirmisher
+- [The Blessed](combat_system/classes/the_blessed.md) - Strategic enabler
+- [Primal Shifter](combat_system/classes/primal_shifter.md) - Adaptable warrior
 
 ### Game Client
 - Responsive UI (<16ms)
