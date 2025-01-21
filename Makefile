@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs clean format lint test setup
+.PHONY: help install docs docs-build update-logs clean format lint test setup validate-docs
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -18,6 +18,7 @@ help:
 	@echo "  make docs         - Start the documentation server"
 	@echo "  make docs-build   - Build the documentation site"
 	@echo "  make update-logs  - Update development logs in mkdocs.yml"
+	@echo "  make validate-docs - Run documentation validation checks"
 	@echo ""
 	@echo "$(COLOR_GREEN)Development:$(COLOR_RESET)"
 	@echo "  make format       - Format code with black"
@@ -46,10 +47,16 @@ docs:
 	@echo "$(COLOR_BLUE)Open http://127.0.0.1:8000 in your browser$(COLOR_RESET)"
 	mkdocs serve
 
-docs-build:
+docs-build: validate-docs
 	@echo "$(COLOR_YELLOW)Building documentation...$(COLOR_RESET)"
 	mkdocs build
 	@echo "$(COLOR_BLUE)Documentation built in 'site' directory$(COLOR_RESET)"
+
+validate-docs:
+	@echo "$(COLOR_YELLOW)Validating documentation...$(COLOR_RESET)"
+	PYTHONPATH=scripts python3 scripts/validate_docs.py docs/
+	@echo "$(COLOR_BLUE)Documentation validation complete$(COLOR_RESET)"
+	@echo "$(COLOR_BLUE)See /tmp/doc_validation/ for detailed reports$(COLOR_RESET)"
 
 update-logs:
 	@echo "$(COLOR_YELLOW)Updating development logs...$(COLOR_RESET)"
