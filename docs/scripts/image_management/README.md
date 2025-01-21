@@ -1,5 +1,5 @@
 ---
-title: Image Management Scripts
+title: Image Management
 description: Tools for managing and optimizing images in the documentation
 ---
 
@@ -10,12 +10,14 @@ This directory contains scripts for managing and optimizing images used in the d
 ## Purpose
 
 The primary purpose of these tools is to protect privacy and security when using AI-generated images. Many AI image generation services (like Midjourney and DALL-E) embed metadata in images that could potentially:
+
 - Contain account identifiers
 - Include API keys or session data
 - Reveal prompts used for generation
 - Link to personal or organizational accounts
 
 By removing this metadata, we ensure that:
+
 - No sensitive account information is accidentally shared
 - Image generation prompts remain private
 - Account security is maintained
@@ -26,6 +28,7 @@ By removing this metadata, we ensure that:
 ### scrub_metadata.py
 
 Removes metadata (EXIF, XMP, etc.) from images while preserving image quality. This helps:
+
 - Remove AI service identifiers and account data
 - Protect privacy by removing sensitive metadata
 - Reduce file sizes

@@ -1,4 +1,4 @@
-# Log Management Tools
+# Log Management
 
 This directory contains tools for managing documentation logs within the AI-Pi project. These tools help ensure that logs are properly structured and integrated into the documentation system.
 
