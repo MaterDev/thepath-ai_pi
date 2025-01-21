@@ -25,7 +25,7 @@ def calculate_total_hours(logs_dir: Path) -> float:
     total_hours = 0.0
 
     for log_file in logs_dir.glob("*.md"):
-        if log_file.name == "index.md":
+        if log_file.name in ["index.md", "README.md"]:
             continue
 
         try:
@@ -45,12 +45,11 @@ def update_index_page(total_hours: float):
     """Update the index.md page with total development hours."""
     index_path = Path("docs/index.md")
     if not index_path.exists():
-        print("Error: docs/index.md not found")
+        print(f"Warning: {index_path} does not exist")
         return
 
     content = index_path.read_text()
 
-    # Create admonition with total hours
     hours_admonition = f"""!!! info "Development Progress"
     Total development time: {total_hours:.1f} hours
 

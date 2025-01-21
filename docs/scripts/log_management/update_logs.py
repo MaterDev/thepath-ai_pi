@@ -14,9 +14,9 @@ def get_dated_files(directory, date_format="%Y-%m-%d"):
     """Get all dated files from a directory."""
     files = []
 
-    # Collect all .md files except index.md
+    # Collect all .md files except index.md and README.md
     for file in directory.glob("*.md"):
-        if file.name != "index.md":
+        if file.name not in ["index.md", "README.md"]:
             try:
                 # Parse date from filename (YYYY-MM-DD.md)
                 date = datetime.strptime(file.stem, date_format)

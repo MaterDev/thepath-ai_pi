@@ -95,7 +95,6 @@ update-logs:
 
 update-docs:
 	@echo "$(COLOR_BLUE)Updating documentation...$(COLOR_RESET)"
-	@cp README.md docs/index.md
 	@cp docs/scripts/README.md docs/scripts/README.md
 	@cp docs/scripts/doc_validation/README.md docs/scripts/doc_validation/README.md
 	@echo "$(COLOR_BLUE)Documentation updated$(COLOR_RESET)"
