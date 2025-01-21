@@ -6,6 +6,19 @@ Edge AI-powered turn-based combat game running on Raspberry Pi hardware.
 
 ## Documentation
 
+The documentation is built using MkDocs and includes:
+
+- Project overview and architecture
+- Technical specifications
+- Development guides
+- Implementation details
+- World building and game design
+
+For tools that help maintain and validate the documentation, see the [Scripts Documentation](docs/scripts/README.md). These tools handle tasks like:
+- Image optimization and privacy protection
+- Documentation validation
+- Log management
+
 📚 **[View Full Documentation](https://materdev.github.io/thepath-ai_pi/)**
 
 Our comprehensive documentation site contains everything you need to understand and contribute to the project:

@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """Image metadata scrubbing script.
 
-This script removes metadata (EXIF, XMP, etc.) from all images in the repository
-while preserving the image content. It supports common image formats including:
+This script processes images in the repository by:
+1. Removing metadata (EXIF, XMP, etc.)
+2. Setting DPI to 72
+3. Resizing to max width of 800px while maintaining aspect ratio
+4. Preserving image quality
+
+Supports common image formats including:
 - JPEG/JPG
 - PNG
 - GIF
@@ -23,6 +28,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+# Constants
+MAX_WIDTH = 800
+TARGET_DPI = 72
 
 class ImageMetadata:
     """Class to handle image metadata operations."""
@@ -52,6 +61,10 @@ class ImageMetadata:
                 self.metadata['FORMAT'] = img.format
                 self.metadata['MODE'] = img.mode
                 self.metadata['SIZE'] = img.size
+                
+                # Get DPI info
+                if 'dpi' in img.info:
+                    self.metadata['DPI'] = img.info['dpi']
                 
                 # Get all available info
                 for k, v in img.info.items():
@@ -96,32 +109,48 @@ def get_image_files(directory: Path) -> List[Path]:
     return sorted(image_files)
 
 def check_images(image_files: List[Path]) -> Tuple[List[Path], List[Path]]:
-    """Check which images have metadata.
+    """Check which images have metadata or need resizing/DPI adjustment.
     
     Args:
         image_files: List of image paths to check
         
     Returns:
-        Tuple of (images with metadata, images without metadata)
+        Tuple of (images needing processing, images without issues)
     """
-    with_metadata = []
-    without_metadata = []
+    needs_processing = []
+    no_issues = []
     
     for path in image_files:
+        needs_work = False
         metadata = ImageMetadata(path)
+        
+        # Check metadata
         if metadata.has_metadata():
-            with_metadata.append(path)
-        else:
-            without_metadata.append(path)
+            needs_work = True
+        
+        # Check size and DPI
+        with Image.open(path) as img:
+            width, height = img.size
+            if width > MAX_WIDTH:
+                needs_work = True
             
-    return with_metadata, without_metadata
+            dpi = img.info.get('dpi', (None, None))
+            if dpi[0] != TARGET_DPI or dpi[1] != TARGET_DPI:
+                needs_work = True
+        
+        if needs_work:
+            needs_processing.append(path)
+        else:
+            no_issues.append(path)
+            
+    return needs_processing, no_issues
 
-def scrub_metadata(image_path: Path, dry_run: bool = False) -> bool:
-    """Remove metadata from an image file.
+def process_image(image_path: Path, dry_run: bool = False) -> bool:
+    """Process an image: remove metadata, resize, and set DPI.
     
     Args:
         image_path: Path to the image file
-        dry_run: If True, only check for metadata without modifying
+        dry_run: If True, only check for issues without modifying
         
     Returns:
         True if successful, False if failed
@@ -130,40 +159,67 @@ def scrub_metadata(image_path: Path, dry_run: bool = False) -> bool:
         metadata = ImageMetadata(image_path)
         
         if dry_run:
-            if metadata.has_metadata():
-                logger.info(f"Found metadata in {image_path}:")
-                logger.info(metadata.get_metadata_summary())
+            with Image.open(image_path) as img:
+                width, height = img.size
+                dpi = img.info.get('dpi', (None, None))
+                
+                if metadata.has_metadata():
+                    logger.info(f"Found metadata in {image_path}:")
+                    logger.info(metadata.get_metadata_summary())
+                
+                if width > MAX_WIDTH:
+                    logger.info(f"Image needs resizing: {width}x{height}")
+                
+                if dpi != (TARGET_DPI, TARGET_DPI):
+                    logger.info(f"Current DPI: {dpi}, target: {TARGET_DPI}")
             return True
         
-        # Only process if metadata exists
-        if not metadata.has_metadata():
-            logger.info(f"No metadata to remove from {image_path}")
-            return True
-        
-        # Open image and create a new one without metadata
+        # Process the image
         with Image.open(image_path) as img:
-            # Create a new image with same content but no metadata
+            # Calculate new size if needed
+            width, height = img.size
+            if width > MAX_WIDTH:
+                ratio = MAX_WIDTH / width
+                new_size = (MAX_WIDTH, int(height * ratio))
+                img = img.resize(new_size, Image.Resampling.LANCZOS)
+            
+            # Create new image without metadata
             data = list(img.getdata())
-            image_without_exif = Image.new(img.mode, img.size)
-            image_without_exif.putdata(data)
+            image_clean = Image.new(img.mode, img.size)
+            image_clean.putdata(data)
+            
+            # Set DPI
+            dpi = (TARGET_DPI, TARGET_DPI)
             
             # Save with optimal settings for each format
-            save_kwargs = {}
+            save_kwargs = {'dpi': dpi}
             if image_path.suffix.lower() in {'.jpg', '.jpeg'}:
-                save_kwargs = {'quality': 95, 'optimize': True}
+                save_kwargs.update({'quality': 95, 'optimize': True})
             elif image_path.suffix.lower() == '.png':
-                save_kwargs = {'optimize': True}
+                save_kwargs.update({'optimize': True})
             
             # Save back to original file
-            image_without_exif.save(image_path, **save_kwargs)
+            image_clean.save(image_path, **save_kwargs)
             
-            # Verify metadata was removed
+            # Verify changes
             check_metadata = ImageMetadata(image_path)
-            if check_metadata.has_metadata():
-                logger.error(f"Failed to remove all metadata from {image_path}")
-                return False
+            with Image.open(image_path) as verify_img:
+                current_width = verify_img.size[0]
+                current_dpi = verify_img.info.get('dpi', (None, None))
                 
-            logger.info(f"Successfully scrubbed metadata from {image_path}")
+                if check_metadata.has_metadata():
+                    logger.error(f"Failed to remove all metadata from {image_path}")
+                    return False
+                
+                if current_width > MAX_WIDTH:
+                    logger.error(f"Failed to resize {image_path}")
+                    return False
+                
+                if current_dpi != (TARGET_DPI, TARGET_DPI):
+                    logger.error(f"Failed to set DPI for {image_path}")
+                    return False
+                
+            logger.info(f"Successfully processed {image_path}")
             return True
             
     except Exception as e:
@@ -173,7 +229,7 @@ def scrub_metadata(image_path: Path, dry_run: bool = False) -> bool:
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Remove metadata from images in the repository"
+        description="Process images in the repository: remove metadata, resize, and set DPI"
     )
     parser.add_argument(
         "--directory",
@@ -184,12 +240,12 @@ def main():
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Check for metadata without modifying files"
+        help="Check for issues without modifying files"
     )
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Only check if any images have metadata and exit with status 1 if found"
+        help="Only check if any images need processing and exit with status 1 if found"
     )
     args = parser.parse_args()
     
@@ -207,40 +263,40 @@ def main():
     
     logger.info(f"Found {len(image_files)} image files")
     
-    # Check which images have metadata
-    with_metadata, without_metadata = check_images(image_files)
+    # Check which images need processing
+    needs_processing, no_issues = check_images(image_files)
     
     if args.check:
-        if with_metadata:
-            logger.error(f"Found {len(with_metadata)} images with metadata:")
-            for path in with_metadata:
+        if needs_processing:
+            logger.error(f"Found {len(needs_processing)} images needing processing:")
+            for path in needs_processing:
                 logger.error(f"  {path}")
             sys.exit(1)
-        logger.info("No images with metadata found")
+        logger.info("No images need processing")
         sys.exit(0)
     
-    if not with_metadata:
-        logger.info("No images with metadata found")
+    if not needs_processing:
+        logger.info("No images need processing")
         sys.exit(0)
     
-    logger.info(f"Found {len(with_metadata)} images with metadata")
+    logger.info(f"Found {len(needs_processing)} images needing processing")
     
     if args.dry_run:
-        for path in with_metadata:
-            scrub_metadata(path, dry_run=True)
+        for path in needs_processing:
+            process_image(path, dry_run=True)
         sys.exit(0)
     
     # Process each image
     success_count = 0
-    for image_path in with_metadata:
-        if scrub_metadata(image_path):
+    for image_path in needs_processing:
+        if process_image(image_path):
             success_count += 1
     
     # Print summary
-    logger.info(f"Successfully processed {success_count} of {len(with_metadata)} images")
+    logger.info(f"Successfully processed {success_count} of {len(needs_processing)} images")
     
     # Exit with error if any images failed
-    if success_count < len(with_metadata):
+    if success_count < len(needs_processing):
         sys.exit(1)
 
 if __name__ == "__main__":
