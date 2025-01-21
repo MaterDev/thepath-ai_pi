@@ -1,6 +1,6 @@
 # Overview of Documentation Scripts
 
-This directory contains scripts designed to maintain the quality and integrity of the AI-Pi documentation system. These tools automate the processes of validation, logging, and content management to ensure consistency and accuracy across all documentation.
+The code for this documentation contains scripts designed to maintain the quality and integrity of the AI-Pi documentation system. These tools automate the processes of validation, logging, and content management to ensure consistency and accuracy across all documentation.
 
 ## Methodology
 
