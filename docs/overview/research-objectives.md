@@ -102,8 +102,7 @@ The Path (AI-Pi) investigates several key areas in edge AI gaming:
 - Documentation standards
 - Performance monitoring
 
-## Related Documentation
-- [Project Scope](project-scope.md)
-- [System Architecture](system-architecture.md)
-- [AI Implementation](../implementation/ai/architecture.md)
-- [Hardware Configuration](../technical/hardware/configuration.md)
+## Version History
+- v1.0: Initial research objectives defined
+- v1.1: Added cultural research goals
+- v1.2: Updated AI research priorities
