@@ -10,7 +10,7 @@ Welcome to The Path (AI-Pi) documentation. This site contains comprehensive info
 
 - [Project Overview](overview/project-scope.md)
 - [Latest Development Log](meta/logs/2025-01-13.md)
-- [Setup Guide](implementation/setup/project-setup.md)
+- [Project Setup](meta/implementation/setup/project-setup.md)
 
 ## Core Features
 
