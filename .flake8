@@ -1,0 +1,17 @@
+[flake8]
+exclude = 
+    .git,
+    __pycache__,
+    build,
+    dist,
+    site/
+max-line-length = 100
+ignore = 
+    # Allow blank lines with whitespace
+    W293,
+    # Don't enforce specific number of blank lines
+    E302,E303,E305,
+    # Allow spaces around operators
+    E226,
+    # Don't enforce continuation line indentation
+    E128
