@@ -19,7 +19,7 @@ For tools that help maintain and validate the documentation, see the [Scripts Do
 - Documentation validation
 - Log management
 
-📚 **[View Full Documentation](https://materdev.github.io/thepath-ai_pi/)**
+ **[View Full Documentation](https://materdev.github.io/thepath-ai_pi/)**
 
 Our comprehensive documentation site contains everything you need to understand and contribute to the project:
 - Technical specifications and architecture
@@ -40,23 +40,29 @@ Our comprehensive documentation site contains everything you need to understand 
 
 The project includes a comprehensive Makefile to automate common tasks:
 
-!!! note "Documentation"
-    - `make docs`: Build and serve documentation locally
-    - `make docs-build`: Build documentation site
-    - `make validate-docs`: Run documentation validation
-    - `make process-images`: Optimize images (resize, set DPI, remove metadata)
-    - `make check-images`: Check images for optimization needs
+#### Documentation Commands
+```
+make docs          # Build and serve documentation locally
+make docs-build    # Build documentation site
+make validate-docs # Run documentation validation
+make process-images # Optimize images (resize, set DPI, remove metadata)
+make check-images  # Check images for optimization needs
+```
 
-!!! note "Development"
-    - `make install`: Install project dependencies
-    - `make test`: Run test suite
-    - `make lint`: Run linting checks
-    - `make format`: Format code
-    - `make clean`: Clean build artifacts
+#### Development Commands
+```
+make install      # Install project dependencies
+make test        # Run test suite
+make lint        # Run linting checks
+make format      # Format code
+make clean       # Clean build artifacts
+```
 
-!!! note "Automation"
-    - `make update-logs`: Update development logs
-    - `make update-docs`: Update documentation navigation
+#### Automation Commands
+```
+make update-logs  # Update development logs
+make update-docs  # Update documentation navigation
+```
 
 For detailed information about documentation tools and scripts, see the [Scripts Documentation](docs/scripts/README.md).
 
