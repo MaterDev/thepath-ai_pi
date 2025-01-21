@@ -8,7 +8,7 @@ This document provides a comprehensive analysis of The Path (AI-Pi) project docu
 ### 1.1 Core Documentation Components
 ```yaml
 Root_Structure:
-  AI_DEVELOPMENT_INDEX.md: "Master reference for AI development"
+  meta/implementation/ai/agenic-context-index.md: "Master reference for AI development"
   overview/:
     - project-scope.md
     - research-objectives.md
@@ -126,7 +126,7 @@ Root_Structure:
 ```yaml
 Primary_Context:
   essential_files:
-    - AI_DEVELOPMENT_INDEX.md: "First reference point for all AI agents"
+    - meta/implementation/ai/agenic-context-index.md: "First reference point for all AI agents"
     - project-scope.md: "Core project understanding"
     - system-architecture.md: "Technical foundation"
   
@@ -177,7 +177,7 @@ Documentation_Tags:
 ### 5.4 AI Agent Guidelines
 
 #### Context Management
-- Always start with AI_DEVELOPMENT_INDEX.md
+- Always start with meta/implementation/ai/agenic-context-index.md
 - Load related files based on the current task context
 - Maintain awareness of documentation version tags
 - Cross-reference semantic anchors for consistency
