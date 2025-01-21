@@ -1,103 +1,57 @@
 # The Path (AI-Pi)
 
-> Edge AI game development on Raspberry Pi hardware
+Edge AI-powered turn-based combat game running on Raspberry Pi hardware.
 
-![The Path (AI-Pi)](images/cover-2025.png)
-
- **[View Documentation](https://materdev.github.io/thepath-ai_pi/)**
-
-## Development
+## Getting Started
 
 ### Prerequisites
-- Python 3.11+
-- Raspberry Pi 5
-- Make
 
-### Setup
+- Python 3.11 or higher
+- pip (Python package installer)
+- Raspberry Pi 5 (for deployment)
 
+### Development Setup
+
+1. Clone the repository:
 ```bash
-# Install dependencies
+git clone https://github.com/MaterDev/thepath-ai_pi.git
+cd thepath-ai_pi
+```
+
+2. Run the setup command to install dependencies and initialize the project:
+```bash
 make setup
+```
 
-# Run documentation locally
+3. Start the documentation server:
+```bash
 make docs
-
-# Update documentation
-make update-docs
 ```
 
-### Common Tasks
-
-```bash
-# Build project
-make build
-
-# Run tests
-make test
-
-# Clean build artifacts
-make clean
-
-# Deploy documentation
-make deploy-docs
-```
-
-### Documentation Management and Validation
-
-Our documentation system includes a robust validation suite to ensure quality and consistency. Key features include:
-
-- **Metadata Validation**: Checks for required metadata fields like `title` and `description`.
-- **Reference Validation**: Verifies all cross-references and links are intact.
-- **Report Generation**: Generates detailed reports with unique filenames based on timestamp and UUID, providing a symlink to the latest report for easy access.
-
-To run the validation suite:
-
-```bash
-make validate-docs
-```
-
-Reports are saved in the `.reports` directory, with the latest report symlinked as `latest.json`.
-
-### Documentation Updates
-
-The documentation is automatically updated and deployed via GitHub Actions when changes are pushed to the main branch.
-
-To update locally:
-1. Install documentation dependencies: `pip install -r docs/requirements.txt`
-2. Run local server: `mkdocs serve`
-
-## Makefile Targets
-
-The following Makefile targets are available for development and maintenance:
-
-### Setup and Installation
-- `make setup` - Initial project setup (installs dependencies and documentation tools)
-- `make install` - Install Python dependencies from requirements.txt
-- `make docs-deps` - Install documentation-specific dependencies
-
-### Documentation
-- `make docs` - Start the documentation server (http://127.0.0.1:8000)
-- `make docs-build` - Build the documentation site (outputs to 'site' directory)
-- `make validate-docs` - Run documentation validation checks
-- `make update-logs` - Update development logs in mkdocs.yml
-- `make update-docs` - Update documentation by copying README files to appropriate locations
-
-### Development Tools
-- `make format` - Format code using black
-- `make lint` - Run linters (flake8)
-- `make test` - Run pytest test suite
-- `make clean` - Clean build artifacts and cache files
-
-### Viewing Documentation
-
-After starting the documentation server with `make docs`, you can view the documentation at http://127.0.0.1:8000.
-
-The documentation includes:
+View the documentation at http://127.0.0.1:8000 for:
 - Project overview and architecture
 - Technical specifications
 - Development guides
 - API documentation
 - World building and game mechanics
+
+### Development Workflow
+
+Run `make help` to see all available commands for development, testing, and documentation.
+
+Common workflows:
+1. Before committing changes:
+   ```bash
+   make format  # Format code
+   make lint    # Check for issues
+   make test    # Run tests
+   ```
+
+2. Working with documentation:
+   ```bash
+   make validate-docs  # Validate documentation quality
+   make docs          # Start documentation server
+   ```
 
 ## Project Origins
 
