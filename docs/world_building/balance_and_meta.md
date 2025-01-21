@@ -251,8 +251,8 @@ This document outlines the core principles and considerations for balancing The 
 ### Class-Specific Balance
 
 See individual class documentation for detailed balance considerations:
-* [Conjuror](classes/conjuror.md)
-* [Crystal Vanguard](classes/crystal_vanguard.md)
-* [Zealot](classes/zealot.md)
-* [The Blessed](classes/the_blessed.md)
-* [Primal Shifter](classes/primal_shifter.md)
+* [Conjuror](../world_building/classes.md#conjuror)
+* [Crystal Vanguard](../world_building/classes.md#crystal-vanguard)
+* [Zealot](../world_building/classes.md#zealot)
+* [The Blessed](../world_building/classes.md#the-blessed)
+* [Primal Shifter](../world_building/classes.md#primal-shifter)
