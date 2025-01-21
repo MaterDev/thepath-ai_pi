@@ -1,0 +1,92 @@
+# Global markdown settings
+[*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Use ATX-style headers (#)
+2. Include a table of contents for files longer than 500 lines
+3. Use yaml code blocks for metadata sections
+4. Use consistent emoji patterns for status indicators
+"""
+
+# Documentation specific rules
+[docs/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Include a brief description at the top
+2. Use admonitions for important notes (!!! info, !!! warning, etc.)
+3. Include code examples with language-specific syntax highlighting
+4. Add hashtags section at bottom for cross-referencing
+"""
+
+# Technical documentation
+[docs/scripts/**/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Include usage examples with code blocks
+2. Document all function parameters and return values
+3. List dependencies and requirements
+4. Include troubleshooting section if applicable
+5. Add version compatibility information
+"""
+
+# Log files with enhanced structure
+[meta/logs/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Review 4 random existing logs in meta/logs/ to understand format
+2. If log for current day exists, update with recent changes
+3. If no log exists for current day, create new log using consistent format
+4. Include Session Overview with yaml metadata block containing:
+   - type
+   - duration_hours
+   - hashtags
+   - blockers
+5. Use Focus Areas section with bullet points
+6. Include Technical Challenges and Solutions section
+7. Use admonitions for status updates and important notes
+8. Do not include direct links or references to other documentation pages
+"""
+
+# Social updates with consistent formatting
+[meta/social/**/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Review 3 random existing social updates in meta/social/ to understand format
+2. If update for current day exists, update with recent changes
+3. If no update exists for current day, create new update using consistent format
+4. Include hashtags relevant to the project (#gamedev, #aidev, #raspberrypi)
+5. Use emoji indicators consistently
+6. Keep updates concise and focused
+7. Include relevant metrics or progress indicators
+8. Do not include direct links or references to other documentation pages
+"""
+
+# Implementation documentation
+[docs/meta/implementation/**/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Include system architecture diagrams or descriptions
+2. Document dependencies and version requirements
+3. Use code blocks with language-specific syntax highlighting
+4. Include performance considerations
+5. Document API endpoints if applicable
+6. Add monitoring metrics section
+"""
+
+# World building documentation
+[docs/world_building/**/*.md]
+auto_format = true
+program = python-markdown
+pre_create_hook = """
+1. Use consistent terminology across all files
+2. Include relevant cultural and historical context
+3. Reference combat system mechanics where applicable
+4. Use tables for stat-based information
+5. Include version history for major world changes
+"""
