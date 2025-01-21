@@ -63,8 +63,8 @@ site_dir: site
 nav:
 - Home:
   - Overview: index.md
-  - Scripts: 
-    - Overview: 
+  - Scripts:
+    - Overview:
       - Overview: scripts/README.md
       - Documentation Validation: scripts/doc_validation/README.md
       - Log Management: scripts/log_management/README.md
@@ -139,4 +139,3 @@ nav:
     - January 07, 2025: meta/social/linkedin/2025-01-07.md
     - January 03, 2025: meta/social/linkedin/2025-01-03.md
     - December 27, 2024: meta/social/linkedin/2024-12-27.md
-

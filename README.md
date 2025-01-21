@@ -42,16 +42,22 @@ Run `make help` to see all available commands for development, testing, and docu
 Common workflows:
 1. Before committing changes:
    ```bash
-   make format  # Format code
-   make lint    # Check for issues
-   make test    # Run tests
+   make format     # Format code with black
+   make autoformat # Auto-fix common Python style issues with autopep8
+   make lint       # Check for issues (runs autoformat first)
+   make test      # Run tests
    ```
+   Note: If the linter finds no issues, it will exit with code 0 and display no output.
 
 2. Working with documentation:
    ```bash
    make validate-docs  # Validate documentation quality
    make docs          # Start documentation server
+   make update-logs   # Update mkdocs.yml with latest logs and social posts
    ```
+   The `update-logs` command uses two scripts:
+   - `update_logs.py`: Updates mkdocs.yml with latest log files and social media posts
+   - `gen_logs.py`: Helper script to generate new log entries with consistent formatting
 
 ## Project Origins
 
@@ -84,6 +90,6 @@ The current project builds upon these previous implementations, incorporating:
 
 This project is licensed under the Mater Development General Use License (MDGUL) v1.1.
 
-Copyright (c) 2023 Mater Development
+Copyright (c) Mater Development
 
 The MDGUL allows personal and educational use while restricting commercial use and redistribution. See the [LICENSE](LICENSE) file for full terms.

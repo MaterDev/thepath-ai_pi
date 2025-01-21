@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs
+.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -26,6 +26,7 @@ help:
 	@echo "  make lint         - Run linters (flake8)"
 	@echo "  make test         - Run tests"
 	@echo "  make clean        - Clean build artifacts"
+	@echo "  make autoformat   - Auto-format Python code"
 
 # Initial setup
 setup: install docs-deps
@@ -81,8 +82,12 @@ format:
 	@echo "$(COLOR_YELLOW)Formatting code...$(COLOR_RESET)"
 	black .
 
-lint:
-	@echo "$(COLOR_YELLOW)Running linters...$(COLOR_RESET)"
+autoformat:
+	@echo "Auto-formatting Python code..."
+	@autopep8 --in-place --recursive --max-line-length=100 ./docs/scripts/
+
+lint: autoformat
+	@echo "Running linters..."
 	flake8 .
 
 test:

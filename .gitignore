@@ -21,7 +21,6 @@ htmlcov/
 /site/
 docs/_build/
 *.pyc
-docs/gen_logs.py
 
 # Editor/IDE
 .idea/
