@@ -2,181 +2,208 @@
 
 ## Overview
 
-This document outlines the core principles and considerations for balancing The Path's combat system, including character classes, mechanics, and meta-game elements.
+This document outlines the core principles and considerations for balancing The Path's combat system, drawing from game balance theory by Ian Schreiber and Brenda Romero. It covers character design, combat mechanics, testing methodologies, and meta-game considerations.
 
 ## Character Class Design
 
-### Core Principles
+### Core Design Principles
 
-* **Unique Mechanics**
-    * Each class has distinct mechanics and playstyle
-    * Special resources or modified combat interactions
-    * Clear identity while maintaining versatility
+#### Unique Mechanics
+* Each class must have distinctive mechanics that define their playstyle
+* Mechanics can include:
+    * Unique resource management
+    * Special ability interactions
+    * Modified combat rules
+* Mechanics should feel natural to the class theme
 
-* **Class Versatility**
-    * Primary roles with multiple specializations
-    * Different approaches within each role
-    * Flexible strategies and builds
+#### Role Versatility
+* Classes should have primary roles with multiple specializations
+* Example specializations for tank role:
+    * Crowd control focus
+    * Damage mitigation
+    * Self-healing capabilities
+* Versatility prevents one-dimensional gameplay
 
-* **Synergies and Counters**
-    * Natural synergies between classes
-    * Soft counters (advantages without shutdowns)
-    * Team composition strategies
-
-### Ability Design
-
-* **Cost Curves**
-    * Base costs for standard effects
-    * Additional costs for special effects
-    * Range and AoE considerations
-
-* **Resource Management**
-    * Energy costs and regeneration
-    * Cooldown timings
-    * Stack/buff limitations
-
-## Combat Mechanics
-
-### Core Elements
-
-* **Combat Pillars**
-    * Genre: Turn-based tactical combat
-    * Time: Strategic planning between turns
-    * Pacing: Balanced action economy
-    * Feel: Impactful abilities with clear feedback
-    * Progression: Character growth and skill mastery
-
-* **Battle Flow**
-    * Turn order and initiative
-    * Action economy
-    * Status effect timing
+#### Synergies and Counters
+* Design natural synergies between classes
+* Implement soft counters, not hard shutdowns
+* Base interactions on:
+    * Damage types
+    * Buff/debuff systems
     * Resource management
+* Maintain strategic options even in unfavorable matchups
 
-### Balance Considerations
+#### Ability Cost Curves
+* Base costs for standard effects (damage/healing)
+* Additional costs for:
+    * Special effects
+    * Range increases
+    * Area of effect
+* Cost-to-benefit ratio should scale appropriately
 
-* **Situational Balance**
-    * Context-dependent effectiveness
-    * Environmental factors
-    * Team composition impact
+## Combat System Mechanics
 
-* **System Interactions**
-    * Transitive relationships (A > B > C)
-    * Intransitive elements (rock-paper-scissors)
-    * Buff/debuff stacking rules
+### Fundamental Pillars
 
-* **Feedback Loops**
-    * Positive feedback (snowballing effects)
-    * Negative feedback (comeback mechanics)
-    * Power curve management
+#### Core Elements
+* Genre: Turn-based tactical combat
+* Time: Strategic planning between turns
+* Pacing: Balanced action economy
+* Feel: Impactful abilities with clear feedback
+* Participants: Solo and team scenarios
+* Progression: Character growth and mastery
+* Volume: Encounter frequency and duration
+
+#### Combat Feel vs Mathematical Balance
+* Subjective feel must align with objective balance
+* Consider:
+    * Visual impact
+    * Sound design
+    * Animation timing
+    * Numerical feedback
+
+#### Combat Constraints
+* Frequency of encounters
+* Length of battles
+* Number of actions per turn
+* Hit frequency and impact
+
+### Advanced Mechanics
+
+#### Situational Balance
+* Ability effectiveness varies with context
+* Environmental factors affect strategy
+* Different damage types for different scenarios
+* Encourage strategic adaptation
+
+#### Transitivity and Intransitivity
+* Transitive relationships (A > B > C)
+* Intransitive elements (rock-paper-scissors)
+* Balance between predictable and dynamic interactions
+* Prevent dominant strategies
+
+#### Feedback Loops
+* Positive feedback:
+    * Momentum building
+    * Power scaling
+    * Victory reinforcement
+* Negative feedback:
+    * Comeback mechanics
+    * Power limiting
+    * Balance preservation
+* Careful management of loop intensity
 
 ## Testing and Analysis
 
 ### Data Collection
 
-* **Key Metrics**
-    * Win rates by class
-    * Ability usage statistics
-    * Damage/healing output
-    * Resource efficiency
+#### Granular Analysis
+* Win rates by class and matchup
+* Individual ability usage stats
+* Damage output metrics
+* Resource efficiency tracking
+* Player behavior patterns
 
-* **Analysis Tools**
-    * Statistical significance testing
-    * A/B testing for mechanics
-    * Heat maps for battle analysis
-    * Monte Carlo simulations
+#### Statistical Methods
+* Ensure significant sample sizes
+* A/B testing for specific changes
+* Progression charts for rewards
+* Heat maps for battle analysis
+* Monte Carlo simulations for scenarios
 
-### AI Testing
+### AI-Driven Testing
 
-* **AI Opponents**
-    * Adaptive difficulty
-    * Strategy learning
-    * Situational decision making
+#### Adaptive AI System
+* Adjusts to player skill
+* Learns from player behavior
+* Avoids perfect optimization
+* Tests balance in various scenarios
 
-* **Balance Testing**
-    * Exploit detection
-    * Strategy validation
-    * Edge case testing
+#### AI Balance Tools
+* Exploit detection
+* Strategy validation
+* Edge case testing
+* Situational analysis
+* Intransitive decision making
 
-## Meta Game Elements
+## Meta-Game Elements
 
-### Economy and Resources
+### Economy Systems
 
-* **Resource Types**
-    * Health and Energy
-    * Special resources per class
-    * Consumable items
+#### Resource Management
+* Health and Energy balance
+* Special resource mechanics
+* Item and equipment balance
+* Trading considerations
 
-* **Economy Balance**
-    * Cost/benefit ratios
-    * Resource regeneration
-    * Power scaling
+#### Economic Controls
+* Open vs closed economies
+* Inflation management
+* Power creep prevention
+* Trading limitations
+* Gift mechanics
 
 ### Player Experience
 
-* **Feedback Systems**
-    * Visual effects
-    * Audio cues
-    * UI feedback
-    * Combat logs
+#### Engagement Elements
+* Visual and audio feedback
+* Clear ability impacts
+* Satisfying interactions
+* Strategic depth
+* Learning curve
 
-* **Player Agency**
-    * Strategic choices
-    * Build diversity
-    * Tactical options
+#### Strategic Depth
+* Decision making complexity
+* Build diversity
+* Tactical options
+* Risk vs reward
+* Perfect imbalance
 
 ### Meta Evolution
 
-* **Perfect Imbalance**
-    * Minor power differences
-    * Shifting strategies
-    * Evolving meta
+#### Long-term Considerations
+* Power creep management
+* Content scaling
+* Meta diversity
+* Balance iterations
+* Community feedback
 
-* **Long-term Considerations**
-    * Power creep management
-    * Content scaling
-    * Meta diversity
+#### Cognitive Factors
+* Player agency vs choice paralysis
+* Cognitive bias awareness
+* Strategic intuition
+* Learning progression
+* Skill expression
 
-## Class-Specific Balance
+## Implementation Process
 
-### Conjuror
-* High spiritual damage, low health
-* Echo mechanic timing
-* Support ability effectiveness
+### Continuous Balance
 
-### Crystal Vanguard
-* Defense scaling
-* Damage conversion rates
-* Team protection value
+1. Regular Monitoring
+    * Track win rates
+    * Analyze ability usage
+    * Monitor resource efficiency
+    * Observe player behavior
 
-### Zealot
-* Mobility vs durability
-* Emotional intensity scaling
-* Risk/reward ratios
-
-### The Blessed
-* Healing effectiveness
-* Divine protection balance
-* Support dependency
-
-### Primal Shifter
-* (In Development)
-* Will need balance considerations
-* Role definition pending
-
-## Ongoing Balance Process
-
-1. **Regular Review**
-    * Monitor win rates
-    * Track ability usage
-    * Analyze player feedback
-
-2. **Update Cycle**
+2. Testing Cycle
     * Identify issues
-    * Test solutions
-    * Implement changes
-    * Monitor results
+    * Design solutions
+    * Test changes
+    * Gather feedback
+    * Implement updates
 
-3. **Documentation**
-    * Track changes
-    * Record rationale
+3. Documentation
+    * Record changes
+    * Document rationale
     * Update guidelines
+    * Track metrics
+    * Share insights
+
+### Class-Specific Balance
+
+See individual class documentation for detailed balance considerations:
+* [Conjuror](classes/conjuror.md)
+* [Crystal Vanguard](classes/crystal_vanguard.md)
+* [Zealot](classes/zealot.md)
+* [The Blessed](classes/the_blessed.md)
+* [Primal Shifter](classes/primal_shifter.md)
