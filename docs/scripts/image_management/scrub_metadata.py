@@ -33,6 +33,10 @@ logger = logging.getLogger(__name__)
 MAX_WIDTH = 800
 TARGET_DPI = 72
 
+def is_close_enough(a, b, rel_tol=1e-2):
+    """Check if two numbers are close enough, accounting for floating point precision."""
+    return abs(a - b) <= rel_tol * abs(b)
+
 class ImageMetadata:
     """Class to handle image metadata operations."""
     
@@ -66,9 +70,9 @@ class ImageMetadata:
                 if 'dpi' in img.info:
                     self.metadata['DPI'] = img.info['dpi']
                 
-                # Get all available info
+                # Get all available info except DPI
                 for k, v in img.info.items():
-                    if isinstance(v, (str, int, float)):
+                    if k != 'dpi' and isinstance(v, (str, int, float)):
                         self.metadata[k] = v
         
         except Exception as e:
@@ -76,7 +80,7 @@ class ImageMetadata:
     
     def has_metadata(self) -> bool:
         """Check if image has any metadata beyond basic format info."""
-        basic_info = {'FORMAT', 'MODE', 'SIZE'}
+        basic_info = {'FORMAT', 'MODE', 'SIZE', 'DPI'}
         return len(set(self.metadata.keys()) - basic_info) > 0
     
     def get_metadata_summary(self) -> str:
@@ -86,7 +90,7 @@ class ImageMetadata:
         
         summary = []
         for k, v in self.metadata.items():
-            if k not in {'FORMAT', 'MODE', 'SIZE'}:
+            if k not in {'FORMAT', 'MODE', 'SIZE', 'DPI'}:
                 summary.append(f"{k}: {v}")
         return "\n".join(summary)
 
@@ -135,7 +139,8 @@ def check_images(image_files: List[Path]) -> Tuple[List[Path], List[Path]]:
                 needs_work = True
             
             dpi = img.info.get('dpi', (None, None))
-            if dpi[0] != TARGET_DPI or dpi[1] != TARGET_DPI:
+            if dpi and (not is_close_enough(dpi[0], TARGET_DPI) or 
+                        not is_close_enough(dpi[1], TARGET_DPI)):
                 needs_work = True
         
         if needs_work:
@@ -170,7 +175,8 @@ def process_image(image_path: Path, dry_run: bool = False) -> bool:
                 if width > MAX_WIDTH:
                     logger.info(f"Image needs resizing: {width}x{height}")
                 
-                if dpi != (TARGET_DPI, TARGET_DPI):
+                if dpi and (not is_close_enough(dpi[0], TARGET_DPI) or 
+                            not is_close_enough(dpi[1], TARGET_DPI)):
                     logger.info(f"Current DPI: {dpi}, target: {TARGET_DPI}")
             return True
         
@@ -215,7 +221,8 @@ def process_image(image_path: Path, dry_run: bool = False) -> bool:
                     logger.error(f"Failed to resize {image_path}")
                     return False
                 
-                if current_dpi != (TARGET_DPI, TARGET_DPI):
+                if current_dpi and (not is_close_enough(current_dpi[0], TARGET_DPI) or 
+                                  not is_close_enough(current_dpi[1], TARGET_DPI)):
                     logger.error(f"Failed to set DPI for {image_path}")
                     return False
                 

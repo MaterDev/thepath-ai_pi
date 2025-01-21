@@ -105,17 +105,10 @@ check-images:
 	@PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py --check
 
 process-images:
-	@echo "This will process all images in the repository:"
-	@echo "- Remove metadata (EXIF, XMP, etc.)"
-	@echo "- Resize to max width 800px (maintaining aspect ratio)"
-	@echo "- Set DPI to 72 for web optimization"
-	@echo "- Optimize quality settings"
-	@read -p "Are you sure you want to continue? [y/N] " confirm; \
-	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
-		PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py && \
-		echo "Verifying changes..." && \
-		PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py --check; \
-	fi
+	@echo "Processing all images in the repository..."
+	@PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py
+	@echo "Verifying changes..."
+	@PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py --check
 
 scrub-images:
 	@echo "$(COLOR_YELLOW)Checking for images with metadata...$(COLOR_RESET)"

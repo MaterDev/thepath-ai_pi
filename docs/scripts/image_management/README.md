@@ -22,6 +22,7 @@ pip install Pillow>=10.0.0
 ## Purpose
 
 The primary purpose of these tools is to protect privacy and security when using AI-generated images. Many AI image generation services (like Midjourney and DALL-E) embed metadata in images that could potentially:
+
 - Contain account identifiers
 - Include API keys or session data
 - Reveal prompts used for generation
@@ -67,18 +68,20 @@ python scrub_metadata.py --directory PATH
 ```
 
 Options:
+
 - `--directory`: Root directory to process (default: current directory)
 - `--check`: Only check for issues and exit with status 1 if found
 - `--dry-run`: Show what changes would be made without modifying files
 
 The script will:
+
 1. Recursively find all images in the specified directory
 2. Check for metadata and optimization needs
 3. Process each image:
-   - Remove metadata
-   - Set DPI to 72
-   - Resize if width > 800px
-   - Optimize for web
+    * Remove metadata
+    * Set DPI to 72
+    * Resize if width > 800px
+    * Optimize for web
 4. Verify all changes were applied correctly
 5. Log results and any errors encountered
 
@@ -97,17 +100,18 @@ make process-images
 The `process-images` command will:
 1. Ask for confirmation before making changes
 2. Process all images in the repository:
-   - Remove metadata (EXIF, XMP, etc.)
-   - Resize to max width 800px (maintaining aspect ratio)
-   - Set DPI to 72 for web optimization
-   - Optimize quality settings (95% JPEG, optimized PNG)
+    * Remove metadata (EXIF, XMP, etc.)
+    * Resize to max width 800px (maintaining aspect ratio)
+    * Set DPI to 72 for web optimization
+    * Optimize quality settings (95% JPEG, optimized PNG)
 3. Verify all changes were applied correctly
 
 ## Important Note
 
 Always run `make check-images` before committing new images to ensure they meet our standards for:
-- Privacy (no metadata)
-- Web optimization (correct size and DPI)
-- File size (optimized formats)
+
+* Privacy (no metadata)
+* Web optimization (correct size and DPI)
+* File size (optimized formats)
 
 This is especially important for images generated using Midjourney, DALL-E, or other AI services.
