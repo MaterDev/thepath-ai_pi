@@ -257,10 +257,3 @@ ws.onmessage = (event) => {
             break
     }
 }
-```
-
-## Related Documentation
-- [Server Architecture](../../implementation/server/architecture.md)
-- [Client Architecture](../../implementation/client/architecture.md)
-- [AI Implementation](../../implementation/ai/architecture.md)
-- [Data Schemas](../data-schemas/)

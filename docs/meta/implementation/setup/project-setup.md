@@ -280,8 +280,7 @@ npm install -g jest
 pip install pytest pytest-cov
 ```
 
-## Related Documentation
-- [Contributing Guide](../../meta/contributing.md)
-- [Style Guide](../../meta/style-guide.md)
-- [Server Architecture](../server/architecture.md)
-- [AI Implementation](../ai/architecture.md)
+## Version History
+- v1.0: Initial setup guide
+- v1.1: Added Docker setup
+- v1.2: Updated dependencies

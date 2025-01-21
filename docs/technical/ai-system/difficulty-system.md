@@ -99,11 +99,6 @@ class BattleAI:
         self.action_selector.difficulty = self.difficulty_adjuster.current_difficulty
 ```
 
-## Related Documentation
-- [Behavior Model](behavior-model.md)
-- [Training Pipeline](training-pipeline.md)
-- [Hardware Configuration](../hardware/configuration.md)
-
 ## Version History
 - v1.0: Initial difficulty system
 - v1.1: Added dynamic adjustment

@@ -312,11 +312,6 @@ describe('Client Integration', () => {
 });
 ```
 
-## Related Documentation
-- [Server Implementation](../server/architecture.md)
-- [Testing Guide](../testing/overview.md)
-- [UI Components](ui-components.md)
-
 ## Version History
 - v1.0: Initial client implementation
 - v1.1: Added performance optimization

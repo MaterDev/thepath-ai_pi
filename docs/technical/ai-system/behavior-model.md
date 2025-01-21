@@ -109,14 +109,7 @@ The AI system uses TensorFlow Lite for efficient inference on the Raspberry Pi 5
            self.inference_times.append(duration)
    ```
 
-## Related Documentation
-- [Training Pipeline](training-pipeline.md)
-- [Difficulty System](difficulty-system.md)
-- [Hardware Configuration](../hardware/configuration.md)
-
 ## Version History
 - v1.0: Initial behavior model
-- v1.1: Added personality system
-- v1.2: Hardware optimization
-- v1.3: Hailo-specific optimizations and hardware acceleration details
-- v2.0: Simplified requirements and updated AI behavior model
+- v1.1: Added reinforcement learning
+- v1.2: Improved decision making

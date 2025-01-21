@@ -264,12 +264,6 @@ hardware:
   use_fp16: true
 ```
 
-## Related Documentation
-- [Behavior Model](../../technical/ai-system/behavior-model.md)
-- [Training Pipeline](../../technical/ai-system/training-pipeline.md)
-- [Difficulty System](../../technical/ai-system/difficulty-system.md)
-- [Hardware Configuration](../../technical/hardware/configuration.md)
-
 ## AI System Architecture
 
 ### Overview

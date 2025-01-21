@@ -311,7 +311,7 @@ coverage/
 .DS_Store
 ```
 
-## Related Documentation
-- [Project Setup](../implementation/setup/project-setup.md)
-- [Contributing Guide](../meta/contributing.md)
-- [Style Guide](../meta/style-guide.md)
+## Version History
+- v1.0: Initial dependency list
+- v1.1: Updated TensorFlow version
+- v1.2: Added new game engine dependencies

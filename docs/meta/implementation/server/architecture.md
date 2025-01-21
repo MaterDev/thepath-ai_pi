@@ -290,11 +290,6 @@ func TestServer_Integration(t *testing.T) {
 }
 ```
 
-## Related Documentation
-- [Client Implementation](../client/architecture.md)
-- [Testing Guide](../testing/overview.md)
-- [AI System](../../technical/ai-system/behavior-model.md)
-
 ## Version History
 - v1.0: Initial server implementation
 - v1.1: Added performance monitoring

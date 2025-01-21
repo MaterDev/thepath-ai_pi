@@ -156,12 +156,7 @@ battle.TurnOrder = []ID{playerID, aiID}
 battle.CurrentTurn = playerID
 ```
 
-## Related Schemas
-- [AI Models Schema](ai-models.md)
-- [Replay System Schema](replay-system.md)
-
 ## Version History
-- v1.0: Initial schema definition
-- v1.1: Added environment state
-- v1.2: Enhanced status effects
-- v2.0: Updated game state schema to focus on core battle mechanics
+- v1.0: Initial game state schema
+- v1.1: Added player states
+- v1.2: Updated action system

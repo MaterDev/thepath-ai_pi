@@ -313,11 +313,6 @@ class TestAIAgent(unittest.TestCase):
 ```
 
 
-## Related Documentation
-- [Contributing Guide](contributing.md)
-- [Testing Guide](../implementation/testing/overview.md)
-- [Project Overview](../overview/project-scope.md)
-
 ## Version History
 - v1.0: Initial style guide
 - v1.1: Added language-specific guidelines
