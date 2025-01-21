@@ -4,35 +4,25 @@
 
 > Pushing the boundaries of edge AI gaming on Raspberry Pi hardware.
 
-Welcome to The Path (AI-Pi) documentation. This site contains comprehensive information about the project, including technical details, setup guides, development logs, and research objectives.
+The Path is a fantasy RPG that blends traditional spiritual practices with modern game mechanics. Drawing inspiration from Hoodoo, Conjure, and Rootwork traditions, it creates an immersive digital experience that honors these ancestral practices while providing engaging gameplay.
 
-## Quick Links
+## Core Systems
 
-- [Project Overview](overview/project-scope.md)
-- [Latest Development Log](meta/logs/2025-01-13.md)
-- [Setup Guide](implementation/setup/project-setup.md)
+- **[Combat System](combat_system/balance_and_meta.md)**: Strategic combat featuring unique character abilities and dynamic interactions
+- **[Character Classes](combat_system/classes.md)**: Six distinct classes, each representing different aspects of traditional practices
+- **[Cultural Foundations](world/cultural_foundations.md)**: Deep exploration of the game's cultural and spiritual roots
 
-## Core Features
+## Development Focus
 
-### Edge AI Combat System
-- Real-time AI decision making (<100ms)
-- Adaptive difficulty system
-- Personality-based behavior
-- Hardware-accelerated inference
+- Authentic representation of traditional practices
+- Engaging gameplay mechanics
+- Community-driven development
+- Educational opportunities through play
 
-### Combat System
-- [Combat Balance & Meta](combat_system/balance_and_meta.md) - System overview and balance
-- [Conjuror](combat_system/classes/conjuror.md) - Mid-range spell weaver
-- [Crystal Vanguard](combat_system/classes/crystal_vanguard.md) - Frontline protector
-- [Zealot](combat_system/classes/zealot.md) - Aggressive skirmisher
-- [The Blessed](combat_system/classes/the_blessed.md) - Strategic enabler
-- [Primal Shifter](combat_system/classes/primal_shifter.md) - Adaptable warrior
-
-### Game Client
-- Responsive UI (<16ms)
-- Real-time updates
-- Combat animations
-- Touch support
+For developers interested in contributing, please review our:
+- [Development Guidelines](meta/development-guidelines.md)
+- [Documentation Standards](meta/documentation-standards.md)
+- [AI Development Index](AI_DEVELOPMENT_INDEX.md)
 
 ## Development
 
