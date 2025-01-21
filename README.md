@@ -1,8 +1,11 @@
 # The Path (AI-Pi)
 
-Edge AI-powered turn-based combat game running on Raspberry Pi hardware.
+> Pushing the boundaries of edge AI gaming on Raspberry Pi hardware.
 
-![The Path (AI-Pi)](images/cover.png)
+!!! info "Development Progress"
+    Total development time: 35.0 hours
+
+    This counter is automatically updated based on development logs.
 
 ## Documentation
 
@@ -32,9 +35,20 @@ Our comprehensive documentation site contains everything you need to understand 
 
 ### Quick Start
 
-1. Clone the repository
-2. Run `make install` to set up dependencies
-3. Run `make docs` to build and serve documentation locally
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Format and lint code
+make format
+make lint
+
+# Build documentation
+make docs-build
+
+# Start documentation server
+make docs
+```
 
 ### Makefile Commands
 
@@ -45,7 +59,6 @@ The project includes a comprehensive Makefile to automate common tasks:
 make docs          # Build and serve documentation locally
 make docs-build    # Build documentation site
 make validate-docs # Run documentation validation
-make format-docs   # Format documentation files
 make process-images # Optimize images (resize, set DPI, remove metadata)
 make check-images  # Check images for optimization needs
 ```
@@ -53,10 +66,10 @@ make check-images  # Check images for optimization needs
 #### Development Commands
 ```
 make install      # Install project dependencies
+make clean        # Clean build artifacts and caches
+make format       # Format code and documentation
+make lint         # Run linters with auto-fix
 make test        # Run test suite
-make lint        # Run linting checks
-make format      # Format code
-make clean       # Clean build artifacts
 ```
 
 #### Automation Commands
@@ -163,6 +176,28 @@ The current project builds upon these previous implementations, incorporating:
 - Core battle mechanics from Simulat33
 - Balanced character stats generated through huMon-gen
 - Modern architecture and UI patterns from the Go implementation
+
+## Project Structure
+
+```
+.
+├── docs/               # Documentation
+│   ├── meta/          # Development logs and social updates
+│   ├── overview/      # Project overview and objectives
+│   ├── scripts/       # Documentation automation
+│   ├── technical/     # Technical specifications
+│   └── world_building/ # Game world and mechanics
+├── requirements.txt    # Python dependencies
+└── mkdocs.yml         # Documentation configuration
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run `make format` and `make lint`
+5. Submit a pull request
 
 ## License
 
