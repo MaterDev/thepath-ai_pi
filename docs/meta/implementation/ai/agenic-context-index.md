@@ -15,43 +15,58 @@ The Context Hierarchy section establishes the foundational structure of our proj
 
 ```yaml
 Core_Context:
-  project_scope: 
+  project_scope:
     path: "overview/project-scope.md"
+
     purpose: "Defines project boundaries and objectives"
     key_sections:
       - "Project Goals"
+
       - "Technical Constraints"
+
       - "Development Phases"
 
   research_objectives:
     path: "overview/research-objectives.md"
+
     purpose: "Research goals and methodologies"
     key_sections:
       - "Research Questions"
+
       - "Success Metrics"
+
       - "Validation Methods"
 
 Development_History:
   logs:
     path: "meta/logs/*.md"
+
     purpose: "Chronological development decisions"
     analysis_priority:
       - "Technical Decisions"
+
       - "Implementation Details"
+
       - "Architecture Changes"
-  
+
   social_updates:
     path: "meta/social/**/*.md"
+
     purpose: "Public communications and announcements"
     key_aspects:
       - "Feature Announcements"
+
       - "Development Progress"
+
       - "Community Engagement"
+
 ```
 
 ### Cross-Reference Map
 
 !!! info "Cross-References"
+
+
     The Cross-Reference Map shows how different components of our project influence and depend on each other. This is crucial for maintaining consistency when making changes, as it helps identify which parts of the project might be affected by modifications to a particular component.
 
 ```yaml
@@ -59,26 +74,33 @@ World_Building:
   cultural_elements:
     primary_sources:
       - path: "world_building/cultural_foundations.md"
+
         influences: ["game_mechanics", "character_design", "resource_systems"]
     related_mechanics:
       - path: "world_building/balance_and_meta.md"
+
         validates_against: ["cultural_foundations", "game_balance"]
 
   game_mechanics:
     battle_system:
       - path: "world_building/classes.md"
+
         dependencies: ["stats", "balance_and_meta"]
       - path: "world_building/stats.md"
+
         influences: ["character_balance", "progression"]
 
 Technical_Implementation:
   ai_systems:
     training:
       path: "technical/ai-system/training-pipeline.md"
+
       validates_against: ["game_balance", "difficulty_system"]
     inference:
       path: "technical/ai-system/inference.md"
+
       dependencies: ["hardware_specs", "performance_metrics"]
+
 ```
 
 ## Decision Support
@@ -95,23 +117,30 @@ Documentation_Analysis:
   priority_order:
     1: "Check development logs for recent context"
     2: "Cross-reference with world building docs"
+
     3: "Validate against technical specifications"
     4: "Review public communications"
 
   consistency_checks:
     cultural_elements:
       sources: ["world_building/*", "meta/logs/*"]
+
       validation_points:
         - "Terminology usage"
+
         - "Cultural accuracy"
+
         - "Implementation details"
 
     game_mechanics:
       sources: ["world_building/balance_and_meta.md", "world_building/classes.md"]
       validation_points:
         - "Balance considerations"
+
         - "Cultural integration"
+
         - "Technical feasibility"
+
 ```
 
 ### Implementation Guidelines
@@ -124,9 +153,12 @@ Code_Context:
   source_patterns:
     game_logic:
       - "src/game/**/*.go"
+
       - "src/battle/**/*.go"
+
     ai_components:
       - "src/ai/**/*.py"
+
       - "src/inference/**/*.py"
 
   cross_referencing:
@@ -136,6 +168,7 @@ Code_Context:
     cultural_to_mechanics:
       traditions: "Guides feature development"
       practices: "Shapes interaction patterns"
+
 ```
 
 ### Health Monitoring Context
@@ -148,16 +181,20 @@ System_Health:
   metrics_hierarchy:
     critical:
       - "AI inference performance"
+
       - "Battle system stability"
+
       - "State management integrity"
-    
+
     validation:
       performance:
         path: "technical/health/performance.md"
         thresholds: "technical/health/thresholds.md"
       cultural:
         path: "technical/health/cultural-validation.md"
+
         criteria: "world_building/validation-criteria.md"
+
 ```
 
 ## Metrics and Validation
@@ -172,36 +209,47 @@ Documentation_Metrics:
       measure: "Percentage of components with complete documentation"
       target: ">= 95%"
       check_frequency: "Weekly"
-    
+
     cross_reference_validity:
       measure: "Percentage of valid cross-references"
+
       target: "100%"
       validation_script: "scripts/validate_refs.py"
-    
+
     usage_patterns:
       tracking:
         - "Documentation access frequency"
+
         - "Most referenced sections"
+
         - "Update frequency"
+
       analysis_period: "Monthly"
 
   validation_rules:
     cross_references:
       - "All links must resolve to existing documents"
+
       - "No circular references"
+
       - "Maximum reference depth of 3"
-    
+
     content_quality:
       - "All code examples must be validated"
+
       - "Technical terms must be consistent"
+
       - "Cultural references must align with world-building"
 
   automated_checks:
     frequency: "Daily"
     tools:
       - "validate_refs.py: Cross-reference validation"
+
       - "doc_health.py: Documentation health metrics"
+
       - "consistency_check.py: Terminology consistency"
+
 ```
 
 ## Quick Reference Guide
@@ -214,26 +262,39 @@ Common_Patterns:
   new_feature_documentation:
     required_sections:
       - "Purpose and Overview"
+
       - "Technical Implementation"
+
       - "Cultural Integration"
+
       - "Testing Guidelines"
+
     example: "world_building/features/crafting.md"
-  
+
   system_updates:
     checklist:
       - "Update relevant technical docs"
+
       - "Add entry to development log"
+
       - "Update cross-references"
+
       - "Validate cultural alignment"
+
     example: "meta/logs/2025-01-21.md"
-  
+
   best_practices:
     documentation_style:
       - "Use active voice"
+
       - "Include concrete examples"
+
       - "Link to related systems"
+
       - "Provide context for decisions"
+
     example: "world_building/combat_system.md"
+
 ```
 
 ## Change Tracking
@@ -247,16 +308,22 @@ Index_Changes:
     type: "Major Enhancement"
     changes:
       - "Added Documentation Health Metrics section"
+
       - "Implemented Quick Reference Guide"
+
       - "Added Change Tracking system"
+
     rationale: "Improve documentation quality and maintainability"
-    
+
   2025_01_14:
     type: "Migration"
     changes:
       - "Moved to meta/implementation/ai/"
+
       - "Consolidated documentation patterns"
+
     rationale: "Better organization and accessibility"
+
 ```
 
 ## Content Organization
@@ -278,13 +345,19 @@ Priority_Paths:
 Search_Patterns:
   mechanics:
     - "world_building/*.md"
+
     - "technical/game-systems/*.md"
+
   cultural:
     - "world_building/cultural*.md"
+
     - "world_building/traditions*.md"
+
   development:
     - "meta/logs/*.md"
+
     - "meta/implementation/**/*.md"
+
 ```
 
 ### Version Control Context
@@ -296,17 +369,24 @@ Search_Patterns:
 Documentation_Updates:
   frequency: "Daily updates in meta/logs"
   validation: "Cross-reference with social updates"
+
   consistency: "Check against world building docs"
 
 Change_Patterns:
   high_impact:
     - "Cultural element modifications"
+
     - "Game mechanic adjustments"
+
     - "AI system updates"
+
   requires_validation:
     - "Balance changes"
+
     - "Cultural implementations"
+
     - "System architecture"
+
 ```
 
 ## Resource Analysis
@@ -324,19 +404,27 @@ Inter_Document_Dependencies:
     cultural_foundations:
       influences:
         - "character_design"
+
         - "game_mechanics"
+
         - "resource_systems"
+
       referenced_by:
         - "balance_and_meta.md"
+
         - "classes.md"
+
         - "development_logs"
-    
+
     mechanics:
       dependencies:
         - "cultural_foundations"
+
         - "stats_system"
+
       influences:
         - "ai_behavior"
+
         - "battle_system"
 
 Content_Flow:
@@ -344,15 +432,20 @@ Content_Flow:
     path: ["research_notes", "design_docs", "technical_specs"]
     validation_points:
       - "Cultural accuracy"
+
       - "Technical feasibility"
+
       - "Performance impact"
 
   design_to_code:
     path: ["world_building", "technical_specs", "implementation"]
     checkpoints:
       - "Feature alignment"
+
       - "Cultural integrity"
+
       - "System compatibility"
+
 ```
 
 ### Implementation Priorities
@@ -366,12 +459,12 @@ Feature_Dependencies:
     priority: "High"
     affects: ["game_mechanics", "character_design"]
     validation: "cultural_foundations.md"
-  
+
   battle_mechanics:
     priority: "High"
     affects: ["ai_behavior", "balance"]
     validation: "balance_and_meta.md"
-  
+
   ai_systems:
     priority: "High"
     affects: ["game_experience", "difficulty"]
@@ -382,10 +475,11 @@ Development_Order:
     cultural_foundation:
       must_precede: ["character_implementation", "mechanic_design"]
       validates_against: "cultural_accuracy_criteria"
-    
+
     core_mechanics:
       must_precede: ["ai_behavior", "balance_tuning"]
       validates_against: "gameplay_objectives"
+
 ```
 
 ## Quality Assurance
@@ -401,9 +495,10 @@ This section provides frameworks for maintaining high standards across both tech
 Cultural_Accuracy:
   primary_sources:
     - path: "world_building/cultural_foundations.md"
+
       priority: "Critical"
       aspects: ["terminology", "practices", "representations"]
-  
+
   validation_process:
     steps:
       1: "Check against primary sources"
@@ -418,12 +513,13 @@ Technical_Implementation:
         response_time: "< 100ms"
         accuracy: "> 95%"
       validation: "technical/performance_metrics.md"
-    
+
     game_systems:
       thresholds:
         state_updates: "< 50ms"
         battle_resolution: "< 200ms"
       validation: "technical/system_metrics.md"
+
 ```
 
 ### Consistency Maintenance
@@ -436,17 +532,23 @@ Cross_Reference_Patterns:
   documentation:
     primary_sources:
       - "world_building/*.md"
+
       - "technical/specifications/*.md"
+
     validation_sources:
       - "meta/logs/*.md"
+
       - "meta/implementation/**/*.md"
-  
+
   implementation:
     source_patterns:
       - "src/**/*.go"
+
       - "src/**/*.py"
+
     validation_patterns:
       - "tests/**/*_test.go"
+
       - "tests/**/*_test.py"
 
 Validation_Workflow:
@@ -456,13 +558,14 @@ Validation_Workflow:
       2: "Check implementation impact"
       3: "Update affected components"
       4: "Validate changes"
-    
+
   code_changes:
     steps:
       1: "Check documentation requirements"
       2: "Validate cultural alignment"
       3: "Verify performance impact"
       4: "Update documentation"
+
 ```
 
 ## AI Agent Guidelines
@@ -479,13 +582,14 @@ Priority_Hierarchy:
   1_cultural_integrity:
     check: "world_building/cultural_foundations.md"
     validate: "cultural_accuracy_criteria"
-    
+
   2_gameplay_balance:
     check: "world_building/balance_and_meta.md"
     validate: "balance_metrics"
-    
+
   3_technical_feasibility:
     check: "technical/specifications/*.md"
+
     validate: "performance_requirements"
 
 Action_Patterns:
@@ -497,10 +601,13 @@ Action_Patterns:
       4: "Update health indicators"
     update_requirements:
       - "Maintain cultural accuracy"
+
       - "Ensure technical alignment"
+
       - "Document decisions"
+
       - "Update relevant metrics"
-  
+
   implementation:
     validation_order:
       1: "Cultural integrity"
@@ -509,9 +616,13 @@ Action_Patterns:
       4: "Documentation health"
     documentation_requirements:
       - "Update affected docs"
+
       - "Log decisions"
+
       - "Cross-reference changes"
+
       - "Run validation checks"
+
 ```
 
 ### Communication Context
@@ -526,35 +637,49 @@ Style_Guidelines:
     format: "Markdown with structured sections"
     requirements:
       - "Include context links"
+
       - "Reference primary sources"
+
       - "Document decisions"
-  
+
   social_updates:
     tone: "Engaging and authentic"
     format: "Platform-appropriate with consistent branding"
+
     requirements:
       - "Cultural sensitivity"
+
       - "Technical accuracy"
+
       - "Community focus"
 
 Content_Patterns:
   technical_updates:
     structure:
       - "Context and background"
+
       - "Implementation details"
+
       - "Impact and dependencies"
+
     validation:
       - "Technical accuracy"
+
       - "Documentation alignment"
-  
+
   cultural_content:
     structure:
       - "Cultural context"
+
       - "Implementation approach"
+
       - "Validation criteria"
+
     validation:
       - "Cultural accuracy"
+
       - "Representation integrity"
+
 ```
 
 ## Technical Infrastructure
@@ -571,12 +696,14 @@ Hardware_Context:
       memory: "8GB RAM"
       storage: "64GB minimum"
     validation_path: "technical/hardware/requirements.md"
-  
+
   development:
     primary: "Mac Mini M1"
     requirements:
       - "TensorFlow support"
+
       - "Go toolchain"
+
       - "Python 3.9+"
 
 Deployment_Patterns:
@@ -585,15 +712,21 @@ Deployment_Patterns:
     target: "Raspberry Pi (inference)"
     validation:
       - "Model size constraints"
+
       - "Inference performance"
+
       - "Memory usage"
-  
+
   update_process:
     frequency: "Post-training"
+
     validation_steps:
       - "Performance benchmarks"
+
       - "Memory profiling"
+
       - "Cultural alignment check"
+
 ```
 
 ## Data Schemas
@@ -605,35 +738,51 @@ Deployment_Patterns:
 Core_Schemas:
   game_state:
     path: "technical/data-schemas/game-state.md"
+
     implementations:
       - language: "Go"
+
         usage: "Server-side state management"
+
       - language: "Python"
+
         usage: "AI model integration"
     validation:
       - "Type consistency"
+
       - "Cross-language compatibility"
-  
+
   ai_models:
     path: "technical/data-schemas/ai-models.md"
+
     formats:
       - "TensorFlow Lite"
+
       - "ONNX (future)"
+
     validation:
       - "Input/output compatibility"
+
       - "Version tracking"
+
       - "Performance metrics"
 
 Schema_Dependencies:
   battle_system:
     core_types:
       - "ID"
+
       - "Timestamp"
+
       - "ActionType"
+
     validation:
       - "JSON serialization"
+
       - "WebSocket compatibility"
+
       - "Language interop"
+
 ```
 
 ## AI System Integration
@@ -647,16 +796,22 @@ Model_Architecture:
     platform: "Raspberry Pi 5 + AI HAT+"
     constraints:
       - "Memory footprint"
+
       - "Inference latency"
+
       - "Power consumption"
+
     validation: "technical/ai-system/behavior-model.md"
-  
+
   training:
     platform: "Mac Mini M1"
     requirements:
       - "TensorFlow environment"
+
       - "Training data pipeline"
+
       - "Validation datasets"
+
     documentation: "technical/ai-system/training-pipeline.md"
 
 Cultural_Integration:
@@ -664,15 +819,21 @@ Cultural_Integration:
     source: "world_building/foundations.md"
     validation:
       - "Cultural authenticity"
+
       - "Gameplay alignment"
+
       - "Player experience"
-  
+
   decision_making:
     frameworks:
       - "Hoodoo traditions"
+
       - "Cultural practices"
+
       - "Historical context"
+
     validation: "world_building/cultural_validation.md"
+
 ```
 
 ## Documentation Generation
@@ -686,31 +847,47 @@ Generation_Patterns:
     script: "docs/gen_logs.py"
     triggers:
       - "New implementation"
+
       - "Design decisions"
+
       - "Cultural additions"
+
     validation:
       - "Format consistency"
+
       - "Cross-references"
+
       - "Cultural accuracy"
-  
+
   technical_docs:
     update_frequency: "Per sprint"
     key_sections:
       - "API documentation"
+
       - "Schema updates"
+
       - "Architecture changes"
+
     validation:
       - "Technical accuracy"
+
       - "Implementation alignment"
+
       - "Cultural considerations"
 
 Documentation_Flow:
   content_hierarchy:
     - "Project overview"
+
     - "Technical specifications"
+
     - "Implementation details"
+
     - "Cultural integration"
+
   cross_validation:
     - "Technical accuracy"
+
     - "Cultural alignment"
+
     - "Implementation feasibility"

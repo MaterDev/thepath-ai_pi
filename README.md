@@ -45,6 +45,7 @@ The project includes a comprehensive Makefile to automate common tasks:
 make docs          # Build and serve documentation locally
 make docs-build    # Build documentation site
 make validate-docs # Run documentation validation
+make format-docs   # Format documentation files
 make process-images # Optimize images (resize, set DPI, remove metadata)
 make check-images  # Check images for optimization needs
 ```

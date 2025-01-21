@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat check-images process-images scrub-images
+.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat check-images process-images scrub-images format-docs
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -20,6 +20,7 @@ help:
 	@echo "  make update-logs  - Update development logs in mkdocs.yml"
 	@echo "  make update-docs  - Update documentation"
 	@echo "  make validate-docs - Run documentation validation checks"
+	@echo "  make format-docs  - Format documentation"
 	@echo ""
 	@echo "$(COLOR_GREEN)Development:$(COLOR_RESET)"
 	@echo "  make format       - Format code with black"
@@ -63,9 +64,16 @@ validate-docs:
 	@echo "$(COLOR_BLUE)Documentation validation complete$(COLOR_RESET)"
 	@echo "$(COLOR_BLUE)See /tmp/doc_validation/ for detailed reports$(COLOR_RESET)"
 
+format-docs:
+	@echo "Formatting documentation..."
+	@python docs/scripts/doc_validation/format_docs.py
+	@echo "Documentation formatting complete"
+
 update-logs:
-	@echo "$(COLOR_YELLOW)Updating development logs...$(COLOR_RESET)"
-	python docs/scripts/log_management/update_logs.py
+	@echo "Updating development logs..."
+	@python docs/scripts/log_management/update_logs.py
+	@python docs/scripts/log_management/calculate_dev_hours.py
+	@echo "Development logs updated"
 
 update-docs:
 	@echo "Updating documentation..."

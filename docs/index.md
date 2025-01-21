@@ -1,9 +1,16 @@
 ---
+
 title: The Path AI Documentation
 description: Comprehensive documentation for The Path AI project, including technical specifications, world building, and development logs
+
 ---
 
 # The Path (AI-Pi)
+
+!!! info "Development Progress"
+    Total development time: **35.0 hours**
+
+    *This counter is automatically updated based on development logs*
 
 ![The Path (AI-Pi)](images/cover.png)
 
@@ -14,15 +21,21 @@ Welcome to The Path (AI-Pi) documentation. This site contains comprehensive info
 ## Quick Links
 
 - [Project Overview](overview/project-scope.md)
+
 - [Latest Development Log](meta/logs/2025-01-13.md)
+
 - [Project Setup](meta/implementation/setup/project-setup.md)
 
 ## Core Features
 
 ### Edge AI Combat System
+
 - Real-time AI decision making
+
 - Adaptive difficulty system
+
 - Personality-based behavior
+
 - Hardware-accelerated inference
 
 ## Latest Updates

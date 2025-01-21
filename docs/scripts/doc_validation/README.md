@@ -6,34 +6,83 @@ This package provides a comprehensive set of tools for validating documentation 
 
 !!! note "Dependencies"
     - Python 3.9+
+
     - PyYAML>=6.0
+
     - Markdown>=3.3
+
     - Operating System: Linux, macOS, or Windows
 
 To install dependencies:
+
 ```bash
 pip install PyYAML>=6.0 Markdown>=3.3
+
 ```
 
 ## Components
 
 ### 1. Core Validation Types (`validation_types.py`)
+
 - Defines common data structures for validation results
+
 - Provides severity levels for issues
+
 - Implements result collection and statistics
 
 ### 2. Reference Validator (`ref_validator.py`)
+
 Validates documentation cross-references:
+
 - Checks for broken links
+
 - Detects circular references
+
 - Monitors reference depth
+
 - Validates YAML references
 
 ### 3. Health Checker (`health_checker.py`)
+
 Monitors documentation health:
+
 - Validates required metadata
+
 - Monitors documentation completeness
+
 - Tracks historical metrics
+
+## Scripts
+
+### `validate_docs.py`
+
+Validates documentation quality and generates reports:
+
+- Link checking
+
+- Format validation
+
+- Structure verification
+
+- Content integrity checks
+
+- Automatically formats documentation before validation
+
+### `format_docs.py`
+
+Formats markdown files according to project standards:
+
+- Fixes trailing whitespace
+
+- Ensures consistent blank lines
+
+- Fixes list spacing
+
+- Fixes heading spacing
+
+- Fixes code block spacing
+
+- Fixes admonition spacing
 
 ## Integration
 
@@ -47,16 +96,30 @@ These validation components are designed to work together through the main valid
 
 ## Usage
 
-The validation package is typically used through the main validation script:
+The scripts are typically run through the Makefile:
+
+```bash
+make validate-docs  # Validate and format documentation
+
+make format-docs    # Only format documentation
+
+```
+
+Alternatively, the validation package can be used through the main validation script:
 
 ```bash
 ./validate_docs.py /path/to/docs
+
 ```
 
 This will:
+
 - Validate all documentation files in the specified directory
+
 - Generate a detailed report with validation results
+
 - Save the report to the .reports directory with a unique filename based on timestamp and UUID
+
 - Provide a symlink to the latest report for easy access
 
 ## Output
@@ -64,13 +127,18 @@ This will:
 The validation process generates two types of output:
 
 1. Human-readable report (`validation_report_TIMESTAMP.txt`)
+
    - Summary statistics
+
    - Detailed validation results
+
    - Issue descriptions and locations
 
 2. JSON results (`validation_results_TIMESTAMP.json`)
    - Raw validation data
+
    - Detailed statistics
+
    - Machine-readable format
 
 ## Best Practices
@@ -84,7 +152,11 @@ The validation process generates two types of output:
 ## Implementation Notes
 
 - All validators return `ValidationResult` objects
+
 - Results include both issues and statistics
+
 - Issues are categorized by severity
+
 - File paths are stored relative to docs root
+
 - JSON output preserves all validation details

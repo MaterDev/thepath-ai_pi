@@ -38,19 +38,26 @@ jobs:
           pip install pyyaml
           pip install Pillow>=10.0.0  # For image processing
 
-      - name: Update logs
-        run: |
-          python docs/scripts/log_management/update_logs.py
-
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Commit log updates
+      - name: Update logs
         run: |
+          python docs/scripts/log_management/update_logs.py
+          python docs/scripts/log_management/calculate_dev_hours.py
+          git add docs/meta/logs/
+          git add docs/index.md
           git add mkdocs.yml
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update logs navigation"
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update logs navigation and development hours"
+
+      - name: Format documentation
+        run: |
+          echo "Formatting documentation..."
+          python docs/scripts/doc_validation/format_docs.py
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: format documentation"
 
       - name: Process and validate images
         run: |

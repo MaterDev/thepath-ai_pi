@@ -18,7 +18,7 @@ const app = express();
 app.get('/health', async (req, res) => {
     const serverHealth = await checkServerConnection();
     const wsHealth = await checkWebSocket();
-    
+
     res.json({
         status: serverHealth && wsHealth ? 'healthy' : 'unhealthy',
         timestamp: Date.now(),
@@ -30,6 +30,7 @@ app.get('/health', async (req, res) => {
         }
     });
 });
+
 ```
 
 ### 2. Connection Checks
@@ -57,17 +58,18 @@ export function checkWebSocket(): Promise<boolean> {
             resolve(true);
             return;
         }
-        
+
         const timeout = setTimeout(() => resolve(false), 5000);
-        
+
         socket.once('connect', () => {
             clearTimeout(timeout);
             resolve(true);
         });
-        
+
         socket.connect();
     });
 }
+
 ```
 
 ### 3. Health Monitor Component
@@ -79,7 +81,7 @@ import { Alert } from '@mui/material';
 
 export const HealthMonitor: React.FC = () => {
     const [isHealthy, setIsHealthy] = useState(true);
-    
+
     useEffect(() => {
         const checkHealth = async () => {
             try {
@@ -90,12 +92,12 @@ export const HealthMonitor: React.FC = () => {
                 setIsHealthy(false);
             }
         };
-        
+
         checkHealth();
         const interval = setInterval(checkHealth, 30000);
         return () => clearInterval(interval);
     }, []);
-    
+
     if (!isHealthy) {
         return (
             <Alert severity="error">
@@ -103,9 +105,10 @@ export const HealthMonitor: React.FC = () => {
             </Alert>
         );
     }
-    
+
     return null;
 };
+
 ```
 
 ## Docker Integration
@@ -113,7 +116,9 @@ export const HealthMonitor: React.FC = () => {
 ### 1. Health Check Configuration
 
 ```yaml
+
 # docker-compose.yml
+
 services:
   client:
     build:
@@ -121,31 +126,40 @@ services:
       dockerfile: ../docker/dev/client.Dockerfile
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+
       interval: 30s
       timeout: 10s
       retries: 3
+
 ```
 
 ### 2. Dockerfile Setup
 
 ```dockerfile
+
 # docker/dev/client.Dockerfile
+
 FROM node:18-alpine
 
 # Health check dependencies
+
 RUN apk add --no-cache wget curl
 
 WORKDIR /app/client
 COPY package*.json ./
+
 RUN npm install
 COPY . .
 
 # Health check setup
+
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+
     CMD wget -qO- http://localhost:3000/health || exit 1
 
 EXPOSE 3000
 CMD ["npm", "start"]
+
 ```
 
 ## Error Handling
@@ -159,22 +173,24 @@ import { socket } from './socket';
 export function setupReconnection() {
     let retries = 0;
     const maxRetries = 5;
-    
+
     socket.on('disconnect', () => {
         if (retries < maxRetries) {
             setTimeout(() => {
                 retries++;
                 socket.connect();
             }, Math.min(1000 * retries, 5000));
+
         } else {
             console.error('Max reconnection attempts reached');
         }
     });
-    
+
     socket.on('connect', () => {
         retries = 0;
     });
 }
+
 ```
 
 ### 2. Error Boundary
@@ -194,15 +210,15 @@ interface State {
 
 export class ErrorBoundary extends Component<Props, State> {
     state = { hasError: false };
-    
+
     static getDerivedStateFromError() {
         return { hasError: true };
     }
-    
+
     componentDidCatch(error: Error, info: ErrorInfo) {
         console.error('Client error:', error, info);
     }
-    
+
     render() {
         if (this.state.hasError) {
             return (
@@ -211,10 +227,11 @@ export class ErrorBoundary extends Component<Props, State> {
                 </Alert>
             );
         }
-        
+
         return this.props.children;
     }
 }
+
 ```
 
 ## Monitoring
@@ -223,12 +240,14 @@ export class ErrorBoundary extends Component<Props, State> {
 
 ```bash
 #!/bin/bash
+
 # scripts/check-client-health.sh
 
 check_client() {
     response=$(curl -s http://localhost:3000/health)
+
     status=$(echo $response | jq -r '.status')
-    
+
     if [ "$status" = "healthy" ]; then
         echo "Client is healthy"
         return 0
@@ -240,6 +259,7 @@ check_client() {
 }
 
 check_client
+
 ```
 
 ### 2. Logging
@@ -251,32 +271,42 @@ export const logger = {
         console.error(message, error);
         // Send to logging service
     },
-    
+
     warn: (message: string) => {
         console.warn(message);
         // Send to logging service
     },
-    
+
     info: (message: string) => {
         console.info(message);
         // Send to logging service
     }
 };
+
 ```
 
 ## Best Practices
 
 1. **Regular Health Checks**
+
    - Monitor every 30 seconds
+
    - Quick timeout (5s max)
+
    - Limited retries
 
 2. **Error Recovery**
+
    - Automatic reconnection
+
    - User notifications
+
    - Graceful degradation
 
 3. **Performance**
+
    - Lightweight checks
+
    - Minimal dependencies
+
    - Efficient logging

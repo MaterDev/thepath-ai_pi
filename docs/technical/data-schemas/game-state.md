@@ -1,6 +1,8 @@
 ---
+
 title: Game State Schema
 description: Technical specification of the game state data model, including validation rules and serialization formats
+
 ---
 
 # Game State Schemas
@@ -8,9 +10,13 @@ description: Technical specification of the game state data model, including val
 ## Overview
 
 This document defines the core data structures used in the battle system. These schemas are designed to be:
+
 - Simple and focused on battles
+
 - Language-agnostic (Go/Python)
+
 - JSON-serializable
+
 - WebSocket-friendly
 
 ## Core Types
@@ -26,6 +32,7 @@ type Serializable interface {
     Marshal() ([]byte, error)
     Unmarshal([]byte) error
 }
+
 ```
 
 ## Battle State
@@ -36,6 +43,7 @@ type BattleState struct {
     ID          ID                      `json:"id"`
     Timestamp   Timestamp               `json:"timestamp"`
     Players     map[ID]*PlayerState     `json:"players"`
+
     TurnOrder   []ID                    `json:"turnOrder"`
     CurrentTurn ID                      `json:"currentTurn"`
     Round       int                     `json:"round"`
@@ -71,6 +79,7 @@ const (
     ActionTypeDefend  ActionType = "DEFEND"
     ActionTypeSpecial ActionType = "SPECIAL"
 )
+
 ```
 
 ## Battle Events
@@ -99,6 +108,7 @@ type ActionResult struct {
     Damage      int    `json:"damage,omitempty"`
     StatusAdded string `json:"statusAdded,omitempty"`
 }
+
 ```
 
 ## Battle Configuration
@@ -108,6 +118,7 @@ type ActionResult struct {
 type BattleConfig struct {
     PlayerID    ID      `json:"playerId"`
     Difficulty  float64 `json:"difficulty"`  // 0.2-0.95
+
     AIPersona   string  `json:"aiPersona,omitempty"`
 }
 
@@ -126,6 +137,7 @@ type Stats struct {
     ActionsUsed   int `json:"actionsUsed"`
     RoundsPlayed  int `json:"roundsPlayed"`
 }
+
 ```
 
 ## Example Usage
@@ -136,6 +148,7 @@ battle := &BattleState{
     ID:        NewID(),
     Timestamp: Now(),
     Players:   make(map[ID]*PlayerState),
+
     Status:    BattleStatusActive,
 }
 

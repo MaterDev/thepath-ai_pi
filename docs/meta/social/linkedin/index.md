@@ -16,8 +16,11 @@ Each post file contains:
 These posts serve as a record of:
 
 - Project announcements
+
 - Development updates
+
 - Technical insights
+
 - Methodology discussions
 
 ## Organization

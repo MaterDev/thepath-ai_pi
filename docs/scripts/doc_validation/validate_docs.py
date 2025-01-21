@@ -14,13 +14,17 @@ The validation results are saved to .reports/doc_validation_report.json for furt
 processing or integration with other tools.
 """
 
+from doc_validation import HealthChecker, RefValidator, ValidationResult, Severity
 from pathlib import Path
 import sys
 import json
 from datetime import datetime
 import uuid
+import logging
 
-from doc_validation import HealthChecker, RefValidator, ValidationResult, Severity
+# Create a logger
+logger = logging.getLogger(__name__)
+
 
 
 def validate_docs(docs_root: str) -> ValidationResult:
@@ -99,6 +103,14 @@ def main():
         sys.exit(1)
 
     docs_root = sys.argv[1]
+
+    # First, format all documentation
+    logger.info("Formatting documentation...")
+    import format_docs
+    format_docs.main()
+
+    # Then proceed with validation
+    logger.info("Validating documentation...")
 
     print("\nGenerating report...")
     result = validate_docs(docs_root)
