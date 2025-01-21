@@ -5,7 +5,7 @@ description: Comprehensive documentation for The Path AI project, including tech
 
 # The Path (AI-Pi)
 
-![The Path (AI-Pi)](images/cover-2025.png)
+![The Path (AI-Pi)](images/cover.png)
 
 > Pushing the boundaries of edge AI gaming on Raspberry Pi hardware.
 

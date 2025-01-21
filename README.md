@@ -2,7 +2,7 @@
 
 Edge AI-powered turn-based combat game running on Raspberry Pi hardware.
 
-![The Path (AI-Pi)](images/cover-2025.png)
+![The Path (AI-Pi)](images/cover.png)
 
 ## Documentation
 
