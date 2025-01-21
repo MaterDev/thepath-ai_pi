@@ -66,6 +66,39 @@ To update locally:
 1. Install documentation dependencies: `pip install -r docs/requirements.txt`
 2. Run local server: `mkdocs serve`
 
+## Makefile Targets
+
+The following Makefile targets are available for development and maintenance:
+
+### Setup and Installation
+- `make setup` - Initial project setup (installs dependencies and documentation tools)
+- `make install` - Install Python dependencies from requirements.txt
+- `make docs-deps` - Install documentation-specific dependencies
+
+### Documentation
+- `make docs` - Start the documentation server (http://127.0.0.1:8000)
+- `make docs-build` - Build the documentation site (outputs to 'site' directory)
+- `make validate-docs` - Run documentation validation checks
+- `make update-logs` - Update development logs in mkdocs.yml
+- `make update-docs` - Update documentation by copying README files to appropriate locations
+
+### Development Tools
+- `make format` - Format code using black
+- `make lint` - Run linters (flake8)
+- `make test` - Run pytest test suite
+- `make clean` - Clean build artifacts and cache files
+
+### Viewing Documentation
+
+After starting the documentation server with `make docs`, you can view the documentation at http://127.0.0.1:8000.
+
+The documentation includes:
+- Project overview and architecture
+- Technical specifications
+- Development guides
+- API documentation
+- World building and game mechanics
+
 ## Project Origins
 
 This project represents the evolution of turn-based battle mechanics through several research spikes:
