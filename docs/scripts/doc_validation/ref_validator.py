@@ -132,14 +132,16 @@ class RefValidator:
                         result.issues.append(ValidationIssue(
                             message=f'Broken reference to \'{ref}\'',
                             file=rel_path,
-                            severity=Severity.ERROR
+                            severity=Severity.ERROR,
+                            checker="references"
                         ))
                         
             except Exception as e:
                 result.issues.append(ValidationIssue(
                     message=f'Error processing file: {str(e)}',
                     file=rel_path,
-                    severity=Severity.ERROR
+                    severity=Severity.ERROR,
+                    checker="references"
                 ))
                 
         return result

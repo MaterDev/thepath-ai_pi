@@ -42,6 +42,22 @@ make clean
 make deploy-docs
 ```
 
+### Documentation Management and Validation
+
+Our documentation system includes a robust validation suite to ensure quality and consistency. Key features include:
+
+- **Metadata Validation**: Checks for required metadata fields like `title` and `description`.
+- **Reference Validation**: Verifies all cross-references and links are intact.
+- **Report Generation**: Generates detailed reports with unique filenames based on timestamp and UUID, providing a symlink to the latest report for easy access.
+
+To run the validation suite:
+
+```bash
+make validate-docs
+```
+
+Reports are saved in the `.reports` directory, with the latest report symlinked as `latest.json`.
+
 ### Documentation Updates
 
 The documentation is automatically updated and deployed via GitHub Actions when changes are pushed to the main branch.
@@ -49,7 +65,6 @@ The documentation is automatically updated and deployed via GitHub Actions when 
 To update locally:
 1. Install documentation dependencies: `pip install -r docs/requirements.txt`
 2. Run local server: `mkdocs serve`
-3. View at: `http://localhost:8000`
 
 ## Project Origins
 

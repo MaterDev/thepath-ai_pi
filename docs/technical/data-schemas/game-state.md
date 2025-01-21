@@ -1,3 +1,8 @@
+---
+title: Game State Schema
+description: Technical specification of the game state data model, including validation rules and serialization formats
+---
+
 # Game State Schemas
 
 ## Overview

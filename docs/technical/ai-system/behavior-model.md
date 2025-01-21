@@ -1,3 +1,9 @@
+---
+title: AI Behavior Model
+description: Technical specification of the AI behavior modeling system, including implementation details and usage guidelines
+last_updated: 2025-01-21
+---
+
 # AI Behavior Model
 
 ## Overview
@@ -114,3 +120,29 @@ The AI system uses TensorFlow Lite for efficient inference on the Raspberry Pi 5
 * Decision confidence scores
 * Response time tracking
 * Resource utilization
+
+## Configuration
+
+The AI system can be configured through a YAML configuration file:
+
+```yaml
+model_path: 'path/to/model.tflite'
+difficulty: 0.5
+```
+
+### Configuration Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| model_path | Path to TFLite model | 'path/to/model.tflite' |
+| difficulty | Difficulty level (0.2-0.95) | 0.5 |
+
+### Performance Tuning
+
+1. Memory Usage
+   - Adjust model size based on available RAM
+   - Use feature selection to reduce input dimension
+
+2. Processing Speed
+   - Configure batch_size for inference
+   - Enable hardware acceleration when available

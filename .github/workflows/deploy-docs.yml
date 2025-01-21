@@ -36,7 +36,7 @@ jobs:
 
       - name: Update logs
         run: |
-          python scripts/update_logs.py
+          python docs/scripts/log_management/update_logs.py
 
       - name: Configure Git
         run: |

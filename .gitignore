@@ -108,3 +108,5 @@ coverage.xml
 
 # windsurf rules
 .windsurfrules
+
+.reports/

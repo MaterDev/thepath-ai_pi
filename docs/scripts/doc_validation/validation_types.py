@@ -39,12 +39,29 @@ class ValidationIssue:
         line: Optional line number where the issue occurs
         severity: Issue severity level
         context: Optional additional context about the issue
+        checker: Name of the validator that found this issue
     """
     message: str
     file: str
     line: Optional[int] = None
     severity: Severity = Severity.ERROR
     context: Optional[str] = None
+    checker: str = "unknown"
+    
+    def to_dict(self) -> Dict[str, any]:
+        """Convert the issue to a dictionary.
+        
+        Returns:
+            Dictionary representation of the issue
+        """
+        return {
+            'message': self.message,
+            'file': self.file,
+            'line': self.line,
+            'severity': self.severity.value,
+            'context': self.context,
+            'checker': self.checker
+        }
 
 @dataclass
 class ValidationResult:
@@ -66,7 +83,8 @@ class ValidationResult:
     def add_issue(self, message: str, file: str, 
                  severity: Severity = Severity.ERROR,
                  line: Optional[int] = None,
-                 context: Optional[str] = None) -> None:
+                 context: Optional[str] = None,
+                 checker: str = "unknown") -> None:
         """Add a new validation issue.
         
         Args:
@@ -75,13 +93,15 @@ class ValidationResult:
             severity: Issue severity level
             line: Optional line number
             context: Optional additional context
+            checker: Name of the validator that found this issue
         """
         self.issues.append(ValidationIssue(
             message=message,
             file=file,
             line=line,
             severity=severity,
-            context=context
+            context=context,
+            checker=checker
         ))
 
     def add_stat(self, key: str, value: any) -> None:
@@ -112,3 +132,12 @@ class ValidationResult:
     def info_count(self) -> int:
         """Get the total number of info messages."""
         return sum(1 for i in self.issues if i.severity == Severity.INFO)
+
+    def merge(self, other: 'ValidationResult') -> None:
+        """Merge another validation result into this one.
+        
+        Args:
+            other: Another ValidationResult to merge in
+        """
+        self.issues.extend(other.issues)
+        self.stats.update(other.stats)

@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs clean format lint test setup validate-docs
+.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -18,6 +18,7 @@ help:
 	@echo "  make docs         - Start the documentation server"
 	@echo "  make docs-build   - Build the documentation site"
 	@echo "  make update-logs  - Update development logs in mkdocs.yml"
+	@echo "  make update-docs  - Update documentation"
 	@echo "  make validate-docs - Run documentation validation checks"
 	@echo ""
 	@echo "$(COLOR_GREEN)Development:$(COLOR_RESET)"
@@ -54,13 +55,20 @@ docs-build: validate-docs
 
 validate-docs:
 	@echo "$(COLOR_YELLOW)Validating documentation...$(COLOR_RESET)"
-	PYTHONPATH=scripts python3 scripts/validate_docs.py docs/
+	PYTHONPATH=docs/scripts python3 docs/scripts/doc_validation/validate_docs.py docs/
 	@echo "$(COLOR_BLUE)Documentation validation complete$(COLOR_RESET)"
 	@echo "$(COLOR_BLUE)See /tmp/doc_validation/ for detailed reports$(COLOR_RESET)"
 
 update-logs:
 	@echo "$(COLOR_YELLOW)Updating development logs...$(COLOR_RESET)"
-	python scripts/update_logs.py
+	python docs/scripts/log_management/update_logs.py
+
+update-docs:
+	@echo "Updating documentation..."
+	@cp README.md docs/index.md
+	@cp docs/scripts/README.md docs/scripts/README.md
+	@cp docs/scripts/doc_validation/README.md docs/scripts/doc_validation/README.md
+	@echo "Documentation updated."
 
 # Development
 clean:

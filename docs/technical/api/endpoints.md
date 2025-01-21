@@ -1,8 +1,30 @@
+---
+title: API Endpoints Reference
+description: Complete reference documentation for all API endpoints, including request/response formats and authentication requirements
+---
+
 # API Endpoints
 
 ## Overview
 
 This document defines all API endpoints and WebSocket events used in the system. All endpoints use JSON for request/response bodies.
+
+## Implementation
+
+### Authentication
+
+```python
+from fastapi import Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    user = await validate_token(token)
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    return user
+```
 
 ## REST Endpoints
 
@@ -169,3 +191,81 @@ interface ErrorResponse {
 - Per-IP limits
 - Burst allowance
 - Sliding window
+
+## Usage
+
+### Authentication
+
+```bash
+# Get authentication token
+curl -X POST http://localhost:8000/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=user&password=pass"
+
+# Use token in subsequent requests
+curl -X GET http://localhost:8000/api/v1/game/state \
+  -H "Authorization: Bearer {token}"
+```
+
+### Game State Management
+
+```python
+import requests
+
+def update_game_state(token: str, state: dict):
+    response = requests.post(
+        "http://localhost:8000/api/v1/game/state",
+        headers={"Authorization": f"Bearer {token}"},
+        json=state
+    )
+    return response.json()
+```
+
+### AI Interactions
+
+```python
+def get_ai_action(token: str, context: dict):
+    response = requests.post(
+        "http://localhost:8000/api/v1/ai/action",
+        headers={"Authorization": f"Bearer {token}"},
+        json=context
+    )
+    return response.json()
+```
+
+## Configuration
+
+### Environment Variables
+
+```bash
+# API configuration
+API_HOST=localhost
+API_PORT=8000
+API_DEBUG=false
+
+# Authentication
+AUTH_SECRET_KEY=your-secret-key
+AUTH_ALGORITHM=HS256
+AUTH_TOKEN_EXPIRE_MINUTES=30
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS=100
+RATE_LIMIT_PERIOD=60
+```
+
+### Rate Limiting Configuration
+
+```python
+from fastapi import FastAPI
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+
+limiter = Limiter(key_func=get_remote_address)
+app = FastAPI()
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.get("/api/v1/game/state")
+@limiter.limit("100/minute")
+async def get_game_state(request: Request):
+    return {"status": "success"}

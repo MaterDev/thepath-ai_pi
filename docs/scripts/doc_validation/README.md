@@ -18,17 +18,9 @@ Validates documentation cross-references:
 
 ### 3. Health Checker (`health_checker.py`)
 Monitors documentation health:
-- Tracks section coverage
-- Validates required content
+- Validates required metadata
 - Monitors documentation completeness
 - Tracks historical metrics
-
-### 4. Consistency Checker (`consistency_checker.py`)
-Ensures terminology consistency:
-- Validates technical terms
-- Checks cultural terminology
-- Enforces style guide rules
-- Prevents terminology drift
 
 ## Integration
 
@@ -37,7 +29,7 @@ These validation components are designed to work together through the main valid
 1. Runs all validations
 2. Collects and aggregates results
 3. Generates comprehensive reports
-4. Saves results to temporary storage
+4. Saves results to the .reports directory
 5. Provides terminal output
 
 ## Usage
@@ -49,11 +41,10 @@ The validation package is typically used through the main validation script:
 ```
 
 This will:
-1. Run all validation checks
-2. Generate a comprehensive report
-3. Save results to `/tmp/doc_validation/`
-4. Display results in the terminal
-5. Exit with appropriate status code
+- Validate all documentation files in the specified directory
+- Generate a detailed report with validation results
+- Save the report to the .reports directory with a unique filename based on timestamp and UUID
+- Provide a symlink to the latest report for easy access
 
 ## Output
 

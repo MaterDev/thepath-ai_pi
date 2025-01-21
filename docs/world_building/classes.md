@@ -1,3 +1,9 @@
+---
+title: Character Classes
+description: Detailed information about character classes, their abilities, and balance considerations
+last_updated: 2025-01-21
+---
+
 # Character Classes
 
 ## Overview
@@ -167,6 +173,99 @@ This document details all character classes in The Path, including their abiliti
 3. Mind Control: Takes control of an enemy's mind for a short duration
 4. Telekinetic Barrier: Creates a psychic shield that absorbs damage
 5. Wraithwood Awakening: Unleashes the power of Wraithwood Grove
+
+## Mechanics
+
+### Crystal Vanguard
+
+The Crystal Vanguard harnesses the power of crystal manipulation for both offense and defense.
+
+#### Core Abilities
+- Crystal Shield: Generate protective barriers
+- Crystal Spike: Create and launch crystal projectiles
+- Resonance Field: Area control through crystal harmonics
+
+#### Resource Management
+- Crystal Energy: Primary resource for abilities
+- Resonance Points: Secondary resource for enhanced effects
+
+### Wraithwood Seer
+
+Masters of natural energy who can commune with the ancient spirits of the Wraithwood.
+
+#### Core Abilities
+- Spirit Sight: Reveal hidden elements
+- Nature's Grasp: Control vegetation
+- Spiritual Convergence: Channel spirit energy
+
+#### Resource Management
+- Spirit Energy: Primary resource
+- Wraithwood Essence: Builds up during spirit communion
+
+### Primal Shifter
+
+Adaptable warriors who can transform between different primal forms.
+
+#### Core Abilities
+- Primal Shift: Transform between forms
+- Bestial Surge: Enhanced mobility
+- Feral Strike: Form-specific attacks
+
+#### Resource Management
+- Primal Energy: Shared resource pool
+- Form Timer: Transformation duration
+
+## Balancing
+
+### Class Interactions
+
+1. Crystal Vanguard vs Wraithwood Seer
+   - Vanguard's crystals can disrupt spirit communion
+   - Seer's nature control can block crystal formation
+
+2. Wraithwood Seer vs Primal Shifter
+   - Spirit sight reveals shifter's true form
+   - Primal forms can resist spirit control
+
+3. Primal Shifter vs Crystal Vanguard
+   - Different forms have varying crystal resistance
+   - Crystal barriers can limit transformation utility
+
+### Power Distribution
+
+Each class follows these power allocation rules:
+
+1. Offensive Capabilities (33%)
+   - Direct damage
+   - Control effects
+   - Utility skills
+
+2. Defensive Options (33%)
+   - Damage mitigation
+   - Escape mechanics
+   - Resource regeneration
+
+3. Utility Features (33%)
+   - Movement abilities
+   - Resource generation
+   - Team support
+
+### Balance Considerations
+
+1. Resource Management
+   - All classes have primary and secondary resources
+   - Resource generation rates are standardized
+   - Maximum resource pools are balanced
+
+2. Ability Timing
+   - Core abilities have similar cooldowns
+   - Ultimate abilities charge at consistent rates
+   - Crowd control durations are normalized
+
+3. Counter Play
+   - Each class has clear strengths and weaknesses
+   - All powerful abilities have telegraphed windups
+   - Resource depletion creates vulnerability windows
 
 ## Class Comparisons
 

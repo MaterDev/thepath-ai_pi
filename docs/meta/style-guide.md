@@ -1,320 +1,102 @@
-# Style Guide
+---
+title: Documentation Style Guide
+description: Guidelines for consistent terminology and formatting in documentation
+---
 
-## Overview
+# Documentation Style Guide
 
-This style guide ensures consistent code quality across The Path (AI-Pi) project:
+This guide defines the standard terminology and formatting rules for our documentation.
 
-- Code formatting
-- Naming conventions
-- Documentation standards
-- Best practices
+## Technical Terms
 
+### AI Model
+Use: AI model
+Avoid: neural network, ML model, machine learning model
+Definition: The core artificial intelligence component that powers game interactions
 
-## General Guidelines
+### API Endpoint
+Use: API endpoint
+Avoid: route, URL, endpoint
+Definition: A specific URL path that provides access to system functionality
 
-### 1. Code Organization
+### Game State
+Use: game state
+Avoid: state, game data, world state
+Definition: The complete representation of the current game situation
 
-```
-src/
-├── server/         # Go server code
-│   ├── game/       # Game logic
-│   ├── ai/         # AI integration
-│   └── net/        # Networking
-├── client/         # TypeScript client
-│   ├── core/       # Core logic
-│   ├── ui/         # User interface
-│   └── net/        # Networking
-└── ai/             # Python AI system
-    ├── models/     # AI models
-    ├── training/   # Training system
-    └── utils/      # Utilities
-```
+### Health Check
+Use: health check
+Avoid: status check, health status, monitoring
+Definition: System component status verification
 
+### WebSocket Connection
+Use: WebSocket connection
+Avoid: socket, connection, web socket
+Definition: Real-time communication channel between client and server
 
-### 2. File Naming
+### Hardware Acceleration
+Use: hardware acceleration
+Avoid: GPU acceleration, hardware boost, acceleration
+Definition: Using specialized hardware to improve AI performance
 
-```
-# Go files
-game_server.go
-player_manager.go
-ai_interface.go
+## Cultural Terms
 
-# TypeScript files
-GameClient.ts
-StateManager.ts
-UIController.ts
+### The Path
+Use: The Path
+Avoid: path, the path, Path
+Definition: The central philosophical and gameplay concept
 
-# Python files
-ai_agent.py
-model_trainer.py
-data_processor.py
-```
+### Agenic Context
+Use: Agenic Context
+Avoid: context, agent context, AI context
+Definition: The AI's understanding and interpretation of the game world
 
+### Crystal Vanguard
+Use: Crystal Vanguard
+Avoid: vanguard, crystal warrior, guardian
+Definition: A specialized character class focused on crystal manipulation
 
-## Language-Specific Guidelines
+### Wraithwood
+Use: Wraithwood
+Avoid: wraith wood, wraith-wood, shadow forest
+Definition: A mystical type of wood with unique properties
 
-### 1. Go Style
+### Primal Shift
+Use: Primal Shift
+Avoid: shift, transformation, primal form
+Definition: A core gameplay mechanic for character transformation
 
-```go
-// Package names
-package gameserver
+### Blessed Resonance
+Use: Blessed Resonance
+Avoid: resonance, blessing, holy resonance
+Definition: A fundamental force in the game world
 
-// Type names
-type GameState struct {
-    ID        string
-    Players   map[string]*Player
-    Round     int
-    Status    GameStatus
-}
+## Document Structure
 
-// Interface names
-type StateManager interface {
-    Update() error
-    GetState() State
-    ValidateAction(Action) bool
-}
+### Required Sections
 
-// Function names
-func ProcessAction(action Action) error {
-    // Implementation
-}
+Each document type must include specific sections:
 
-// Variable names
-var (
-    defaultTimeout = time.Second * 30
-    maxPlayers    = 4
-)
+#### Technical Documents
+- Overview: High-level explanation of the component
+- Implementation: Technical details and code examples
+- Usage: How to use the component
+- Configuration: Setup and configuration options
 
-// Constants
-const (
-    StatusActive  GameStatus = "ACTIVE"
-    StatusPaused  GameStatus = "PAUSED"
-    StatusEnded   GameStatus = "ENDED"
-)
-```
+#### Overview Documents
+- Introduction: Brief introduction to the topic
+- Key Features: Main features or aspects
+- Architecture: System design and relationships
 
+#### World Building Documents
+- Overview: Introduction to the concept
+- Mechanics: Gameplay implications
+- Balancing: Balance considerations and limitations
 
-### 2. TypeScript Style
+## Formatting Guidelines
 
-```typescript
-// Interfaces
-interface GameState {
-    readonly id: string;
-    players: Map<string, Player>;
-    round: number;
-    status: GameStatus;
-}
-
-// Classes
-class GameManager {
-    private readonly state: GameState;
-    private readonly updates: Queue<StateUpdate>;
-    
-    constructor(config: GameConfig) {
-        this.state = new GameState(config);
-        this.updates = new Queue();
-    }
-    
-    public update(delta: number): void {
-        this.processUpdates();
-        this.state.update(delta);
-    }
-}
-
-// Enums
-enum GameStatus {
-    Active = 'ACTIVE',
-    Paused = 'PAUSED',
-    Ended = 'ENDED'
-}
-
-// Constants
-const DEFAULT_CONFIG: GameConfig = {
-    updateRate: 60,
-    maxPlayers: 4,
-    timeout: 30000
-};
-```
-
-
-### 3. Python Style
-
-```python
-# Class names
-class AIAgent:
-    """AI agent for game decision making."""
-    
-    def __init__(self, config: Dict[str, Any]) -> None:
-        self.config = config
-        self.model: Optional[Model] = None
-    
-    def process_state(self, 
-                     state: GameState) -> List[Action]:
-        """Process game state and return actions."""
-        return self._get_actions(state)
-
-# Function names
-def calculate_reward(state: GameState,
-                    action: Action) -> float:
-    """Calculate reward for action in state."""
-    return _compute_reward_value(state, action)
-
-# Constants
-MAX_BATCH_SIZE = 32
-LEARNING_RATE = 0.001
-DEFAULT_DIFFICULTY = 0.5
-
-# Type aliases
-StateVector = np.ndarray
-ActionSpace = List[Action]
-RewardSignal = float
-```
-
-
-## Documentation Standards
-
-### 1. Code Comments
-
-```python
-class ModelTrainer:
-    """Train AI models for game decision making.
-    
-    This class handles the training process for AI models,
-    including data preparation, training loops, and evaluation.
-    
-    Attributes:
-        model: Neural network model
-        optimizer: Model optimizer
-        batch_size: Training batch size
-        
-    Example:
-        >>> trainer = ModelTrainer(model, optimizer)
-        >>> trainer.train(dataset, epochs=10)
-    """
-    
-    def train_step(self,
-                  batch: TrainingBatch) -> float:
-        """Perform single training step.
-        
-        Args:
-            batch: Batch of training data
-            
-        Returns:
-            Training loss for this step
-            
-        Raises:
-            ValueError: If batch is invalid
-        """
-        if not self._validate_batch(batch):
-            raise ValueError("Invalid batch")
-        
-        loss = self._compute_loss(batch)
-        self._update_model(loss)
-        
-        return loss.item()
-```
-
-
-### 2. API Documentation
-
-```typescript
-/**
- * Game networking interface.
- * 
- * @remarks
- * This interface handles all network communication between
- * client and server components.
- * 
- * @example
- * ```typescript
- * const network = new NetworkManager(config);
- * await network.connect();
- * network.send(message);
- * ```
- */
-interface NetworkManager {
-    /**
-     * Connect to game server.
-     * 
-     * @param config - Connection configuration
-     * @returns Promise resolving when connected
-     * @throws ConnectionError if connection fails
-     */
-    connect(config: ConnectionConfig): Promise<void>;
-    
-    /**
-     * Send message to server.
-     * 
-     * @param message - Message to send
-     * @returns Promise resolving when sent
-     * @throws NetworkError if send fails
-     */
-    send(message: GameMessage): Promise<void>;
-}
-```
-
-
-## Best Practices
-
-### 1. Error Handling
-
-```go
-// Go error handling
-func ProcessAction(action Action) error {
-    if err := action.Validate(); err != nil {
-        return fmt.Errorf("invalid action: %w", err)
-    }
-    
-    if err := executeAction(action); err != nil {
-        return fmt.Errorf("execute action: %w", err)
-    }
-    
-    return nil
-}
-
-// Python error handling
-def process_state(state: GameState) -> Action:
-    """Process game state safely."""
-    try:
-        validated_state = validate_state(state)
-        action = select_action(validated_state)
-        return action
-    except ValidationError as e:
-        logger.error(f"State validation failed: {e}")
-        raise
-    except ActionError as e:
-        logger.error(f"Action selection failed: {e}")
-        raise
-```
-
-
-### 2. Testing Patterns
-
-```python
-# Unit test structure
-class TestAIAgent(unittest.TestCase):
-    """Test AI agent functionality."""
-    
-    def setUp(self):
-        """Set up test environment."""
-        self.agent = AIAgent(test_config)
-    
-    def test_action_selection(self):
-        """Test action selection process."""
-        # Arrange
-        state = create_test_state()
-        
-        # Act
-        action = self.agent.select_action(state)
-        
-        # Assert
-        self.assertIsNotNone(action)
-        self.assertTrue(self.is_valid_action(action))
-```
-
-
-### Documentation
-* Clear and concise
-* Well-structured
-* Properly formatted
-* Regularly updated
+1. Use sentence case for headings
+2. Code blocks should specify language
+3. Use relative links for internal references
+4. Include alt text for all images
+5. Keep line length under 100 characters

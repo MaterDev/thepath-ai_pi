@@ -1,3 +1,8 @@
+---
+title: The Path AI Documentation
+description: Comprehensive documentation for The Path AI project, including technical specifications, world building, and development logs
+---
+
 # The Path (AI-Pi)
 
 ![The Path (AI-Pi)](images/cover-2025.png)
