@@ -64,10 +64,13 @@ nav:
 - Home:
   - Overview: index.md
   - Scripts:
-    - Overview:
-      - Overview: scripts/README.md
-      - Documentation Validation: scripts/doc_validation/README.md
-      - Log Management: scripts/log_management/README.md
+    - Overview: scripts/README.md
+    - Image Management:
+      - Overview: scripts/image_management/README.md
+    - Documentation Validation:
+      - Overview: scripts/doc_validation/README.md
+    - Log Management:
+      - Overview: scripts/log_management/README.md
 - Overview:
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md

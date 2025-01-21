@@ -1,3 +1,8 @@
+---
+title: Documentation Scripts Overview
+description: Overview of scripts used for managing and validating documentation
+---
+
 # Overview of Documentation Scripts
 
 The code for this documentation contains scripts designed to maintain the quality and integrity of the AI-Pi documentation system. These tools automate the processes of validation, logging, and content management to ensure consistency and accuracy across all documentation.
@@ -13,23 +18,26 @@ Our documentation system is built on several key principles:
 
 ## Script Categories
 
-### Image Management (`image_management/`)
-Tools for handling images in documentation:
-- Metadata scrubbing (especially for Midjourney and DALL-E generated images)
-- Format validation
-- Size optimization
+!!! note "Image Management (`image_management/`)"
+    Tools for handling images in documentation:
+    - Metadata scrubbing (especially for Midjourney and DALL-E generated images)
+    - Format validation
+    - Size optimization
+    - Privacy protection for AI service accounts
 
-### Documentation Validation (`doc_validation/`)
-Scripts that verify documentation quality:
-- Link checking
-- Format validation
-- Structure verification
+!!! note "Documentation Validation (`doc_validation/`)"
+    Scripts that verify documentation quality:
+    - Link checking
+    - Format validation
+    - Structure verification
+    - Content integrity checks
 
-### Log Management (`log_management/`)
-Tools for maintaining development logs:
-- Log file creation and updates
-- Format standardization
-- Content organization
+!!! note "Log Management (`log_management/`)"
+    Tools for maintaining development logs:
+    - Log file creation and updates
+    - Format standardization
+    - Content organization
+    - Automated navigation updates
 
 ## Best Practices
 
