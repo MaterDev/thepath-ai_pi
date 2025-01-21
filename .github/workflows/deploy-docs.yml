@@ -59,6 +59,11 @@ jobs:
           git add mkdocs.yml
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: update logs navigation and development hours"
 
+      - name: Install dependencies for image processing
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
       - name: Process and validate images
         run: |
           echo "Checking images..."
