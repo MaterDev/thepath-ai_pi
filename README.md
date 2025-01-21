@@ -51,6 +51,33 @@ To update locally:
 2. Run local server: `mkdocs serve`
 3. View at: `http://localhost:8000`
 
+## Project Origins
+
+This project represents the evolution of turn-based battle mechanics through several research spikes:
+
+1. [Simulat33](https://github.com/MaterDev/Python_Jupyter_Experiments/tree/main/projects/06_simulat33) - The initial prototype built in Python using Jupyter notebooks, which established core concepts for:
+   - Character class systems with unique abilities
+   - Turn-based combat mechanics
+   - Interactive battle UI using ipywidgets
+   - Status effects and buff systems
+
+2. [huMon-gen](https://github.com/MaterDev/Python_Jupyter_Experiments/tree/main/projects/08_huMon-gen) - A specialized tool for character stat generation and balancing:
+   - Algorithmic generation of character stats using ancestral tree patterns
+   - Interactive visualization of stat distributions across character generations
+   - Comparative analysis tools for balancing character attributes
+   - The base character stats used in this project were generated using this system
+
+3. [golang_turnbased_game_spike](https://github.com/MaterDev/golang_turnbased_game_spike) - A Go-based implementation that refined these concepts and added:
+   - RESTful API architecture
+   - Modern React TypeScript frontend
+   - Improved battle state management
+   - Enhanced cooldown mechanics
+
+The current project builds upon these previous implementations, incorporating:
+- Core battle mechanics from Simulat33
+- Balanced character stats generated through huMon-gen
+- Modern architecture and UI patterns from the Go implementation
+
 ## Project Structure
 
 ```
