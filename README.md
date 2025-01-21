@@ -2,9 +2,9 @@
 
 > Edge AI game development on Raspberry Pi hardware
 
-![The Path (AI-Pi)](images/cover.png)
+![The Path (AI-Pi)](images/cover-2025.png)
 
-📚 **[View Documentation](https://materdev.github.io/thepath-ai_pi/)**
+ **[View Documentation](https://materdev.github.io/thepath-ai_pi/)**
 
 ## Development
 
