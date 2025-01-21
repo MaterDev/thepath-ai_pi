@@ -26,18 +26,6 @@ Welcome to The Path (AI-Pi) documentation. This site contains comprehensive info
 
 - [Project Setup](meta/implementation/setup/project-setup.md)
 
-## Core Features
-
-### Edge AI Combat System
-
-- Real-time AI decision making
-
-- Adaptive difficulty system
-
-- Personality-based behavior
-
-- Hardware-accelerated inference
-
 ## Latest Updates
 
 Check our [development logs](meta/logs/index.md) for the most recent changes and [social updates](meta/social/index.md) for project announcements.
