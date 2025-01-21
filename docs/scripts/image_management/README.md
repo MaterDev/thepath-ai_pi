@@ -90,9 +90,18 @@ For convenience, you can use these Makefile commands:
 # Check for images needing processing
 make check-images
 
-# Process images (includes confirmation prompt)
-make scrub-images
+# Process and optimize images (includes confirmation prompt)
+make process-images
 ```
+
+The `process-images` command will:
+1. Ask for confirmation before making changes
+2. Process all images in the repository:
+   - Remove metadata (EXIF, XMP, etc.)
+   - Resize to max width 800px (maintaining aspect ratio)
+   - Set DPI to 72 for web optimization
+   - Optimize quality settings (95% JPEG, optimized PNG)
+3. Verify all changes were applied correctly
 
 ## Important Note
 

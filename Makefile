@@ -1,4 +1,4 @@
-.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat check-images scrub-images
+.PHONY: help install docs docs-build update-logs update-docs clean format lint test setup validate-docs autoformat check-images process-images scrub-images
 
 # Colors for terminal output
 COLOR_RESET = \033[0m
@@ -28,6 +28,7 @@ help:
 	@echo "  make clean        - Clean build artifacts"
 	@echo "  make autoformat   - Auto-format Python code"
 	@echo "  make check-images - Check for images with metadata"
+	@echo "  make process-images - Process images (remove metadata, resize, optimize)"
 	@echo "  make scrub-images - Remove metadata from images"
 
 # Initial setup
@@ -96,9 +97,25 @@ test:
 	@echo "$(COLOR_YELLOW)Running tests...$(COLOR_RESET)"
 	pytest
 
+# Image Processing
+.PHONY: check-images process-images
+
 check-images:
-	@echo "$(COLOR_YELLOW)Checking for images with metadata...$(COLOR_RESET)"
-	@python docs/scripts/image_management/scrub_metadata.py --directory . --check
+	@echo "Checking images for metadata, size, and DPI issues..."
+	@PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py --check
+
+process-images:
+	@echo "This will process all images in the repository:"
+	@echo "- Remove metadata (EXIF, XMP, etc.)"
+	@echo "- Resize to max width 800px (maintaining aspect ratio)"
+	@echo "- Set DPI to 72 for web optimization"
+	@echo "- Optimize quality settings"
+	@read -p "Are you sure you want to continue? [y/N] " confirm; \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
+		PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py && \
+		echo "Verifying changes..." && \
+		PYTHONPATH=docs/scripts python3 docs/scripts/image_management/scrub_metadata.py --check; \
+	fi
 
 scrub-images:
 	@echo "$(COLOR_YELLOW)Checking for images with metadata...$(COLOR_RESET)"

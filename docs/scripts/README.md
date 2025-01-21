@@ -32,16 +32,14 @@ Our documentation system is built on several key principles:
 ## Script Categories
 
 !!! note "Image Management (`image_management/`)"
-    Tools for handling images in documentation:
-
-    - Metadata scrubbing (especially for Midjourney and DALL-E generated images)
-    - Format validation
-    - Size optimization
-    - Privacy protection for AI service accounts
+    Tools for processing and optimizing images in documentation:
+    - Metadata removal for privacy protection
+    - Web optimization (size and DPI)
+    - Format-specific quality settings
+    - Automated validation
 
 !!! note "Documentation Validation (`doc_validation/`)"
     Scripts that verify documentation quality:
-
     - Link checking
     - Format validation
     - Structure verification
@@ -49,7 +47,6 @@ Our documentation system is built on several key principles:
 
 !!! note "Log Management (`log_management/`)"
     Tools for maintaining development logs:
-    
     - Log file creation and updates
     - Format standardization
     - Content organization
