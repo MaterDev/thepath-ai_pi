@@ -78,18 +78,6 @@ The current project builds upon these previous implementations, incorporating:
 - Balanced character stats generated through huMon-gen
 - Modern architecture and UI patterns from the Go implementation
 
-## Project Structure
-
-```
-.
-├── docs/               # Documentation
-├── scripts/           # Utility scripts
-├── src/               # Source code
-├── tests/             # Test files
-├── Makefile          # Build automation
-└── mkdocs.yml        # Documentation config
-```
-
 ## License
 
 This project is licensed under the Mater Development General Use License (MDGUL) v1.1.
