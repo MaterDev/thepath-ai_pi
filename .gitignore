@@ -105,3 +105,6 @@ __pycache__/
 # Project specific
 .coverage
 coverage.xml
+
+# windsurf rules
+.windsurfrules

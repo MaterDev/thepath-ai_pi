@@ -109,7 +109,8 @@ The AI system uses TensorFlow Lite for efficient inference on the Raspberry Pi 5
            self.inference_times.append(duration)
    ```
 
-## Version History
-- v1.0: Initial behavior model
-- v1.1: Added reinforcement learning
-- v1.2: Improved decision making
+### Monitoring
+* Model performance metrics
+* Decision confidence scores
+* Response time tracking
+* Resource utilization

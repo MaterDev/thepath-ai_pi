@@ -314,9 +314,3 @@ func New() *Logger {
    - Lightweight checks
    - Connection reuse
    - Efficient logging
-
-## Version History
-- v1.0: Initial health monitoring
-- v1.1: Added MongoDB checks
-- v1.2: Enhanced WebSocket monitoring
-- v2.0: Updated for simplified battle mechanics

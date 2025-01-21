@@ -161,10 +161,3 @@ class ModelDeployer:
         )[0]
         
         return ActionPrediction(probs)
-```
-
-## Version History
-- v1.0: Initial AI schemas
-- v1.1: Added model versioning
-- v1.2: Enhanced training data
-- v2.0: Updated for TensorFlow Lite and simplified battle mechanics

@@ -17,30 +17,30 @@ graph TD
 
 ### Core Components
 
-1. **Game Server (Go)**
-   - Handles game state management
-   - WebSocket communication
-   - JSON state serialization
-   - Turn sequencing
-   - Action validation
+* **Game Server (Go)**
+    * Handles game state management
+    * WebSocket communication
+    * JSON state serialization
+    * Turn sequencing
+    * Action validation
 
-2. **AI Engine (Python)**
-   - TensorFlow Lite inference
-   - Dynamic difficulty (0.2-0.95)
-   - Personality system
-   - Training pipeline (Mac Mini M1)
+* **AI Engine (Python)**
+    * TensorFlow Lite inference
+    * Dynamic difficulty (0.2-0.95)
+    * Personality system
+    * Training pipeline (Mac Mini M1)
 
-3. **Game Client (TypeScript)**
-   - React with Material-UI
-   - Redux state management
-   - WebSocket communication
-   - Simple battle UI
+* **Game Client (TypeScript)**
+    * React with Material-UI
+    * Redux state management
+    * WebSocket communication
+    * Simple battle UI
 
-4. **Hardware Layer**
-   - Raspberry Pi 5 (8GB)
-   - AI HAT+ acceleration
-   - Active cooling
-   - Local storage
+* **Hardware Layer**
+    * Raspberry Pi 5 (8GB)
+    * AI HAT+ acceleration
+    * Active cooling
+    * Local storage
 
 ## Data Flow
 
@@ -100,16 +100,16 @@ interface UIState {
 ## Performance Considerations
 
 1. **AI Processing**
-   - TensorFlow Lite optimization
-   - Batch inference when needed
-   - Simple state management
+    * TensorFlow Lite optimization
+    * Batch inference when needed
+    * Simple state management
 
 2. **Client Interface**
-   - Material-UI components
-   - Basic animations for state changes
-   - Disabled controls during AI turns
+    * Material-UI components
+    * Basic animations for state changes
+    * Disabled controls during AI turns
 
 3. **Data Management**
-   - Local game state
-   - Basic user authentication
-   - Battle history storage
+    * Local game state
+    * Basic user authentication
+    * Battle history storage

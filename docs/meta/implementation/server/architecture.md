@@ -290,11 +290,6 @@ func TestServer_Integration(t *testing.T) {
 }
 ```
 
-## Version History
-- v1.0: Initial server implementation
-- v1.1: Added performance monitoring
-- v1.2: Enhanced error handling
-
 ## Server Architecture
 
 ## Overview
@@ -553,10 +548,3 @@ func (m *BattleManager) HandleError(battleID ID, err error) {
         m.EndBattle(battleID)
     }
 }
-```
-
-## Version History
-- v1.0: Initial server architecture
-- v1.1: Added WebSocket support
-- v1.2: Enhanced battle system
-- v2.0: Updated for simplified battle mechanics and WebSocket communication

@@ -280,9 +280,3 @@ export const logger = {
    - Lightweight checks
    - Minimal dependencies
    - Efficient logging
-
-## Version History
-- v1.0: Initial health monitoring
-- v1.1: Added WebSocket checks
-- v1.2: Enhanced error handling
-- v2.0: Updated for simplified battle mechanics

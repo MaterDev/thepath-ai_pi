@@ -3,138 +3,152 @@ site_description: Edge AI-powered turn-based combat game running on Raspberry Pi
 site_author: MaterDev
 site_url: https://materdev.github.io/thepath-ai_pi/
 repo_url: https://github.com/MaterDev/thepath-ai_pi
-
 theme:
   name: material
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - navigation.instant
-    - navigation.tracking
-    - navigation.tabs.sticky
-    - navigation.indexes
-    - toc.follow
-    - search.suggest
-    - search.highlight
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.instant
+  - navigation.tracking
+  - navigation.tabs.sticky
+  - navigation.indexes
+  - toc.follow
+  - search.suggest
+  - search.highlight
   palette:
-    - scheme: slate
-      primary: indigo
-      accent: pink
-      toggle:
-        icon: material/brightness-7
-        name: Switch to light mode
-    - scheme: default
-      primary: indigo
-      accent: pink
-      toggle:
-        icon: material/brightness-4
-        name: Switch to dark mode
+  - scheme: slate
+    primary: indigo
+    accent: pink
+    toggle:
+      icon: material/brightness-7
+      name: Switch to light mode
+  - scheme: default
+    primary: indigo
+    accent: pink
+    toggle:
+      icon: material/brightness-4
+      name: Switch to dark mode
   font:
     text: Roboto
     code: Roboto Mono
-
 extra_css:
-  - stylesheets/extra.css
-
+- stylesheets/extra.css
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-  - admonition
-  - pymdownx.details
-  - pymdownx.tabbed:
-      alternate_style: true
-  - tables
-  - footnotes
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
-  - attr_list
-  - def_list
-  - md_in_html
-  - toc:
-      permalink: true
-      title: On this page
-      toc_depth: 3
-
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences
+- admonition
+- pymdownx.details
+- pymdownx.tabbed:
+    alternate_style: true
+- tables
+- footnotes
+- pymdownx.keys
+- pymdownx.mark
+- pymdownx.tilde
+- attr_list
+- def_list
+- md_in_html
+- toc:
+    permalink: true
+    title: On this page
+    toc_depth: 3
 docs_dir: docs
 site_dir: site
-
 nav:
-  - Home: index.md
-  - Overview:
-    - Project Scope: overview/project-scope.md
-    - Research Objectives: overview/research-objectives.md
-    - System Architecture: overview/system-architecture.md
-  - World Building:
-    - Foundations: world_building/foundations.md
-    - Balance and Meta: world_building/balance_and_meta.md
-    - Character Classes: world_building/classes.md
-  - Technical:
-    - Setup:
-      - Docker: technical/setup/docker.md
-      - Dependencies: technical/dependencies.md
-    - API:
-      - Endpoints: technical/api/endpoints.md
-    - AI System:
-      - Behavior Model: technical/ai-system/behavior-model.md
-      - Difficulty System: technical/ai-system/difficulty-system.md
-      - Training Pipeline: technical/ai-system/training-pipeline.md
-    - Data Schemas:
-      - Game State: technical/data-schemas/game-state.md
-      - AI Models: technical/data-schemas/ai-models.md
-      - Replay System: technical/data-schemas/replay-system.md
-    - Hardware:
-      - Raspberry Pi 5: technical/hardware/raspberry-pi-5.md
-      - AI HAT Plus: technical/hardware/ai-hat-plus.md
-    - Health Monitoring:
-      - Overview: technical/health/index.md
-      - Client: technical/health/client.md
-      - Server: technical/health/server.md
-      - AI System: technical/health/ai.md
+- Home: index.md
+- Overview:
+  - Project Scope: overview/project-scope.md
+  - Research Objectives: overview/research-objectives.md
+  - System Architecture: overview/system-architecture.md
+- Social Updates:
+  - LinkedIn:
+    - Overview: meta/social/linkedin/index.md
+    - January 19, 2025: meta/social/linkedin/2025-01-19.md
+    - January 17, 2025: meta/social/linkedin/2025-01-17.md
+    - January 14, 2025: meta/social/linkedin/2025-01-14.md
+    - January 08, 2025: meta/social/linkedin/2025-01-08.md
+    - January 07, 2025: meta/social/linkedin/2025-01-07.md
+    - January 03, 2025: meta/social/linkedin/2025-01-03.md
+    - December 27, 2024: meta/social/linkedin/2024-12-27.md
+- Logs:
+  - Overview: meta/logs/index.md
+  - January 21, 2025: meta/logs/2025-01-21.md
+  - January 19, 2025: meta/logs/2025-01-19.md
+  - January 17, 2025: meta/logs/2025-01-17.md
+  - January 15, 2025: meta/logs/2025-01-15.md
+  - January 13, 2025: meta/logs/2025-01-13.md
+  - January 09, 2025: meta/logs/2025-01-09.md
+  - January 08, 2025: meta/logs/2025-01-08.md
+- World Building:
+  - Foundations: world_building/foundations.md
+  - Balance and Meta: world_building/balance_and_meta.md
+  - Character Classes: world_building/classes.md
+- Technical:
+  - Setup:
+    - Docker: technical/setup/docker.md
+    - Dependencies: technical/dependencies.md
+  - API:
+    - Endpoints: technical/api/endpoints.md
+  - AI System:
+    - Behavior Model: technical/ai-system/behavior-model.md
+    - Difficulty System: technical/ai-system/difficulty-system.md
+    - Training Pipeline: technical/ai-system/training-pipeline.md
+  - Data Schemas:
+    - Game State: technical/data-schemas/game-state.md
+    - AI Models: technical/data-schemas/ai-models.md
+    - Replay System: technical/data-schemas/replay-system.md
+  - Hardware:
+    - Raspberry Pi 5: technical/hardware/raspberry-pi-5.md
+    - AI HAT Plus: technical/hardware/ai-hat-plus.md
+  - Health Monitoring:
+    - Overview: technical/health/index.md
+    - Client: technical/health/client.md
+    - Server: technical/health/server.md
+    - AI System: technical/health/ai.md
+  - Client:
+    - UI Specification: technical/client/ui-specification.md
+- Development:
+  - Setup: meta/implementation/setup/project-setup.md
+  - Planning:
+    - Phase 1:
+      - Overview: meta/phase1/index.md
+      - Project Setup: meta/phase1/1-project-setup.md
+      - Game State: meta/phase1/2-game-state.md
+      - Communication: meta/phase1/3-communication.md
+      - AI Integration: meta/phase1/4-ai-integration.md
+      - Turn System: meta/phase1/5-turn-system.md
+  - Implementation:
+    - AI:
+      - Architecture: meta/implementation/ai/architecture.md
+      - Agenic Context: meta/implementation/ai/agenic-context-index.md
     - Client:
-      - UI Specification: technical/client/ui-specification.md
-  - Development:
-    - Setup: meta/implementation/setup/project-setup.md
-    - Planning:
-      - Phase 1:
-        - Overview: meta/phase1/index.md
-        - Project Setup: meta/phase1/1-project-setup.md
-        - Game State: meta/phase1/2-game-state.md
-        - Communication: meta/phase1/3-communication.md
-        - AI Integration: meta/phase1/4-ai-integration.md
-        - Turn System: meta/phase1/5-turn-system.md
-    - Implementation:
-      - AI:
-        - Architecture: meta/implementation/ai/architecture.md
-        - Agenic Context: meta/implementation/ai/agenic-context-index.md
-      - Client:
-        - Architecture: meta/implementation/client/architecture.md
-      - Server:
-        - Architecture: meta/implementation/server/architecture.md
-    - Contributing: meta/contributing.md
-    - Style Guide: meta/style-guide.md
-  - "📝 Logs":
-    - Overview: meta/logs/index.md
-    - January 19, 2025: meta/logs/2025-01-19.md
-    - January 17, 2025: meta/logs/2025-01-17.md
-    - January 15, 2025: meta/logs/2025-01-15.md
-    - January 13, 2025: meta/logs/2025-01-13.md
-    - January 09, 2025: meta/logs/2025-01-09.md
-    - January 08, 2025: meta/logs/2025-01-08.md
-  - "🔔 Social Updates":
-    - Overview: meta/social/index.md
-    - LinkedIn:
-      - Overview: meta/social/linkedin/index.md
-      - January 19, 2025: meta/social/linkedin/2025-01-19.md
-      - January 17, 2025: meta/social/linkedin/2025-01-17.md
-      - January 14, 2025: meta/social/linkedin/2025-01-14.md
-      - January 08, 2025: meta/social/linkedin/2025-01-08.md
-      - January 07, 2025: meta/social/linkedin/2025-01-07.md
-      - January 03, 2025: meta/social/linkedin/2025-01-03.md
-      - December 27, 2024: meta/social/linkedin/2024-12-27.md
+      - Architecture: meta/implementation/client/architecture.md
+    - Server:
+      - Architecture: meta/implementation/server/architecture.md
+  - Style Guide: meta/style-guide.md
+- 📝 Logs:
+  - Overview: meta/logs/index.md
+  - January 21, 2025: meta/logs/2025-01-21.md
+  - January 19, 2025: meta/logs/2025-01-19.md
+  - January 17, 2025: meta/logs/2025-01-17.md
+  - January 15, 2025: meta/logs/2025-01-15.md
+  - January 13, 2025: meta/logs/2025-01-13.md
+  - January 09, 2025: meta/logs/2025-01-09.md
+  - January 08, 2025: meta/logs/2025-01-08.md
+- 🔔 Social Updates:
+  - Overview: meta/social/index.md
+  - LinkedIn:
+    - Overview: meta/social/linkedin/index.md
+    - January 19, 2025: meta/social/linkedin/2025-01-19.md
+    - January 17, 2025: meta/social/linkedin/2025-01-17.md
+    - January 14, 2025: meta/social/linkedin/2025-01-14.md
+    - January 08, 2025: meta/social/linkedin/2025-01-08.md
+    - January 07, 2025: meta/social/linkedin/2025-01-07.md
+    - January 03, 2025: meta/social/linkedin/2025-01-03.md
+    - December 27, 2024: meta/social/linkedin/2024-12-27.md

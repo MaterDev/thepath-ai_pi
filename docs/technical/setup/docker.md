@@ -8,9 +8,9 @@ The project uses Docker for local development and deployment. Each service runs 
 
 ### 1. Prerequisites
 
-- Docker Engine 20.10+
-- Docker Compose 2.2+
-- Make (optional, for convenience scripts)
+* Docker Engine 20.10+
+* Docker Compose 2.2+
+* Make (optional, for convenience scripts)
 
 ### 2. Directory Structure
 
@@ -49,220 +49,101 @@ ENV TZ=UTC
 
 ### 4. Service Images
 
-```dockerfile
-# dev/client.Dockerfile
-FROM node:18-alpine
-WORKDIR /app/client
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]
+#### Client Service
+* React development server
+* Hot reloading enabled
+* Development tools mounted
+* Port 3000 exposed
 
-# dev/server.Dockerfile
-FROM golang:1.21-alpine
-WORKDIR /app/server
-COPY go.* ./
-RUN go mod download
-COPY . .
-EXPOSE 8080
-CMD ["go", "run", "cmd/main.go"]
+#### Server Service
+* Go development environment
+* Live reload with Air
+* Debug port exposed
+* Health monitoring
 
-# dev/ai.Dockerfile
-FROM python:3.11-slim
-WORKDIR /app/ai
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-EXPOSE 5000
-CMD ["python", "main.py"]
-```
+#### AI Service
+* Python development environment
+* TensorFlow Lite runtime
+* Model files mounted
+* Health monitoring
 
-### 5. Docker Compose
+## Configuration
 
-```yaml
-version: '3.8'
+### Environment Variables
 
-services:
-  client:
-    build:
-      context: ./client
-      dockerfile: ../docker/dev/client.Dockerfile
-    volumes:
-      - ./client:/app/client
-      - /app/client/node_modules
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - REACT_APP_API_URL=http://localhost:8080
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#### Development
+* `DOCKER_BUILDKIT=1`: Enable BuildKit
+* `COMPOSE_DOCKER_CLI_BUILD=1`: Use BuildKit
+* `NODE_ENV=development`: Client mode
+* `GO_ENV=development`: Server mode
+* `PYTHON_ENV=development`: AI mode
 
-  server:
-    build:
-      context: ./server
-      dockerfile: ../docker/dev/server.Dockerfile
-    volumes:
-      - ./server:/app/server
-    ports:
-      - "8080:8080"
-    environment:
-      - GO_ENV=development
-      - MONGO_URI=mongodb://mongodb:27017
-      - AI_SERVICE_URL=http://ai:5000
-    depends_on:
-      - mongodb
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#### Production
+* `NODE_ENV=production`: Client mode
+* `GO_ENV=production`: Server mode
+* `PYTHON_ENV=production`: AI mode
+* `TZ=UTC`: Timezone setting
 
-  ai:
-    build:
-      context: ./ai
-      dockerfile: ../docker/dev/ai.Dockerfile
-    volumes:
-      - ./ai:/app/ai
-    ports:
-      - "5000:5000"
-    environment:
-      - PYTHON_ENV=development
-      - MODEL_PATH=/app/ai/models
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:5000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+### Volume Mounts
 
-  mongodb:
-    image: mongo:5
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#### Development
+* Source code directories
+* Node modules
+* Go modules
+* Python virtual environment
+* Development tools
 
-volumes:
-  mongodb_data:
-```
+#### Production
+* Configuration files
+* SSL certificates
+* Static assets
+* Model files
 
 ## Health Monitoring
 
-### 1. Health Check Endpoints
+### Endpoints
 
-Each service implements a `/health` endpoint that returns:
-- Service status
-- Timestamp
-- Version information
-- Dependencies status
+#### Client Service
+* Health check: `:3000/health`
+* Metrics: `:3000/metrics`
+* Status: `:3000/status`
 
-Example response:
-```json
-{
-  "status": "healthy",
-  "timestamp": 1642561234567,
-  "version": "1.0.0",
-  "service": "server",
-  "dependencies": {
-    "mongodb": "connected",
-    "ai_service": "connected"
-  }
-}
-```
+#### Server Service
+* Health check: `:8080/health`
+* Metrics: `:8080/metrics`
+* Status: `:8080/status`
 
-### 2. Health Check Implementation
+#### AI Service
+* Health check: `:5000/health`
+* Metrics: `:5000/metrics`
+* Status: `:5000/status`
 
-```typescript
-// Client health check (React)
-app.get('/health', (req, res) => {
-    res.json({
-        status: 'healthy',
-        timestamp: Date.now(),
-        version: process.env.npm_package_version,
-        service: 'client',
-        dependencies: {
-            api: checkApiConnection()
-        }
-    });
-});
-```
+### Monitoring Tools
+* Container stats
+* Resource usage
+* Error logging
+* Performance metrics
 
-```go
-// Server health check (Go)
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-    health := struct {
-        Status       string            `json:"status"`
-        Timestamp    int64            `json:"timestamp"`
-        Version      string           `json:"version"`
-        Service      string           `json:"service"`
-        Dependencies map[string]string `json:"dependencies"`
-    }{
-        Status:    "healthy",
-        Timestamp: time.Now().UnixMilli(),
-        Version:   "1.0.0",
-        Service:   "server",
-        Dependencies: map[string]string{
-            "mongodb":     checkMongoConnection(),
-            "ai_service": checkAiConnection(),
-        },
-    }
-    json.NewEncoder(w).Encode(health)
-}
-```
+## Usage
 
-```python
-# AI service health check (Python)
-@app.route('/health')
-def health():
-    return jsonify({
-        'status': 'healthy',
-        'timestamp': int(time.time() * 1000),
-        'version': '1.0.0',
-        'service': 'ai',
-        'dependencies': {
-            'model': check_model_loaded()
-        }
-    })
-```
+### Development
 
-## Development Workflow
-
-### 1. Starting Services
-
+#### 1. Starting Services
 ```bash
 # Build and start all services
 docker-compose up -d
+```
 
-# View logs
+#### 2. Viewing Logs
+```bash
+# All services
 docker-compose logs -f
 
-# Check service status
-docker-compose ps
+# Specific service
+docker-compose logs -f [service]
 ```
 
-### 2. Health Monitoring
-
-```bash
-# Check all service health
-./scripts/check-health.sh
-
-# View specific service health
-curl http://localhost:3000/health  # Client
-curl http://localhost:8080/health  # Server
-curl http://localhost:5000/health  # AI
-```
-
-### 3. Stopping Services
-
+#### 3. Stopping Services
 ```bash
 # Stop all services
 docker-compose down
@@ -271,32 +152,36 @@ docker-compose down
 docker-compose down -v
 ```
 
-## Production Deployment
+### Production
 
-### 1. Building Production Images
-
+#### 1. Building Images
 ```bash
-# Build production images
+# Build all services
 docker-compose -f docker-compose.prod.yml build
 
-# Push images to registry
-docker-compose -f docker-compose.prod.yml push
+# Build specific service
+docker-compose -f docker-compose.prod.yml build [service]
 ```
 
-### 2. Release Process
-
+#### 2. Deployment
 ```bash
-# Create release
-./scripts/release.sh 1.0.0
+# Start production stack
+docker-compose -f docker-compose.prod.yml up -d
 
-# Tag images
-docker tag aipi-client:latest aipi-client:1.0.0
-docker tag aipi-server:latest aipi-server:1.0.0
-docker tag aipi-ai:latest aipi-ai:1.0.0
+# Scale services
+docker-compose -f docker-compose.prod.yml up -d --scale [service]=N
 ```
 
-## Version History
-- v1.0: Initial Docker setup
-- v1.1: Added health monitoring
-- v1.2: Enhanced production deployment
-- v2.0: Updated for simplified battle mechanics
+## Troubleshooting
+
+### Common Issues
+* Container startup failures
+* Network connectivity
+* Volume permissions
+* Resource constraints
+
+### Debug Tools
+* Container logs
+* Health check endpoints
+* Resource monitoring
+* Network inspection

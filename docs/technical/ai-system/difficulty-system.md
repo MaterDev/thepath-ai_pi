@@ -97,10 +97,3 @@ class BattleAI:
         """Update difficulty after battle"""
         self.difficulty_adjuster.adjust_after_battle(battle_result)
         self.action_selector.difficulty = self.difficulty_adjuster.current_difficulty
-```
-
-## Version History
-- v1.0: Initial difficulty system
-- v1.1: Added dynamic adjustment
-- v1.2: Hardware optimization
-- v2.0: Simplified difficulty system

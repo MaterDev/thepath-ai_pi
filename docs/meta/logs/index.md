@@ -61,9 +61,8 @@ blockers: [Any blockers or None]
 3. [Next action item]
 
 ## References
-* [Link to relevant document](../../path/to/document.md)
-* [Link to relevant document](../../path/to/document.md)
-```
+* [Link to relevant document]
+* [Link to relevant document]
 
 ## Development Guidelines
 

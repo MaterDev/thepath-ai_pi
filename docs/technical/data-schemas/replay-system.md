@@ -180,10 +180,3 @@ func (s *ReplayStorage) LoadReplay(id ID) (*BattleRecord, error) {
     }
     return &record, nil
 }
-```
-
-## Version History
-- v1.0: Initial replay system
-- v1.1: Added event recording
-- v1.2: Enhanced playback
-- v2.0: Simplified for basic battle recording

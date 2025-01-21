@@ -299,9 +299,3 @@ class AILogger:
    - Resource monitoring
    - Garbage collection
    - Error logging
-
-## Version History
-- v1.0: Initial health monitoring
-- v1.1: Added resource management
-- v1.2: Enhanced model monitoring
-- v2.0: Updated for simplified battle mechanics

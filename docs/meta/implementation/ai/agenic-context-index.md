@@ -7,15 +7,15 @@ This document serves as a master reference for AI agents during development of T
 ## Quick Links
 
 ### Essential Documentation
-- [Project Scope](overview/project-scope.md)
-- [Research Objectives](overview/research-objectives.md)
-- [System Architecture](overview/system-architecture.md)
-- [Development Logs](meta/logs/index.md)
+- [Project Scope](../../../overview/project-scope.md)
+- [Research Objectives](../../../overview/research-objectives.md)
+- [System Architecture](../../../overview/system-architecture.md)
+- [Development Logs](../../logs/index.md)
 
 ### Core Systems
-- [AI Architecture](meta/implementation/ai/architecture.md)
-- [Client Architecture](meta/implementation/client/architecture.md)
-- [Server Architecture](meta/implementation/server/architecture.md)
+- [AI Architecture](architecture.md)
+- [Client Architecture](../client/architecture.md)
+- [Server Architecture](../server/architecture.md)
 
 ## Project Resources
 
@@ -191,10 +191,8 @@ Latest_Updates:
   - "meta/logs/2025-01-13.md"
 ```
 
-## Version History
-```yaml
-Versions:
-  v2.0: "Updated for Docker and health monitoring"
-  v1.2: "Enhanced architecture docs"
-  v1.1: "Added implementation phases"
-  v1.0: "Initial documentation"
+### Monitoring
+* AI performance
+* Decision quality
+* Resource usage
+* Error tracking

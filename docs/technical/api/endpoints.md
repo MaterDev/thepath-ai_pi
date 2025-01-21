@@ -4,256 +4,168 @@
 
 This document defines all API endpoints and WebSocket events used in the system. All endpoints use JSON for request/response bodies.
 
+## REST Endpoints
+
+### Authentication
+- `POST /auth/login`: User login
+- `POST /auth/register`: New user registration
+- `POST /auth/refresh`: Refresh access token
+- `POST /auth/logout`: User logout
+
+### Battle Management
+- `POST /battles`: Create new battle
+- `GET /battles`: List available battles
+- `GET /battles/{id}`: Get battle details
+- `POST /battles/{id}/join`: Join existing battle
+- `POST /battles/{id}/forfeit`: Forfeit battle
+
+### User Management
+- `GET /users/me`: Get current user
+- `PATCH /users/me`: Update user profile
+- `GET /users/{id}`: Get user details
+- `GET /users/{id}/stats`: Get user stats
+
+### Game State
+- `GET /state`: Get current game state
+- `GET /state/history`: Get state history
+- `GET /state/replay/{id}`: Get battle replay
+
 ## WebSocket Events
 
 ### Connection Events
-
-```typescript
-// Client -> Server
-interface ConnectRequest {
-    type: 'connect'
-    playerId: string
-    sessionId?: string
-}
-
-// Server -> Client
-interface ConnectResponse {
-    type: 'connect_response'
-    success: boolean
-    sessionId?: string
-    error?: string
-}
-```
+- `connect`: Initial connection
+- `disconnect`: Client disconnect
+- `reconnect`: Client reconnection
+- `error`: Connection error
 
 ### Game Events
-
-```typescript
-// Client -> Server
-interface GameAction {
-    type: 'game_action'
-    actionType: 'ATTACK' | 'DEFEND' | 'ABILITY' | 'ITEM'
-    targetId?: string
-    abilityId?: string
-    itemId?: string
-    position?: Position
-}
-
-// Server -> Client
-interface GameUpdate {
-    type: 'game_update'
-    state: GameState
-    lastAction?: GameAction
-    nextTurn: string
-    timestamp: number
-}
-```
+- `game:start`: Battle starts
+- `game:action`: Player action
+- `game:update`: State update
+- `game:end`: Battle ends
 
 ### AI Events
-
-```typescript
-// Server -> AI
-interface AIRequest {
-    type: 'ai_request'
-    gameState: GameState
-    difficulty: number  // 0.2-0.95
-    personality: string
-    timeLimit: number  // ms
-}
-
-// AI -> Server
-interface AIResponse {
-    type: 'ai_response'
-    action: GameAction
-    confidence: number
-    processingTime: number
-}
-```
+- `ai:thinking`: AI processing
+- `ai:action`: AI action taken
+- `ai:error`: AI processing error
+- `ai:ready`: AI ready for next turn
 
 ### System Events
+- `system:maintenance`: System maintenance
+- `system:error`: System error
+- `system:restart`: System restart
+- `system:update`: System update
 
+## Data Schemas
+
+### Authentication
 ```typescript
-// Server -> Client
-interface SystemEvent {
-    type: 'system_event'
-    eventType: 'ERROR' | 'WARNING' | 'INFO'
-    message: string
-    code: number
+interface AuthRequest {
+    username: string
+    password: string
+}
+
+interface AuthResponse {
+    token: string
+    refreshToken: string
+    expiresIn: number
 }
 ```
 
-## REST Endpoints
-
-### Game Management
-
+### Battle
 ```typescript
-// POST /api/games
-interface CreateGameRequest {
-    players: string[]
-    aiDifficulty?: number
-    aiPersonality?: string
-    gameMode: 'PVP' | 'PVE'
-}
-
-interface CreateGameResponse {
-    gameId: string
-    sessionId: string
-    websocketUrl: string
-}
-
-// GET /api/games/:gameId
-interface GameDetailsResponse {
-    gameId: string
-    status: GameStatus
+interface Battle {
+    id: string
     players: Player[]
-    currentTurn: string
-    round: number
     state: GameState
+    status: BattleStatus
+    createdAt: number
+    updatedAt: number
 }
 
-// POST /api/games/:gameId/action
-interface GameActionRequest {
-    playerId: string
-    action: GameAction
-}
-
-interface GameActionResponse {
-    success: boolean
-    newState?: GameState
-    error?: string
-}
+type BattleStatus = 'WAITING' | 'ACTIVE' | 'FINISHED'
 ```
 
-### Replay System
-
+### Game State
 ```typescript
-// GET /api/replays/:gameId
-interface ReplayResponse {
-    gameId: string
-    initialState: GameState
-    actions: GameAction[]
-    outcomes: GameOutcome[]
-    aiMetrics?: AIMetrics[]
+interface GameState {
+    battleId: string
+    round: number
+    currentTurn: string
+    players: {
+        [playerId: string]: PlayerState
+    }
+    status: GameStatus
+    lastAction?: GameAction
 }
 
-// POST /api/replays/:gameId/analyze
-interface AnalyzeReplayRequest {
-    focus: 'AI_BEHAVIOR' | 'PLAYER_PATTERNS' | 'PERFORMANCE'
-}
-
-interface AnalyzeReplayResponse {
-    analysis: ReplayAnalysis
-    insights: string[]
-    recommendations: string[]
-}
-```
-
-### Analytics
-
-```typescript
-// GET /api/analytics/performance
-interface PerformanceMetricsResponse {
-    aiResponseTimes: number[]
-    serverUpdateTimes: number[]
-    memoryUsage: MemoryMetrics
-    cpuUsage: CPUMetrics
-    temperature: number
-}
-
-// GET /api/analytics/ai
-interface AIMetricsResponse {
-    decisionConfidence: number[]
-    adaptationRate: number
-    personalityMetrics: PersonalityMetrics
-    difficultyProgression: number[]
+interface PlayerState {
+    health: number
+    energy: number
+    status: StatusEffect[]
+    position: Position
 }
 ```
 
 ## Error Handling
 
-### Error Codes
+### HTTP Status Codes
+- 200: Success
+- 201: Created
+- 400: Bad Request
+- 401: Unauthorized
+- 403: Forbidden
+- 404: Not Found
+- 409: Conflict
+- 429: Too Many Requests
+- 500: Server Error
 
-```typescript
-enum ErrorCode {
-    // Client Errors (4xx)
-    INVALID_REQUEST = 400,
-    UNAUTHORIZED = 401,
-    FORBIDDEN = 403,
-    NOT_FOUND = 404,
-    CONFLICT = 409,
-    
-    // Server Errors (5xx)
-    SERVER_ERROR = 500,
-    AI_ERROR = 501,
-    HARDWARE_ERROR = 502,
-    TIMEOUT = 504
-}
-```
-
-### Error Response Format
-
+### Error Response
 ```typescript
 interface ErrorResponse {
-    code: ErrorCode
+    code: string
     message: string
     details?: any
-    timestamp: number
 }
 ```
 
-## Data Types
+## Rate Limiting
 
-### Game State
+### Limits
+- Authentication: 5 requests/minute
+- Battle Creation: 2 requests/minute
+- Game Actions: 30 requests/minute
+- State Queries: 60 requests/minute
 
-```typescript
-interface GameState {
-    id: string
-    version: string
-    timestamp: number
-    characters: Map<string, CharacterState>
-    turnOrder: string[]
-    currentTurn: number
-    round: number
-    status: GameStatus
-    environment?: EnvironmentState
-}
-```
+### Headers
+- `X-RateLimit-Limit`
+- `X-RateLimit-Remaining`
+- `X-RateLimit-Reset`
 
-### Character State
+## WebSocket Protocol
 
-```typescript
-interface CharacterState {
-    id: string
-    name: string
-    health: number
-    maxHealth: number
-    position: Position
-    status: StatusEffect[]
-    abilities: Ability[]
-    inventory: Item[]
-}
-```
+### Connection
+- Max reconnect attempts: 5
+- Reconnect delay: 1000ms
+- Ping interval: 30000ms
+- Pong timeout: 5000ms
 
-## WebSocket Connection Example
+### Message Format
+- JSON encoding
+- UTF-8 character set
+- Binary messages not supported
+- Max message size: 16KB
 
-```typescript
-// Client-side connection
-const ws = new WebSocket('ws://server/game')
+## Security
 
-ws.onopen = () => {
-    ws.send(JSON.stringify({
-        type: 'connect',
-        playerId: 'player1'
-    }))
-}
+### Authentication
+- JWT tokens
+- HTTPS required
+- CORS enabled
+- XSS protection
 
-ws.onmessage = (event) => {
-    const data = JSON.parse(event.data)
-    switch (data.type) {
-        case 'game_update':
-            updateGameState(data.state)
-            break
-        case 'system_event':
-            handleSystemEvent(data)
-            break
-    }
-}
+### Rate Limiting
+- Per-user limits
+- Per-IP limits
+- Burst allowance
+- Sliding window

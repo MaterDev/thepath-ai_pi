@@ -154,9 +154,3 @@ battle.Players[aiID] = &PlayerState{
 // Set turn order
 battle.TurnOrder = []ID{playerID, aiID}
 battle.CurrentTurn = playerID
-```
-
-## Version History
-- v1.0: Initial game state schema
-- v1.1: Added player states
-- v1.2: Updated action system

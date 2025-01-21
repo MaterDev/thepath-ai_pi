@@ -11,9 +11,9 @@ This document details all character classes in The Path, including their abiliti
 **Description**: A druidic trickster who can tap into their primal nature to augment their body with aspects of different creatures, each augmentation bestowing unique abilities.
 
 **Core Traits**:
-- **Strengths**: High evasion, extremely versatile due to diverse augmentations
-- **Weaknesses**: Low health and physical attack
-- **Inheritance**: Layered Legacy - Retains some bonuses of the previous aspect upon changing, allowing strategic layering of augmentations
+* **Strengths**: High evasion, extremely versatile due to diverse augmentations
+* **Weaknesses**: Low health and physical attack
+* **Inheritance**: Layered Legacy - Retains some bonuses of the previous aspect upon changing, allowing strategic layering of augmentations
 
 **Stats**:
 | Stat | Value |
@@ -37,9 +37,9 @@ This document details all character classes in The Path, including their abiliti
 **Description**: A spiritualist who imbues objects with magical energy, communicates with spirits, creates potions, and wields elemental powers.
 
 **Core Traits**:
-- **Strengths**: High spiritual attack, versatile with both offensive and supportive abilities
-- **Weaknesses**: Low physical power and health
-- **Inheritance**: Echoing Resonance - Enhances spoken-word magic, causing spells to echo and repeat their effects after a delay
+* **Strengths**: High spiritual attack, versatile with both offensive and supportive abilities
+* **Weaknesses**: Low physical power and health
+* **Inheritance**: Echoing Resonance - Enhances spoken-word magic, causing spells to echo and repeat their effects after a delay
 
 **Stats**:
 | Stat | Value |
@@ -63,9 +63,9 @@ This document details all character classes in The Path, including their abiliti
 **Description**: A leader and guide who draws power from crystals, minerals, and metals, using them to forge weapons and armor.
 
 **Core Traits**:
-- **Strengths**: High health and physical defence, capable of both combat and supportive roles
-- **Weaknesses**: Lower speed and spiritual attack
-- **Inheritance**: Crystal Core - Absorbs damage dealt and converts it into stacking defence buffs
+* **Strengths**: High health and physical defence, capable of both combat and supportive roles
+* **Weaknesses**: Lower speed and spiritual attack
+* **Inheritance**: Crystal Core - Absorbs damage dealt and converts it into stacking defence buffs
 
 **Stats**:
 | Stat | Value |
@@ -89,9 +89,9 @@ This document details all character classes in The Path, including their abiliti
 **Description**: A warrior that values cathartic release and unbridled passion, channeling emotions into physical combat with dance-like precision.
 
 **Core Traits**:
-- **Strengths**: High physical attack, mobility, emotional empowerment
-- **Weaknesses**: Low defence, susceptible to control effects
-- **Inheritance**: Emotional Trance - Gains stacking bonuses as emotional intensity grows
+* **Strengths**: High physical attack, mobility, emotional empowerment
+* **Weaknesses**: Low defence, susceptible to control effects
+* **Inheritance**: Emotional Trance - Gains stacking bonuses as emotional intensity grows
 
 **Stats**:
 | Stat | Value |
@@ -115,9 +115,9 @@ This document details all character classes in The Path, including their abiliti
 **Description**: The chosen disciples of Luminara, providing support through blessings, divine shields, and sacred auras.
 
 **Core Traits**:
-- **Strengths**: Healing, support, buffs/debuffs
-- **Weaknesses**: Low physical attack, dependent on allies
-- **Inheritance**: Luminara's Embrace - Enhances healing and protection spells
+* **Strengths**: Healing, support, buffs/debuffs
+* **Weaknesses**: Low physical attack, dependent on allies
+* **Inheritance**: Luminara's Embrace - Enhances healing and protection spells
 
 **Stats**:
 | Stat | Value |
@@ -150,13 +150,13 @@ This document details all character classes in The Path, including their abiliti
 _Note: Physical/Magical scores are averages of respective Attack/Defense stats_
 
 ### Role Analysis
-- **Tank**: Crystal Vanguard (high P.Defense), Zealot (balanced defenses)
-- **Damage**: Conjuror (highest M.Attack), Primal Shifter (balanced damage)
-- **Support**: The Blessed (balanced stats), Crystal Vanguard (control)
-- **Utility**: Primal Shifter (high mobility), Zealot (consistent stats)
+* **Tank**: Crystal Vanguard (high P.Defense), Zealot (balanced defenses)
+* **Damage**: Conjuror (highest M.Attack), Primal Shifter (balanced damage)
+* **Support**: The Blessed (balanced stats), Crystal Vanguard (control)
+* **Utility**: Primal Shifter (high mobility), Zealot (consistent stats)
 
 ### Team Compositions
-- **Balanced**: Crystal Vanguard + Conjuror + The Blessed
-- **Aggressive**: Zealot + Primal Shifter + Conjuror
-- **Defensive**: Crystal Vanguard + The Blessed + Conjuror
-- **Control**: Crystal Vanguard + Primal Shifter + The Blessed
+* **Balanced**: Crystal Vanguard + Conjuror + The Blessed
+* **Aggressive**: Zealot + Primal Shifter + Conjuror
+* **Defensive**: Crystal Vanguard + The Blessed + Conjuror
+* **Control**: Crystal Vanguard + Primal Shifter + The Blessed

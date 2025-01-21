@@ -103,9 +103,3 @@ healthcheck:
    - Update health checks with new features
    - Review health metrics regularly
    - Test failure scenarios
-
-## Version History
-- v1.0: Initial health monitoring
-- v1.1: Added dependency checks
-- v1.2: Enhanced Docker integration
-- v2.0: Updated for simplified battle mechanics
