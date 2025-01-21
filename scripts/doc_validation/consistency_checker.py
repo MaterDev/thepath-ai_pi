@@ -1,217 +1,199 @@
-"""
-Terminology consistency validation for documentation.
+"""Terminology consistency checker.
 
-This module provides functionality to validate terminology consistency across
-documentation files, ensuring that:
-
-1. Technical terms are used correctly and consistently
-2. Cultural terminology adheres to style guide rules
-3. Terminology variations are caught and flagged
-4. Style guide rules are properly enforced
-
-The checker uses the style guide as a source of truth for approved terminology
-and validates all documentation against these rules.
+Validates terminology consistency by:
+1. Loading style guide definitions
+2. Checking technical term usage
+3. Validating cultural terminology
+4. Ensuring consistent capitalization
 """
 
 import re
 from pathlib import Path
-from typing import Dict, List, Set
-from .validation_types import ValidationResult, Severity
+from typing import Dict, Set, List, Optional
+
+from .validation_types import ValidationResult, ValidationIssue, Severity
 
 class ConsistencyChecker:
-    """Validates terminology consistency across documentation.
-    
-    This class ensures that terminology is used consistently throughout the
-    documentation by checking against rules defined in the style guide. It
-    handles both technical and cultural terminology.
-    
-    Attributes:
-        docs_root: Root directory of documentation
-        style_guide: Path to the style guide file
-        technical_terms: Dictionary of approved technical terms
-        cultural_terms: Dictionary of approved cultural terms
-    """
+    """Checks terminology consistency across documentation."""
 
     def __init__(self, docs_root: str):
         """Initialize the consistency checker.
         
         Args:
-            docs_root: Path to documentation root directory
+            docs_root: Root directory containing documentation files
         """
         self.docs_root = Path(docs_root)
-        self.style_guide = self.docs_root / 'meta' / 'style-guide.md'
-        self.technical_terms = {}
-        self.cultural_terms = {}
+        self.style_guide_path = self.docs_root / 'meta' / 'style-guide.md'
 
-    def validate(self) -> ValidationResult:
-        """Run consistency checks and return results.
-        
-        Performs comprehensive terminology validation including:
-        - Loading terminology guidelines
-        - Checking technical term usage
-        - Validating cultural terminology
-        - Tracking terminology statistics
+    def _load_style_guide(self) -> Dict[str, Dict]:
+        """Load and parse the style guide.
         
         Returns:
-            ValidationResult containing consistency issues and statistics
+            Dictionary of term definitions and rules
         """
-        result = ValidationResult()
+        if not self.style_guide_path.exists():
+            return {}
+            
+        content = self.style_guide_path.read_text(encoding='utf-8')
+        terms = {}
         
-        if not self.style_guide.exists():
-            result.add_issue(
-                "Style guide not found",
-                str(self.style_guide.relative_to(self.docs_root)),
-                Severity.WARNING
-            )
-            return result
+        # Extract term sections
+        sections = {
+            'technical': self._extract_section(content, 'Technical Terms'),
+            'cultural': self._extract_section(content, 'Cultural Terms')
+        }
         
-        # Load terminology guidelines
-        self._load_guidelines()
-        
-        # Track statistics
-        result.add_stat("technical_terms", len(self.technical_terms))
-        result.add_stat("cultural_terms", len(self.cultural_terms))
-        
-        # Check all documents
-        self._check_all_documents(result)
-        
-        return result
+        # Parse each section
+        for section_type, section_content in sections.items():
+            if section_content:
+                terms.update(self._parse_terms(section_content, section_type))
+                
+        return terms
 
-    def _load_guidelines(self) -> None:
-        """Load terminology guidelines from style guide.
-        
-        Extracts both technical and cultural terminology rules from the
-        style guide and organizes them into structured dictionaries for
-        validation.
-        """
-        content = self.style_guide.read_text()
-        
-        # Extract technical terms
-        tech_section = re.search(
-            r'## Technical Terminology\n(.*?)(?=\n#|\Z)',
-            content,
-            re.DOTALL
-        )
-        if tech_section:
-            self.technical_terms = self._parse_term_section(tech_section.group(1))
-        
-        # Extract cultural terms
-        cultural_section = re.search(
-            r'## Cultural Terminology\n(.*?)(?=\n#|\Z)',
-            content,
-            re.DOTALL
-        )
-        if cultural_section:
-            self.cultural_terms = self._parse_term_section(cultural_section.group(1))
-
-    def _parse_term_section(self, section: str) -> Dict[str, Dict]:
-        """Parse a terminology section into structured data.
+    def _extract_section(self, content: str, section_name: str) -> Optional[str]:
+        """Extract a named section from content.
         
         Args:
-            section: Raw terminology section content
+            content: Full document content
+            section_name: Name of section to extract
             
         Returns:
-            Dictionary mapping terms to their usage rules
+            Section content if found, None otherwise
+        """
+        pattern = rf'(?:^|\n)#+ {section_name}\n(.*?)(?:\n#|\Z)'
+        match = re.search(pattern, content, re.DOTALL)
+        return match.group(1).strip() if match else None
+
+    def _parse_terms(self, section: str, term_type: str) -> Dict[str, Dict]:
+        """Parse terms from a section.
+        
+        Args:
+            section: Section content to parse
+            term_type: Type of terms (technical/cultural)
+            
+        Returns:
+            Dictionary of parsed terms
         """
         terms = {}
         current_term = None
+        current_def = {}
         
         for line in section.split('\n'):
-            if line.startswith('### '):
-                current_term = line[4:].strip()
-                terms[current_term] = {
-                    'definition': '',
-                    'usage': [],
-                    'avoid': []
-                }
+            line = line.strip()
+            if not line:
+                continue
+                
+            # New term definition
+            if line.startswith('#'):
+                if current_term:
+                    terms[current_term] = current_def
+                current_term = line.lstrip('#').strip()
+                current_def = {'type': term_type, 'alternatives': set()}
+                
+            # Term properties
             elif current_term:
-                if line.startswith('Definition:'):
-                    terms[current_term]['definition'] = line[11:].strip()
-                elif line.startswith('- Use:'):
-                    terms[current_term]['usage'].append(line[7:].strip())
-                elif line.startswith('- Avoid:'):
-                    terms[current_term]['avoid'].append(line[9:].strip())
-        
+                if ':' in line:
+                    key, value = line.split(':', 1)
+                    key = key.strip().lower()
+                    value = value.strip()
+                    
+                    if key == 'use':
+                        current_def['preferred'] = value
+                    elif key == 'avoid':
+                        current_def['alternatives'].update(
+                            v.strip() for v in value.split(',')
+                        )
+                    else:
+                        current_def[key] = value
+                        
+        # Add final term
+        if current_term:
+            terms[current_term] = current_def
+            
         return terms
 
-    def _check_all_documents(self, result: ValidationResult) -> None:
-        """Check all documentation files for terminology consistency.
+    def _check_term_usage(self, content: str, terms: Dict[str, Dict],
+                         file_path: str) -> List[ValidationIssue]:
+        """Check content for term usage issues.
         
         Args:
-            result: ValidationResult to add issues to
-        """
-        for md_file in self.docs_root.rglob("*.md"):
-            if md_file == self.style_guide:
-                continue
-            
-            rel_path = str(md_file.relative_to(self.docs_root))
-            content = md_file.read_text()
-            
-            # Check technical terms
-            for term, details in self.technical_terms.items():
-                self._check_term_usage(
-                    content, term, details, 'technical',
-                    rel_path, result
-                )
-            
-            # Check cultural terms
-            for term, details in self.cultural_terms.items():
-                self._check_term_usage(
-                    content, term, details, 'cultural',
-                    rel_path, result
-                )
-
-    def _check_term_usage(self, content: str, term: str, 
-                         details: Dict, term_type: str,
-                         file_path: str, result: ValidationResult) -> None:
-        """Check usage of a specific term in content.
-        
-        Args:
-            content: Document content to check
-            term: Term to validate
-            details: Term usage rules and patterns
-            term_type: Type of term (technical/cultural)
-            file_path: Path to document being checked
-            result: ValidationResult to add issues to
-        """
-        # Check for incorrect variations
-        for avoid in details['avoid']:
-            matches = re.finditer(avoid, content, re.IGNORECASE)
-            for match in matches:
-                result.add_issue(
-                    f"Used '{match.group()}' instead of '{term}'",
-                    file_path,
-                    Severity.WARNING,
-                    self._get_line_number(content, match.start()),
-                    f"{term_type} term"
-                )
-        
-        # Check for proper usage patterns
-        if details['usage']:
-            proper_usage = False
-            for usage in details['usage']:
-                if re.search(usage, content, re.IGNORECASE):
-                    proper_usage = True
-                    break
-            
-            if not proper_usage and re.search(term, content, re.IGNORECASE):
-                match = re.search(term, content, re.IGNORECASE)
-                result.add_issue(
-                    f"Term '{term}' used outside of approved patterns",
-                    file_path,
-                    Severity.WARNING,
-                    self._get_line_number(content, match.start()),
-                    f"{term_type} term"
-                )
-
-    def _get_line_number(self, content: str, pos: int) -> int:
-        """Get line number for a position in content.
-        
-        Args:
-            content: Text content to analyze
-            pos: Character position in content
+            content: Content to check
+            terms: Dictionary of term definitions
+            file_path: Path to file being checked
             
         Returns:
-            Line number (1-based) containing the position
+            List of validation issues found
         """
-        return content.count('\n', 0, pos) + 1
+        issues = []
+        
+        for term, definition in terms.items():
+            # Skip if no preferred usage defined
+            if 'preferred' not in definition:
+                continue
+                
+            # Find all variations of the term
+            pattern = rf'\b({term}|{"".join(definition["alternatives"])})\b'
+            matches = re.finditer(pattern, content, re.IGNORECASE)
+            
+            for match in matches:
+                used_term = match.group(1)
+                if used_term != definition['preferred']:
+                    issues.append(ValidationIssue(
+                        message=(
+                            f'Inconsistent terminology: found "{used_term}", '
+                            f'use "{definition["preferred"]}" instead'
+                        ),
+                        file=file_path,
+                        severity=Severity.WARNING,
+                        line=content.count('\n', 0, match.start()) + 1
+                    ))
+                    
+        return issues
+
+    def validate(self) -> ValidationResult:
+        """Validate terminology consistency.
+        
+        Returns:
+            ValidationResult containing consistency issues
+        """
+        result = ValidationResult()
+        
+        # Load style guide
+        terms = self._load_style_guide()
+        if not terms:
+            result.stats.update({
+                'technical_terms': 0,
+                'cultural_terms': 0
+            })
+            return result
+            
+        # Count terms by type
+        result.stats.update({
+            'technical_terms': sum(1 for t in terms.values() 
+                                 if t['type'] == 'technical'),
+            'cultural_terms': sum(1 for t in terms.values() 
+                                if t['type'] == 'cultural')
+        })
+        
+        # Check all markdown files
+        for md_file in self.docs_root.rglob('*.md'):
+            # Skip style guide itself
+            if md_file == self.style_guide_path:
+                continue
+                
+            try:
+                content = md_file.read_text(encoding='utf-8')
+                rel_path = str(md_file.relative_to(self.docs_root))
+                
+                # Check terminology
+                issues = self._check_term_usage(content, terms, rel_path)
+                result.issues.extend(issues)
+                
+            except Exception as e:
+                result.issues.append(ValidationIssue(
+                    message=f'Error processing file: {str(e)}',
+                    file=rel_path,
+                    severity=Severity.ERROR
+                ))
+                
+        return result
