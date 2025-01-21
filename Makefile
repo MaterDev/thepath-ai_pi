@@ -102,12 +102,12 @@ update-docs:
 # Images
 check-images:
 	@echo "$(COLOR_BLUE)Checking images...$(COLOR_RESET)"
-	@python docs/scripts/image_management/scrub_metadata.py --directory docs/ --check
+	@python docs/scripts/image_management/image_processing.py --directory docs/ --check
 	@echo "$(COLOR_BLUE)Image check complete$(COLOR_RESET)"
 
 process-images:
 	@echo "$(COLOR_BLUE)Processing images...$(COLOR_RESET)"
-	@python docs/scripts/image_management/scrub_metadata.py --directory docs/
+	@python docs/scripts/image_management/image_processing.py --directory docs/
 	@echo "$(COLOR_BLUE)Image processing complete$(COLOR_RESET)"
 
 scrub-images:

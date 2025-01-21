@@ -62,9 +62,9 @@ jobs:
       - name: Process and validate images
         run: |
           echo "Checking images..."
-          python docs/scripts/image_management/scrub_metadata.py --directory docs/ --check
+          python docs/scripts/image_management/image_processing.py --directory docs/ --check
           echo "Processing images..."
-          python docs/scripts/image_management/scrub_metadata.py --directory docs/
+          python docs/scripts/image_management/image_processing.py --directory docs/
           git add docs/
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: process and optimize images"
 

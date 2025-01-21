@@ -43,15 +43,14 @@ Our documentation system is built on several key principles:
 ## Script Categories
 
 !!! note "Image Management (`image_management/`)"
-    Tools for processing and optimizing images in documentation:
+    Scripts for managing and optimizing images:
 
-    - Metadata removal for privacy protection
+    - Image optimization and validation
+    - Metadata management
+    - Size and DPI standardization
+    - Format validation
 
-    - Web optimization (size and DPI)
-
-    - Format-specific quality settings
-
-    - Automated validation
+    See [Image Management Documentation](image_management/README.md) for details.
 
 !!! note "Documentation Validation (`doc_validation/`)"
     Scripts that verify and maintain documentation quality:

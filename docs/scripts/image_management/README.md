@@ -37,82 +37,78 @@ The primary purpose of these tools is to protect privacy and security when using
 
 - Link to personal or organizational accounts
 
-## Image Processing
+## Image Management
 
-The scripts automatically process images to ensure:
+Tools for managing and optimizing images in the documentation.
 
-!!! success "Privacy Protection"
-    - Remove all metadata (EXIF, XMP, etc.)
+### Image Processing (`image_processing.py`)
 
-    - Strip AI service identifiers
+Main script for image optimization and validation:
 
-    - Clean sensitive account data
+- Automatic metadata management
+- Size optimization
+- DPI standardization
+- Format validation
+- Directory scanning
+- Check mode for validation
 
-!!! success "Image Optimization"
-    - Set resolution to 72 DPI for web
+## Usage
 
-    - Resize to max width of 800px (maintaining aspect ratio)
-
-    - Optimize file size while preserving quality
-
-!!! success "Format Support"
-    - JPEG/JPG (95% quality, optimized)
-
-    - PNG (optimized)
-
-    - GIF
-
-    - TIFF
-
-    - BMP
-
-## Scripts
-
-### scrub_metadata.py
-
-Processes images by removing metadata and optimizing for web use:
-
-Usage:
+Run via Makefile commands:
 
 ```bash
+# Check images for optimization needs
+make check-images
 
-# Check for images needing processing (non-destructive)
-
-python scrub_metadata.py --directory PATH --check
-
-# Show what changes would be made (dry run)
-
-python scrub_metadata.py --directory PATH --dry-run
-
-# Process all images
-
-python scrub_metadata.py --directory PATH
-
+# Process and optimize images
+make process-images
 ```
 
-Options:
+Or directly:
 
-- `--directory`: Root directory to process (default: current directory)
+```bash
+# Check images in a directory
+python image_processing.py --directory docs/ --check
 
-- `--check`: Only check for issues and exit with status 1 if found
+# Process images in a directory
+python image_processing.py --directory docs/
+```
 
-- `--dry-run`: Show what changes would be made without modifying files
+## Integration
 
-The script will:
+The image processing is integrated into the GitHub Actions workflow and runs automatically during deployment:
 
-1. Recursively find all images in the specified directory
-2. Check for metadata and optimization needs
-3. Process each image:
-    * Remove metadata
+1. Images are checked for optimization needs
+2. Images are processed if needed
+3. Changes are committed automatically
+4. Documentation is rebuilt with optimized images
 
-    * Set DPI to 72
+## Features
 
-    * Resize if width > 800px
+- Metadata Management:
+  - Remove sensitive metadata
+  - Preserve essential image data
+  - Validate metadata removal
 
-    * Optimize for web
+- Size Optimization:
+  - Automatic resizing
+  - DPI standardization
+  - Format-specific settings
 
-4. Verify all changes were applied correctly
-5. Log results and any errors encountered
+- Validation:
+  - Size checks
+  - Format validation
+  - DPI verification
+  - Metadata scanning
+
+## Configuration
+
+Image processing settings are configured in the script:
+
+- Max image width: 800px
+- DPI: 72
+- Quality: 95%
+- Supported formats: jpg, png, gif
 
 ## Makefile Commands
 
