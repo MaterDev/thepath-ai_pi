@@ -126,4 +126,4 @@ Run `make help` to see all available commands.
 
 ## License
 
-This project is licensed under the terms specified in the LICENSE file.
+This project is licensed under Mater Development Dynamic Version License (MDDVL) found in the [LICENSE](LICENSE) file.
