@@ -2,8 +2,9 @@
 """Update mkdocs.yml with latest log files and social media posts."""
 
 from datetime import datetime
-import yaml
 from pathlib import Path
+
+import yaml
 
 # Map of section names to their emoji-prefixed versions
 SECTION_NAMES = {"Logs": "📝 Logs", "Social Updates": "🔔 Social Updates"}
@@ -54,9 +55,7 @@ def update_section(config, section_name, base_path, subsection=None):
             subsection_content = [{"Overview": f"{base_path}/{subsection}/index.md"}]
             for date, file in files:
                 display_date = date.strftime("%B %d, %Y")
-                subsection_content.append(
-                    {display_date: f"{base_path}/{subsection}/{file.name}"}
-                )
+                subsection_content.append({display_date: f"{base_path}/{subsection}/{file.name}"})
 
             for item in section_dict[actual_name]:
                 if isinstance(item, dict) and subsection in item:
@@ -74,7 +73,7 @@ def update_section(config, section_name, base_path, subsection=None):
 def update_mkdocs():
     """Update mkdocs.yml with latest log files and social media posts."""
     # Read mkdocs.yml
-    with open("mkdocs.yml", "r") as f:
+    with open("mkdocs.yml") as f:
         config = yaml.safe_load(f)
 
     # Update Logs section

@@ -22,35 +22,41 @@ pip install PyYAML>=6.0 Markdown>=3.3
 
 ## Components
 
-### 1. Core Validation Types (`validation_types.py`)
+### Validation Scripts
 
-- Defines common data structures for validation results
+- `validate_docs.py`: Main validation script that runs all checks
 
-- Provides severity levels for issues
+- `format_docs.py`: Markdown formatting script
 
-- Implements result collection and statistics
+- `health_checker.py`: Documentation health checks
 
-### 2. Reference Validator (`ref_validator.py`)
+- `ref_validator.py`: Link and reference validation
 
-Validates documentation cross-references:
+- `validation_types.py`: Shared types and utilities
 
-- Checks for broken links
+### Features
 
-- Detects circular references
+- Link checking and validation
 
-- Monitors reference depth
+- Format validation and auto-formatting
 
-- Validates YAML references
+- Structure verification
 
-### 3. Health Checker (`health_checker.py`)
+- Content integrity checks
 
-Monitors documentation health:
+- Consistent spacing and style
 
-- Validates required metadata
+### Code Style
 
-- Monitors documentation completeness
+The project uses several tools to maintain code quality:
 
-- Tracks historical metrics
+- `ruff`: Fast Python linter with auto-fix
+
+- `black`: Code formatting
+
+- `isort`: Import sorting
+
+These are configured in `pyproject.toml` with sensible defaults that prioritize productivity over strict enforcement.
 
 ## Scripts
 
@@ -84,24 +90,16 @@ Formats markdown files according to project standards:
 
 - Fixes admonition spacing
 
-## Integration
-
-These validation components are designed to work together through the main validation script (`validate_docs.py`). The script:
-
-1. Runs all validations
-2. Collects and aggregates results
-3. Generates comprehensive reports
-4. Saves results to the .reports directory
-5. Provides terminal output
-
 ## Usage
 
-The scripts are typically run through the Makefile:
+Run via Makefile commands:
 
 ```bash
-make validate-docs  # Validate and format documentation
+make validate-docs  # Run all validation checks
 
-make format-docs    # Only format documentation
+make format        # Format code and documentation
+
+make lint          # Verify code style
 
 ```
 

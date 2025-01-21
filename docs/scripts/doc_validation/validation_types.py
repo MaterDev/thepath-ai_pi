@@ -13,9 +13,9 @@ and provide a unified way to report and track documentation issues.
 """
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
-from enum import Enum
 from datetime import datetime
+from enum import Enum
+from typing import Optional
 
 
 class Severity(Enum):
@@ -52,7 +52,7 @@ class ValidationIssue:
     context: Optional[str] = None
     checker: str = "unknown"
 
-    def to_dict(self) -> Dict[str, any]:
+    def to_dict(self) -> dict[str, any]:
         """Convert the issue to a dictionary.
 
         Returns:
@@ -82,8 +82,8 @@ class ValidationResult:
         timestamp: When the validation was performed
     """
 
-    issues: List[ValidationIssue] = field(default_factory=list)
-    stats: Dict[str, any] = field(default_factory=dict)
+    issues: list[ValidationIssue] = field(default_factory=list)
+    stats: dict[str, any] = field(default_factory=dict)
     timestamp: datetime = field(default_factory=datetime.now)
 
     def add_issue(

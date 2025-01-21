@@ -1,6 +1,7 @@
 """Generate the log files pages."""
 
 from pathlib import Path
+
 import mkdocs_gen_files
 
 # Collect all markdown files from the logs directory

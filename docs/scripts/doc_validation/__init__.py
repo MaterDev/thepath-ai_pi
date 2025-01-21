@@ -5,9 +5,9 @@ This package provides tools for validating documentation:
 2. Health checks - verify required sections and metadata
 """
 
-from .validation_types import ValidationResult, ValidationIssue, Severity
-from .ref_validator import RefValidator
 from .health_checker import HealthChecker
+from .ref_validator import RefValidator
+from .validation_types import Severity, ValidationIssue, ValidationResult
 
 __all__ = [
     "ValidationResult",

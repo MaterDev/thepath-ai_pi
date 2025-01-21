@@ -14,17 +14,17 @@ The validation results are saved to .reports/doc_validation_report.json for furt
 processing or integration with other tools.
 """
 
-from doc_validation import HealthChecker, RefValidator, ValidationResult, Severity
-from pathlib import Path
-import sys
 import json
-from datetime import datetime
-import uuid
 import logging
+import sys
+import uuid
+from datetime import datetime
+from pathlib import Path
+
+from doc_validation import HealthChecker, RefValidator, Severity, ValidationResult
 
 # Create a logger
 logger = logging.getLogger(__name__)
-
 
 
 def validate_docs(docs_root: str) -> ValidationResult:
@@ -71,12 +71,8 @@ def save_report(result: ValidationResult, reports_dir: Path) -> Path:
         "id": unique_id,
         "timestamp": datetime.now().isoformat(),
         "summary": {
-            "total_errors": len(
-                [i for i in result.issues if i.severity == Severity.ERROR]
-            ),
-            "total_warnings": len(
-                [i for i in result.issues if i.severity == Severity.WARNING]
-            ),
+            "total_errors": len([i for i in result.issues if i.severity == Severity.ERROR]),
+            "total_warnings": len([i for i in result.issues if i.severity == Severity.WARNING]),
         },
         "issues": [i.to_dict() for i in result.issues],
         "stats": result.stats,
@@ -107,6 +103,7 @@ def main():
     # First, format all documentation
     logger.info("Formatting documentation...")
     import format_docs
+
     format_docs.main()
 
     # Then proceed with validation
@@ -126,12 +123,8 @@ def main():
     print(f"Generated: {datetime.now().isoformat()}")
     print("\nSummary:")
     print("--------")
-    print(
-        f"Total Errors: {len([i for i in result.issues if i.severity == Severity.ERROR])}"
-    )
-    print(
-        f"Total Warnings: {len([i for i in result.issues if i.severity == Severity.WARNING])}"
-    )
+    print(f"Total Errors: {len([i for i in result.issues if i.severity == Severity.ERROR])}")
+    print(f"Total Warnings: {len([i for i in result.issues if i.severity == Severity.WARNING])}")
 
     print("\nReferences Validation")
     print("---------------------")
@@ -147,9 +140,7 @@ def main():
     print("-----------------")
     health_issues = [i for i in result.issues if i.checker == "health"]
     print(f"Errors: {len([i for i in health_issues if i.severity == Severity.ERROR])}")
-    print(
-        f"Warnings: {len([i for i in health_issues if i.severity == Severity.WARNING])}"
-    )
+    print(f"Warnings: {len([i for i in health_issues if i.severity == Severity.WARNING])}")
     print("\nStatistics:")
     for k, v in result.stats.items():
         if k == "coverage_percentage":

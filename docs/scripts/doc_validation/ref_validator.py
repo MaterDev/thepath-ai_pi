@@ -8,9 +8,8 @@ Validates cross-references between documentation files by:
 
 import re
 from pathlib import Path
-from typing import Set, List, Dict
 
-from .validation_types import ValidationResult, ValidationIssue, Severity
+from .validation_types import Severity, ValidationIssue, ValidationResult
 
 
 class RefValidator:
@@ -69,7 +68,7 @@ class RefValidator:
         except ValueError:
             return ref_path
 
-    def _extract_refs(self, content: str, source_file: Path) -> List[str]:
+    def _extract_refs(self, content: str, source_file: Path) -> list[str]:
         """Extract and normalize all references from content.
 
         Args:
@@ -106,7 +105,7 @@ class RefValidator:
         result.stats["total_documents"] = 0
 
         # Build reference map
-        ref_map: Dict[str, Set[str]] = {}
+        ref_map: dict[str, set[str]] = {}
         for md_file in self.docs_root.rglob("*.md"):
             rel_path = str(md_file.relative_to(self.docs_root))
             result.stats["total_documents"] += 1

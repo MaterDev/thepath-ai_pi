@@ -9,10 +9,10 @@ Validates documentation health by:
 
 import re
 from pathlib import Path
-from typing import Dict, Set
+
 import yaml
 
-from .validation_types import ValidationResult, ValidationIssue, Severity
+from .validation_types import Severity, ValidationIssue, ValidationResult
 
 
 class HealthChecker:
@@ -46,7 +46,7 @@ class HealthChecker:
                 return parts[0]
         return "other"
 
-    def _extract_metadata(self, content: str) -> Dict[str, str]:
+    def _extract_metadata(self, content: str) -> dict[str, str]:
         """Extract YAML metadata from content.
 
         Args:
@@ -65,7 +65,7 @@ class HealthChecker:
 
         return metadata
 
-    def _calculate_coverage(self, sections: Set[str], required: Set[str]) -> float:
+    def _calculate_coverage(self, sections: set[str], required: set[str]) -> float:
         """Calculate section coverage percentage.
 
         Args:

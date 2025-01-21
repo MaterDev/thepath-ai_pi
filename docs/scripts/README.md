@@ -54,14 +54,21 @@ Our documentation system is built on several key principles:
     - Automated validation
 
 !!! note "Documentation Validation (`doc_validation/`)"
-    Scripts that verify documentation quality:
+    Scripts that verify and maintain documentation quality:
 
-    - Link checking
-    - Format validation
+    - Link checking and validation
+
+    - Format validation and auto-formatting
+
     - Structure verification
+
     - Content integrity checks
-    - Automatic markdown formatting
+
+    - Code style enforcement
+
     - Consistent spacing and style
+
+    See [Validation Documentation](doc_validation/README.md) for details.
 
 !!! note "Log Management (`log_management/`)"
     Scripts for managing development logs and tracking progress:
