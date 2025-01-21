@@ -16,8 +16,9 @@ This document details all character classes in The Path, including their abiliti
 * **Inheritance**: Layered Legacy - Retains some bonuses of the previous aspect upon changing, allowing strategic layering of augmentations
 
 **Stats**:
+
 | Stat | Value |
-|------|-------|
+| --- | --- |
 | Health | 62 |
 | P.Attack | 55 |
 | P.Defense | 40 |
@@ -42,8 +43,9 @@ This document details all character classes in The Path, including their abiliti
 * **Inheritance**: Echoing Resonance - Enhances spoken-word magic, causing spells to echo and repeat their effects after a delay
 
 **Stats**:
+
 | Stat | Value |
-|------|-------|
+| --- | --- |
 | Health | 38 |
 | P.Attack | 60 |
 | P.Defense | 63 |
@@ -68,8 +70,9 @@ This document details all character classes in The Path, including their abiliti
 * **Inheritance**: Crystal Core - Absorbs damage dealt and converts it into stacking defence buffs
 
 **Stats**:
+
 | Stat | Value |
-|------|-------|
+| --- | --- |
 | Health | 54 |
 | P.Attack | 39 |
 | P.Defense | 63 |
@@ -94,8 +97,9 @@ This document details all character classes in The Path, including their abiliti
 * **Inheritance**: Emotional Trance - Gains stacking bonuses as emotional intensity grows
 
 **Stats**:
+
 | Stat | Value |
-|------|-------|
+| --- | --- |
 | Health | 45 |
 | P.Attack | 50 |
 | P.Defense | 52 |
@@ -120,8 +124,9 @@ This document details all character classes in The Path, including their abiliti
 * **Inheritance**: Luminara's Embrace - Enhances healing and protection spells
 
 **Stats**:
+
 | Stat | Value |
-|------|-------|
+| --- | --- |
 | Health | 54 |
 | P.Attack | 50 |
 | P.Defense | 51 |
@@ -139,8 +144,9 @@ This document details all character classes in The Path, including their abiliti
 ## Class Comparisons
 
 ### Stat Distribution
+
 | Class | Health | Physical | Magical | Speed | Total |
-|-------|---------|-----------|---------|--------|--------|
+| --- | --- | --- | --- | --- | --- |
 | Primal Shifter | 62 | 47.5 | 52 | 61 | 322 |
 | Conjuror | 38 | 61.5 | 63 | 41 | 328 |
 | Crystal Vanguard | 54 | 51 | 50.5 | 58 | 315 |
