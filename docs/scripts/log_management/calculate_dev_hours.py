@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-import os
-import yaml
 import re
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Optional
 
-def extract_yaml_block(content: str) -> Optional[Dict]:
+import yaml
+
+
+def extract_yaml_block(content: str) -> Optional[dict]:
     """Extract the YAML block from a markdown file."""
     yaml_pattern = r"```yaml\n(.*?)\n```"
     match = re.search(yaml_pattern, content, re.DOTALL)
@@ -17,6 +18,7 @@ def extract_yaml_block(content: str) -> Optional[Dict]:
         return yaml.safe_load(match.group(1))
     except yaml.YAMLError:
         return None
+
 
 def calculate_total_hours(logs_dir: Path) -> float:
     """Calculate total development hours from all log files."""
@@ -38,6 +40,7 @@ def calculate_total_hours(logs_dir: Path) -> float:
 
     return total_hours
 
+
 def update_index_page(total_hours: float):
     """Update the index.md page with total development hours."""
     index_path = Path("docs/index.md")
@@ -48,32 +51,28 @@ def update_index_page(total_hours: float):
     content = index_path.read_text()
 
     # Create admonition with total hours
-    hours_admonition = f"""
-!!! info "Development Progress"
-    Total development time: **{total_hours:.1f} hours**
+    hours_admonition = f"""!!! info "Development Progress"
+    Total development time: {total_hours:.1f} hours
 
-    *This counter is automatically updated based on development logs*
+    This counter is automatically updated based on development logs.
+
 """
 
     # Check if admonition already exists
-    if "!!! info \"Development Progress\"" in content:
-        # Replace existing admonition
+    if '!!! info "Development Progress"' in content:
+        # Replace existing admonition up to the next section or image
         content = re.sub(
-            r"!!! info \"Development Progress\".*?\n\n",
-            hours_admonition,
+            r'!!! info "Development Progress".*?(?=\n\n[#!\[])',
+            hours_admonition.strip(),
             content,
-            flags=re.DOTALL
+            flags=re.DOTALL,
         )
     else:
         # Add after first heading
-        content = re.sub(
-            r"(#[^\n]+\n)",
-            f"\\1\n{hours_admonition}",
-            content,
-            count=1
-        )
+        content = re.sub(r"(#[^\n]+\n)", f"\\1\n{hours_admonition}", content, count=1)
 
     index_path.write_text(content)
+
 
 def main():
     """Main function to calculate hours and update index."""
@@ -89,6 +88,7 @@ def main():
     update_index_page(total_hours)
     print(f"Total development hours: {total_hours:.1f}")
     print("Updated docs/index.md with total hours")
+
 
 if __name__ == "__main__":
     main()

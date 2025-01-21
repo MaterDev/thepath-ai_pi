@@ -33,18 +33,25 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mkdocs-material
-          pip install mkdocs-awesome-pages-plugin
-          pip install pyyaml
-          pip install Pillow>=10.0.0  # For image processing
+          pip install -r requirements.txt
 
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+      - name: Format and lint code
+        run: |
+          echo "Formatting code..."
+          make format
+          echo "Checking code style..."
+          make lint
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "style: format code and documentation"
+
       - name: Update logs
         run: |
+          echo "Updating logs..."
           python docs/scripts/log_management/update_logs.py
           python docs/scripts/log_management/calculate_dev_hours.py
           git add docs/meta/logs/
@@ -52,21 +59,21 @@ jobs:
           git add mkdocs.yml
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: update logs navigation and development hours"
 
+      - name: Process and validate images
+        run: |
+          echo "Checking images..."
+          python docs/scripts/image_management/scrub_metadata.py --directory docs/ --check
+          echo "Processing images..."
+          python docs/scripts/image_management/scrub_metadata.py --directory docs/
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: process and optimize images"
+
       - name: Format documentation
         run: |
           echo "Formatting documentation..."
           python docs/scripts/doc_validation/format_docs.py
           git add docs/
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: format documentation"
-
-      - name: Process and validate images
-        run: |
-          echo "Checking images..."
-          make check-images
-          echo "Processing images..."
-          make process-images
-          echo "Verifying images..."
-          make check-images
 
       - name: Validate documentation
         run: make validate-docs
