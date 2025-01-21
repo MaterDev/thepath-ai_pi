@@ -7,6 +7,18 @@ description: Tools for managing and optimizing images in the documentation
 
 This directory contains scripts for managing and optimizing images used in the documentation.
 
+## Requirements
+
+!!! note "Dependencies"
+    - Python 3.9+
+    - Pillow (PIL) library
+    - Operating System: Linux, macOS, or Windows
+
+To install dependencies:
+```bash
+pip install Pillow>=10.0.0
+```
+
 ## Purpose
 
 The primary purpose of these tools is to protect privacy and security when using AI-generated images. Many AI image generation services (like Midjourney and DALL-E) embed metadata in images that could potentially:

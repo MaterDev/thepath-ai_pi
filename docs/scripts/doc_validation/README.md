@@ -2,6 +2,19 @@
 
 This package provides a comprehensive set of tools for validating documentation in the agenic context system. It helps maintain documentation quality, consistency, and integrity through automated validation checks.
 
+## Requirements
+
+!!! note "Dependencies"
+    - Python 3.9+
+    - PyYAML>=6.0
+    - Markdown>=3.3
+    - Operating System: Linux, macOS, or Windows
+
+To install dependencies:
+```bash
+pip install PyYAML>=6.0 Markdown>=3.3
+```
+
 ## Components
 
 ### 1. Core Validation Types (`validation_types.py`)

@@ -1,6 +1,24 @@
-# Log Management
+---
+title: Log Management Scripts
+description: Tools for managing development logs and updates
+---
 
-This directory contains tools for managing documentation logs within the AI-Pi project. These tools help ensure that logs are properly structured and integrated into the documentation system.
+# Log Management Scripts
+
+This directory contains scripts for managing development logs and social media updates.
+
+## Requirements
+
+!!! note "Dependencies"
+    - Python 3.9+
+    - PyYAML>=6.0
+    - python-frontmatter>=1.0.0
+    - Operating System: Linux, macOS, or Windows
+
+To install dependencies:
+```bash
+pip install PyYAML>=6.0 python-frontmatter>=1.0.0
+```
 
 ## Tools Included
 
