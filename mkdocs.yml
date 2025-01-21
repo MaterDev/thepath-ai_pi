@@ -124,9 +124,4 @@ nav:
   - Style Guide: meta/style-guide.md
 - Combat System:
   - Overview: combat_system/balance_and_meta.md
-  - Character Classes:
-    - Conjuror: combat_system/classes/conjuror.md
-    - Crystal Vanguard: combat_system/classes/crystal_vanguard.md
-    - Zealot: combat_system/classes/zealot.md
-    - The Blessed: combat_system/classes/the_blessed.md
-    - Primal Shifter: combat_system/classes/primal_shifter.md
+  - Character Classes: combat_system/classes.md
