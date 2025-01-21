@@ -1,4 +1,5 @@
 """Generate the log files pages."""
+
 from pathlib import Path
 import mkdocs_gen_files
 
@@ -9,14 +10,14 @@ nav = mkdocs_gen_files.Nav()
 for path in sorted((logs_dir).rglob("*.md"), reverse=True):
     # Convert the path to docs-relative
     doc_path = path.relative_to("docs")
-    
+
     # Skip index.md as it's handled separately
     if path.name == "index.md":
         continue
-        
+
     # Get the date from the filename (assuming YYYY-MM-DD.md format)
     date = path.stem
-    
+
     # Add to navigation
     nav[f"Development Logs/{date}"] = doc_path.as_posix()
 
