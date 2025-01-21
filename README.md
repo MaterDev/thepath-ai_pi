@@ -28,6 +28,38 @@ Our comprehensive documentation site contains everything you need to understand 
 - API documentation
 - Development logs and updates
 
+## Development
+
+### Quick Start
+
+1. Clone the repository
+2. Run `make install` to set up dependencies
+3. Run `make docs` to build and serve documentation locally
+
+### Makefile Commands
+
+The project includes a comprehensive Makefile to automate common tasks:
+
+!!! note "Documentation"
+    - `make docs`: Build and serve documentation locally
+    - `make docs-build`: Build documentation site
+    - `make validate-docs`: Run documentation validation
+    - `make process-images`: Optimize images (resize, set DPI, remove metadata)
+    - `make check-images`: Check images for optimization needs
+
+!!! note "Development"
+    - `make install`: Install project dependencies
+    - `make test`: Run test suite
+    - `make lint`: Run linting checks
+    - `make format`: Format code
+    - `make clean`: Clean build artifacts
+
+!!! note "Automation"
+    - `make update-logs`: Update development logs
+    - `make update-docs`: Update documentation navigation
+
+For detailed information about documentation tools and scripts, see the [Scripts Documentation](docs/scripts/README.md).
+
 ## Getting Started
 
 ### Prerequisites

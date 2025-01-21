@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -25,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -33,6 +36,7 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-awesome-pages-plugin
           pip install pyyaml
+          pip install Pillow>=10.0.0  # For image processing
 
       - name: Update logs
         run: |
@@ -48,8 +52,17 @@ jobs:
           git add mkdocs.yml
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: update logs navigation"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Process and validate images
+        run: |
+          echo "Checking images..."
+          make check-images
+          echo "Processing images..."
+          make process-images
+          echo "Verifying images..."
+          make check-images
+
+      - name: Validate documentation
+        run: make validate-docs
 
       - name: Build site
         run: mkdocs build
@@ -61,4 +74,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v3
