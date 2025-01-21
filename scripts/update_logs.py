@@ -6,7 +6,13 @@ from datetime import datetime
 import yaml
 from pathlib import Path
 
-def get_dated_files(directory):
+# Map of section names to their emoji-prefixed versions
+SECTION_NAMES = {
+    "Logs": "📝 Logs",
+    "Social Updates": "🔔 Social Updates"
+}
+
+def get_dated_files(directory, date_format="%Y-%m-%d"):
     """Get all dated files from a directory."""
     files = []
     
@@ -15,7 +21,7 @@ def get_dated_files(directory):
         if file.name != "index.md":
             try:
                 # Parse date from filename (YYYY-MM-DD.md)
-                date = datetime.strptime(file.stem, "%Y-%m-%d")
+                date = datetime.strptime(file.stem, date_format)
                 files.append((date, file))
             except ValueError:
                 continue
@@ -24,53 +30,44 @@ def get_dated_files(directory):
     files.sort(key=lambda x: x[0], reverse=True)
     return files
 
-def update_section(config, section_name, base_path):
-    """Update a section in the config with dated files."""
-    files = get_dated_files(Path(f"docs/{base_path}"))
-    
+def get_section_by_name(config, section_name):
+    """Find a section in nav by its name, including emoji version."""
+    emoji_name = SECTION_NAMES.get(section_name, section_name)
     for section in config["nav"]:
-        if isinstance(section, dict) and section_name in section:
-            if section_name == "Social Updates":
-                # Handle nested LinkedIn section
-                linkedin_section = [{"Overview": f"{base_path}/index.md"}]
-                for date, file in files:
-                    display_date = date.strftime("%B %d, %Y")
-                    linkedin_section.append({display_date: f"{base_path}/{file.name}"})
-                
-                for item in section[section_name]:
-                    if isinstance(item, dict) and "LinkedIn" in item:
-                        item["LinkedIn"] = linkedin_section
-                        break
-            else:
-                # Handle regular sections (like Logs)
-                section_content = [{"Overview": f"{base_path}/index.md"}]
-                for date, file in files:
-                    display_date = date.strftime("%B %d, %Y")
-                    section_content.append({display_date: f"{base_path}/{file.name}"})
-                section[section_name] = section_content
-            break
-    else:
-        # If section doesn't exist, create it after Overview
-        if section_name == "Social Updates":
-            # Handle nested LinkedIn section
-            linkedin_section = [{"Overview": f"{base_path}/index.md"}]
+        if isinstance(section, dict):
+            # Get the first (and should be only) key
+            key = next(iter(section))
+            if key == emoji_name:
+                return section, key
+    return None, None
+
+def update_section(config, section_name, base_path, subsection=None):
+    """Update a section in the config with dated files."""
+    path = Path(f"docs/{base_path}")
+    if subsection:
+        path = path / subsection
+    files = get_dated_files(path)
+    
+    section_dict, actual_name = get_section_by_name(config, section_name)
+    if section_dict:
+        if subsection:
+            # Handle nested sections (like LinkedIn under Social Updates)
+            subsection_content = [{"Overview": f"{base_path}/{subsection}/index.md"}]
             for date, file in files:
                 display_date = date.strftime("%B %d, %Y")
-                linkedin_section.append({display_date: f"{base_path}/{file.name}"})
-            section_content = [{"LinkedIn": linkedin_section}]
+                subsection_content.append({display_date: f"{base_path}/{subsection}/{file.name}"})
+            
+            for item in section_dict[actual_name]:
+                if isinstance(item, dict) and subsection in item:
+                    item[subsection] = subsection_content
+                    break
         else:
             # Handle regular sections (like Logs)
             section_content = [{"Overview": f"{base_path}/index.md"}]
             for date, file in files:
                 display_date = date.strftime("%B %d, %Y")
                 section_content.append({display_date: f"{base_path}/{file.name}"})
-        
-        # Find Overview section index
-        for i, section in enumerate(config["nav"]):
-            if isinstance(section, dict) and "Overview" in section:
-                # Insert section after Overview
-                config["nav"].insert(i + 1, {section_name: section_content})
-                break
+            section_dict[actual_name] = section_content
 
 def update_mkdocs():
     """Update mkdocs.yml with latest log files and social media posts."""
@@ -81,8 +78,8 @@ def update_mkdocs():
     # Update Logs section
     update_section(config, "Logs", "meta/logs")
     
-    # Update Social Updates section
-    update_section(config, "Social Updates", "meta/social/linkedin")
+    # Update Social Updates section with LinkedIn subsection
+    update_section(config, "Social Updates", "meta/social", "linkedin")
     
     # Write updated config
     with open("mkdocs.yml", "w") as f:
