@@ -93,6 +93,55 @@ This document outlines the core principles and considerations for balancing The 
     * Balance preservation
 * Careful management of loop intensity
 
+### Examples from The Path
+
+#### Class Mechanics Examples
+
+* **Unique Resource Systems**
+    * Conjuror: Echo mechanic for spell repetition
+    * Zealot: Emotional intensity stacking
+    * Crystal Vanguard: Damage-to-defense conversion
+    * The Blessed: Divine grace enhancement
+
+* **Role Specialization Examples**
+    * Crystal Vanguard Tank Variants:
+        * Shield Focus: Maximum damage mitigation
+        * Golem Master: Crowd control through summons
+        * Crystal Core: Self-sustain through mineral absorption
+
+* **Synergy Examples**
+    * Conjuror + The Blessed: Enhanced healing through echo effects
+    * Crystal Vanguard + Zealot: Protected mobility for emotional buildup
+    * The Blessed + Zealot: Divine protection during emotional peaks
+
+* **Soft Counter Examples**
+    * Zealot vs Conjuror: High mobility to pressure low health
+    * Crystal Vanguard vs Zealot: Damage absorption reduces emotional gain
+    * Conjuror vs Crystal Vanguard: Spiritual damage bypasses physical defense
+
+#### Combat System Examples
+
+* **Situational Effectiveness**
+    * Conjuror's echo spells in narrow corridors
+    * Crystal Vanguard's mineral absorption near crystal formations
+    * Zealot's mobility advantage in open spaces
+    * The Blessed's divine protection in team formations
+
+* **Feedback Loop Management**
+    * Positive: Zealot's emotional intensity building momentum
+    * Negative: Crystal Vanguard's defense scaling with damage taken
+    * Balanced: Conjuror's echo timing requiring strategic planning
+
+* **Resource Economy**
+    * Energy costs scale with ability impact:
+        * Basic attack: 1 energy
+        * Special ability: 2-3 energy
+        * Ultimate ability: 4-5 energy
+    * Cooldown balance:
+        * Quick abilities: 1-2 turns
+        * Major abilities: 3-4 turns
+        * Ultimate abilities: 5+ turns
+
 ## Testing and Analysis
 
 ### Data Collection
