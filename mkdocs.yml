@@ -68,6 +68,7 @@ site_dir: site
 nav:
 - Home: index.md
 - Overview:
+  - Project Vision: overview/project-vision.md
   - Project Scope: overview/project-scope.md
   - Research Objectives: overview/research-objectives.md
 - Logs:
@@ -123,5 +124,5 @@ nav:
       - Turn System: meta/phase1/5-turn-system.md
   - Style Guide: meta/style-guide.md
 - Combat System:
-  - Overview: combat_system/balance_and_meta.md
+  - Balance and Meta: combat_system/balance_and_meta.md
   - Character Classes: combat_system/classes.md

@@ -4,32 +4,21 @@
 
 > Pushing the boundaries of edge AI gaming on Raspberry Pi hardware.
 
-The Path is a fantasy RPG that blends traditional spiritual practices with modern game mechanics. Drawing inspiration from Hoodoo, Conjure, and Rootwork traditions, it creates an immersive digital experience that honors these ancestral practices while providing engaging gameplay.
+Welcome to The Path (AI-Pi) documentation. This site contains comprehensive information about the project, including technical details, setup guides, development logs, and research objectives.
 
-## Core Systems
+## Quick Links
 
-- **[Combat System](combat_system/balance_and_meta.md)**: Strategic combat featuring unique character abilities and dynamic interactions
-- **[Character Classes](combat_system/classes.md)**: Six distinct classes, each representing different aspects of traditional practices
-- **[Cultural Foundations](world/cultural_foundations.md)**: Deep exploration of the game's cultural and spiritual roots
+- [Project Overview](overview/project-scope.md)
+- [Latest Development Log](meta/logs/2025-01-13.md)
+- [Setup Guide](implementation/setup/project-setup.md)
 
-## Development Focus
+## Core Features
 
-- Authentic representation of traditional practices
-- Engaging gameplay mechanics
-- Community-driven development
-- Educational opportunities through play
-
-For developers interested in contributing, please review our:
-- [Development Guidelines](meta/development-guidelines.md)
-- [Documentation Standards](meta/documentation-standards.md)
-- [AI Development Index](AI_DEVELOPMENT_INDEX.md)
-
-## Development
-
-- [AI Development Index](AI_DEVELOPMENT_INDEX.md)
-- [Development Logs](meta/logs/index.md)
-- [Contributing](meta/contributing.md)
-- [Style Guide](meta/style-guide.md)
+### Edge AI Combat System
+- Real-time AI decision making
+- Adaptive difficulty system
+- Personality-based behavior
+- Hardware-accelerated inference
 
 ## Latest Updates
 

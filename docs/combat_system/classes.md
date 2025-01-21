@@ -8,7 +8,7 @@ This document details all character classes in The Path, including their abiliti
 
 ### Primal Shifter
 
-**Description**: Drawing from the deep connection between Rootworkers and the natural world, the Primal Shifter channels the spirits of animals and plants. Their transformative abilities reflect the traditional understanding of nature's power and the importance of maintaining harmony with the environment.
+**Description**: A druidic trickster who can tap into their primal nature to augment their body with aspects of different creatures, each augmentation bestowing unique abilities.
 
 **Core Traits**:
 - **Strengths**: High evasion, extremely versatile due to diverse augmentations
@@ -34,7 +34,7 @@ This document details all character classes in The Path, including their abiliti
 
 ### Conjuror
 
-**Description**: Embodying the traditional role of the Conjure doctor, these practitioners channel spiritual energy through spoken word, ritual objects, and ancestral connections. Their ability to echo spells reflects the repetitive nature of traditional chants and prayers, while their potion-making draws from historical rootwork practices.
+**Description**: A spiritualist who imbues objects with magical energy, communicates with spirits, creates potions, and wields elemental powers.
 
 **Core Traits**:
 - **Strengths**: High spiritual attack, versatile with both offensive and supportive abilities
@@ -60,7 +60,7 @@ This document details all character classes in The Path, including their abiliti
 
 ### Crystal Vanguard
 
-**Description**: Representing the mineral and earth-working traditions within Hoodoo, Crystal Vanguards understand the sacred properties of stones and crystals. Their defensive abilities reflect the protective nature of traditional mineral work, while their offensive capabilities draw from the transformative power of earth elements.
+**Description**: A leader and guide who draws power from crystals, minerals, and metals, using them to forge weapons and armor.
 
 **Core Traits**:
 - **Strengths**: High health and physical defence, capable of both combat and supportive roles
@@ -86,7 +86,7 @@ This document details all character classes in The Path, including their abiliti
 
 ### Zealot
 
-**Description**: Inspired by ecstatic spiritual traditions and the power of emotional expression in ritual work, Zealots channel intense feelings into physical prowess. Their dance-like combat style reflects traditional movement practices, while their emotional empowerment draws from historical traditions of spiritual possession and transcendence.
+**Description**: A warrior that values cathartic release and unbridled passion, channeling emotions into physical combat with dance-like precision.
 
 **Core Traits**:
 - **Strengths**: High physical attack, mobility, emotional empowerment
@@ -112,7 +112,7 @@ This document details all character classes in The Path, including their abiliti
 
 ### The Blessed
 
-**Description**: Channeling divine grace through traditional blessing practices, The Blessed maintain connections to higher spiritual forces. Their supportive abilities reflect the community-oriented nature of traditional healing work, while their protective powers draw from historical practices of spiritual cleansing and blessing.
+**Description**: The chosen disciples of Luminara, providing support through blessings, divine shields, and sacred auras.
 
 **Core Traits**:
 - **Strengths**: Healing, support, buffs/debuffs

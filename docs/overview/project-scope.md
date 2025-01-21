@@ -2,7 +2,11 @@
 
 ## Overview
 
-The Path (AI-Pi) is a containerized turn-based combat game with configurable AI opponents powered by the Raspberry Pi AI HAT+. The system includes basic battle mechanics and AI-driven opponents.
+The Path (AI-Pi) is an innovative gaming project that combines:
+- Traditional spiritual practices and wisdom
+- Edge AI technology on Raspberry Pi hardware
+- Immersive fantasy world building
+- Real-time combat simulation
 
 ## Core Features
 
@@ -30,63 +34,53 @@ The Path (AI-Pi) is a containerized turn-based combat game with configurable AI 
 - Basic battle history
 - Forfeit option
 
+## Technical Objectives
+
+### Edge AI Implementation
+- Real-time decision making
+- Adaptive difficulty scaling
+- Personality-driven AI behavior
+- Hardware-optimized processing
+
+### Performance Targets
+- Responsive gameplay
+- Efficient resource usage
+- Optimized rendering
+- Smooth animations
+
+## Cultural Integration
+
+### Traditional Elements
+- Authentic representation of practices
+- Respectful adaptation of concepts
+- Community-informed development
+- Historical accuracy
+
+### Modern Implementation
+- Interactive gameplay mechanics
+- Digital world building
+- Accessible learning paths
+- Engaging narratives
+
 ## Development Timeline
 
-### Phase 1: Core Systems (Weeks 1-2)
+### Phase 1: Foundation
+- Core combat system
+- Basic AI implementation
+- Character class design
+- Performance optimization
 
-```yaml
-1.1 Project Setup (Days 1-2):
-  - Initialize repository structure
-  - Set up development environment
-  - Configure build system
-  - Set up basic CI/CD
+### Phase 2: Enhancement
+- Advanced AI behaviors
+- Extended character options
+- Expanded world building
+- Community feedback integration
 
-1.2 Core Architecture (Days 3-5):
-  - Implement basic server
-  - Set up WebSocket communication
-  - Create state management
-  - Configure database
-
-1.3 Basic Game Loop (Days 6-8):
-  - Implement turn system
-  - Add basic combat actions
-  - Create character states
-  - Set up game flow
-
-1.4 Initial AI Integration (Days 9-10):
-  - Configure AI HAT+
-  - Implement basic AI decisions
-  - Set up model inference
-  - Add basic adaptation
-```
-
-### Phase 2: Battle System (Weeks 3-4)
-
-```yaml
-2.1 Combat Mechanics (Days 11-13):
-  - Implement action system
-  - Add status effects
-  - Create targeting
-  - Add basic reactions
-
-2.2 Character System (Days 14-16):
-  - Implement character classes
-  - Add stat system
-  - Create abilities
-  - Set up basic progression
-
-2.3 AI Enhancement (Days 17-19):
-  - Implement personality system
-  - Add adaptation
-  - Create difficulty scaling
-  - Basic optimization
-
-2.4 Client Development (Days 20):
-  - Create UI components
-  - Implement Material-UI
-  - Add basic animations
-  - Set up battle view
-```
+### Phase 3: Polish
+- UI/UX refinement
+- Performance tuning
+- Content expansion
+- System balancing
 
 ## Technical Requirements
 
@@ -137,16 +131,22 @@ Dependencies:
 - Simple monitoring
 - Deploy configs
 
-## Success Metrics
+## Success Criteria
 
-### User Experience
-- Intuitive controls
-- Responsive gameplay
-- Basic AI behavior
-- Consistent challenge
+### Technical
+- Stable performance on target hardware
+- Responsive AI decision making
+- Efficient resource utilization
+- Smooth user experience
 
-### Technical Goals
-- Stable WebSocket connection
-- Functional battle system
-- Working AI inference
-- Basic user authentication
+### Cultural
+- Authentic representation
+- Community acceptance
+- Educational value
+- Engaging gameplay
+
+### Development
+- Maintainable codebase
+- Clear documentation
+- Scalable systems
+- Efficient workflows
