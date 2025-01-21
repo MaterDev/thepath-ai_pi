@@ -141,6 +141,33 @@ This document details all character classes in The Path, including their abiliti
 4. Luminara's Wrath: Curses enemies with weakening effects
 5. Embrace of the Divine: Enhances all support abilities
 
+### Wraithwood Seer
+
+**Description**: Hidden within the mystical Wraithwood Grove, known for their Extra-Sensory Perception (ESP) and psychic powers. They communicate through telepathy, see visions, and manipulate objects with their minds.
+
+**Core Traits**:
+* **Strengths**: Psychic attacks, visions, short-range control
+* **Weaknesses**: Low physical defence, vulnerable to disruptions
+* **Inheritance**: Cosmic Insight - Gains knowledge of hidden weaknesses, enhancing magical effectiveness
+
+**Stats**:
+
+| Stat | Value |
+| --- | --- |
+| Health | 45 |
+| P.Attack | 40 |
+| P.Defense | 35 |
+| M.Attack | 70 |
+| M.Defense | 65 |
+| Speed | 55 |
+
+**Progression**:
+1. Psychic Bolt: Ranged magical attack that reveals weaknesses
+2. Vision of Fate: Grants foresight, enhancing evasion and anticipation
+3. Mind Control: Takes control of an enemy's mind for a short duration
+4. Telekinetic Barrier: Creates a psychic shield that absorbs damage
+5. Wraithwood Awakening: Unleashes the power of Wraithwood Grove
+
 ## Class Comparisons
 
 ### Stat Distribution
@@ -152,17 +179,19 @@ This document details all character classes in The Path, including their abiliti
 | Crystal Vanguard | 54 | 51 | 50.5 | 58 | 315 |
 | Zealot | 45 | 51 | 52 | 52 | 303 |
 | The Blessed | 54 | 50.5 | 47.5 | 53 | 303 |
+| Wraithwood Seer | 45 | 37.5 | 67.5 | 55 | 310 |
 
 _Note: Physical/Magical scores are averages of respective Attack/Defense stats_
 
 ### Role Analysis
 * **Tank**: Crystal Vanguard (high P.Defense), Zealot (balanced defenses)
-* **Damage**: Conjuror (highest M.Attack), Primal Shifter (balanced damage)
+* **Damage**: Conjuror (highest M.Attack), Wraithwood Seer (highest magical damage), Primal Shifter (balanced damage)
 * **Support**: The Blessed (balanced stats), Crystal Vanguard (control)
-* **Utility**: Primal Shifter (high mobility), Zealot (consistent stats)
+* **Utility**: Primal Shifter (high mobility), Wraithwood Seer (control and vision), Zealot (consistent stats)
 
 ### Team Compositions
 * **Balanced**: Crystal Vanguard + Conjuror + The Blessed
 * **Aggressive**: Zealot + Primal Shifter + Conjuror
 * **Defensive**: Crystal Vanguard + The Blessed + Conjuror
-* **Control**: Crystal Vanguard + Primal Shifter + The Blessed
+* **Control**: Crystal Vanguard + Wraithwood Seer + The Blessed
+* **Psychic**: Wraithwood Seer + Conjuror + Primal Shifter

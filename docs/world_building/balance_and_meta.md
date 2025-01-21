@@ -142,6 +142,29 @@ This document outlines the core principles and considerations for balancing The 
         * Major abilities: 3-4 turns
         * Ultimate abilities: 5+ turns
 
+## Class Balance
+
+### Offensive Classes
+- **Primal Shifter**: High mobility and versatility
+- **Conjuror**: Strong magical damage and control
+- **Zealot**: Physical damage and emotional empowerment
+- **Wraithwood Seer**: Psychic damage and mind control
+
+### Defensive Classes
+- **Crystal Vanguard**: High physical defense and team protection
+- **The Blessed**: Support and healing focus
+
+### Class Synergies
+
+#### Offensive Pairs
+- Primal Shifter + Conjuror: Mobility and magical burst
+- Zealot + Crystal Vanguard: Physical damage with protection
+- Wraithwood Seer + Conjuror: Psychic control and magical burst
+
+#### Defensive Pairs
+- Crystal Vanguard + The Blessed: Maximum team protection
+- Wraithwood Seer + The Blessed: Vision and healing support
+
 ## Testing and Analysis
 
 ### Data Collection
@@ -256,3 +279,4 @@ See individual class documentation for detailed balance considerations:
 * [Zealot](../world_building/classes.md#zealot)
 * [The Blessed](../world_building/classes.md#the-blessed)
 * [Primal Shifter](../world_building/classes.md#primal-shifter)
+* [Wraithwood Seer](../world_building/classes.md#wraithwood-seer)
