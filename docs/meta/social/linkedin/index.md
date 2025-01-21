@@ -5,6 +5,7 @@ This section contains all LinkedIn posts related to The Path (AI-Pi) project, or
 ## Post Structure
 
 Each post file contains:
+
 1. Original post date
 2. Post content
 3. Hashtags used
@@ -13,6 +14,7 @@ Each post file contains:
 ## Purpose
 
 These posts serve as a record of:
+
 - Project announcements
 - Development updates
 - Technical insights
