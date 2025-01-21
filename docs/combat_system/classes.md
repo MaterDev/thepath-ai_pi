@@ -16,15 +16,14 @@ This document details all character classes in The Path, including their abiliti
 - **Inheritance**: Layered Legacy - Retains some bonuses of the previous aspect upon changing, allowing strategic layering of augmentations
 
 **Stats**:
-| Stat | Starting | Final |
-|------|----------|-------|
-| HP | 60 | 100 |
-| P.Attack | 20 | 60 |
-| P.Defence | 20 | 40 |
-| S.Attack | 20 | 40 |
-| S.Defence | 20 | 40 |
-| Speed | 30 | 90 |
-| Luck | 30 | 70 |
+| Stat | Value |
+|------|-------|
+| Health | 62 |
+| P.Attack | 55 |
+| P.Defense | 40 |
+| M.Attack | 62 |
+| M.Defense | 42 |
+| Speed | 61 |
 
 **Progression**:
 1. Wolf Aspect: Augments the body with wolf-like features, increasing speed and evasion
@@ -43,15 +42,14 @@ This document details all character classes in The Path, including their abiliti
 - **Inheritance**: Echoing Resonance - Enhances spoken-word magic, causing spells to echo and repeat their effects after a delay
 
 **Stats**:
-| Stat | Starting | Final |
-|------|----------|-------|
-| HP | 50 | 90 |
-| P.Attack | 10 | 10 |
-| P.Defence | 10 | 25 |
-| S.Attack | 40 | 130 |
-| S.Defence | 40 | 70 |
-| Speed | 25 | 50 |
-| Luck | 25 | 50 |
+| Stat | Value |
+|------|-------|
+| Health | 38 |
+| P.Attack | 60 |
+| P.Defense | 63 |
+| M.Attack | 65 |
+| M.Defense | 61 |
+| Speed | 41 |
 
 **Progression**:
 1. Spirit Embrace: Channels the energy of Obeni, enhancing healing and supportive abilities
@@ -70,15 +68,14 @@ This document details all character classes in The Path, including their abiliti
 - **Inheritance**: Crystal Core - Absorbs damage dealt and converts it into stacking defence buffs
 
 **Stats**:
-| Stat | Starting | Final |
-|------|----------|-------|
-| HP | 75 | 130 |
-| P.Attack | 25 | 85 |
-| P.Defence | 25 | 85 |
-| S.Attack | 15 | 35 |
-| S.Defence | 20 | 40 |
-| Speed | 20 | 30 |
-| Luck | 20 | 45 |
+| Stat | Value |
+|------|-------|
+| Health | 54 |
+| P.Attack | 39 |
+| P.Defense | 63 |
+| M.Attack | 62 |
+| M.Defense | 39 |
+| Speed | 58 |
 
 **Progression**:
 1. Crystal Blade: Creates a blade of hardened crystal for physical damage
@@ -97,15 +94,14 @@ This document details all character classes in The Path, including their abiliti
 - **Inheritance**: Emotional Trance - Gains stacking bonuses as emotional intensity grows
 
 **Stats**:
-| Stat | Starting | Final |
-|------|----------|-------|
-| HP | 50 | 95 |
-| P.Attack | 50 | 90 |
-| P.Defence | 30 | 70 |
-| S.Attack | 20 | 55 |
-| S.Defence | 30 | 60 |
-| Speed | 20 | 55 |
-| Luck | 25 | 50 |
+| Stat | Value |
+|------|-------|
+| Health | 45 |
+| P.Attack | 50 |
+| P.Defense | 52 |
+| M.Attack | 52 |
+| M.Defense | 52 |
+| Speed | 52 |
 
 **Progression**:
 1. Blade Dance: Increases physical attack and grants mobility
@@ -124,15 +120,14 @@ This document details all character classes in The Path, including their abiliti
 - **Inheritance**: Luminara's Embrace - Enhances healing and protection spells
 
 **Stats**:
-| Stat | Starting | Final |
-|------|----------|-------|
-| HP | 45 | 70 |
-| P.Attack | 15 | 30 |
-| P.Defence | 40 | 50 |
-| S.Attack | 45 | 70 |
-| S.Defence | 45 | 60 |
-| Speed | 10 | 25 |
-| Luck | 20 | 135 |
+| Stat | Value |
+|------|-------|
+| Health | 54 |
+| P.Attack | 50 |
+| P.Defense | 51 |
+| M.Attack | 45 |
+| M.Defense | 50 |
+| Speed | 53 |
 
 **Progression**:
 1. Blessing of Light: Heals and enhances ally abilities
@@ -144,19 +139,21 @@ This document details all character classes in The Path, including their abiliti
 ## Class Comparisons
 
 ### Stat Distribution
-| Class | HP Focus | Physical | Spiritual | Speed | Support |
-|-------|----------|-----------|-----------|--------|----------|
-| Primal Shifter | Medium | Low | Low | Very High | Medium |
-| Conjuror | Low | Very Low | Very High | Medium | High |
-| Crystal Vanguard | Very High | High | Low | Low | Medium |
-| Zealot | Medium | Very High | Medium | Medium | Low |
-| The Blessed | Low | Low | Medium | Low | Very High |
+| Class | Health | Physical | Magical | Speed | Total |
+|-------|---------|-----------|---------|--------|--------|
+| Primal Shifter | 62 | 47.5 | 52 | 61 | 322 |
+| Conjuror | 38 | 61.5 | 63 | 41 | 328 |
+| Crystal Vanguard | 54 | 51 | 50.5 | 58 | 315 |
+| Zealot | 45 | 51 | 52 | 52 | 303 |
+| The Blessed | 54 | 50.5 | 47.5 | 53 | 303 |
+
+_Note: Physical/Magical scores are averages of respective Attack/Defense stats_
 
 ### Role Analysis
-- **Tank**: Crystal Vanguard (primary), Zealot (secondary)
-- **Damage**: Zealot (physical), Conjuror (spiritual)
-- **Support**: The Blessed (primary), Conjuror (secondary)
-- **Utility**: Primal Shifter (versatile), Crystal Vanguard (control)
+- **Tank**: Crystal Vanguard (high P.Defense), Zealot (balanced defenses)
+- **Damage**: Conjuror (highest M.Attack), Primal Shifter (balanced damage)
+- **Support**: The Blessed (balanced stats), Crystal Vanguard (control)
+- **Utility**: Primal Shifter (high mobility), Zealot (consistent stats)
 
 ### Team Compositions
 - **Balanced**: Crystal Vanguard + Conjuror + The Blessed
