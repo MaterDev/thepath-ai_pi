@@ -5,6 +5,9 @@ site_url: https://materdev.github.io/thepath-ai_pi/
 repo_url: https://github.com/MaterDev/thepath-ai_pi
 theme:
   name: material
+  icon:
+    logo: material/brain
+  favicon: assets/favicon.ico
   features:
   - navigation.tabs
   - navigation.sections
