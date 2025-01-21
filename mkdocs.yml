@@ -125,3 +125,5 @@ nav:
 - Combat System:
   - Overview: combat_system/balance_and_meta.md
   - Character Classes: combat_system/classes.md
+- World:
+  - Cultural Foundations: world/cultural_foundations.md
