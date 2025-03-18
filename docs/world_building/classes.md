@@ -30,7 +30,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 62 |
 | P.Attack | 55 |
 | P.Defense | 40 |
@@ -65,7 +64,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 38 |
 | P.Attack | 60 |
 | P.Defense | 63 |
@@ -97,7 +95,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 54 |
 | P.Attack | 39 |
 | P.Defense | 63 |
@@ -129,7 +126,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 45 |
 | P.Attack | 50 |
 | P.Defense | 52 |
@@ -161,7 +157,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 54 |
 | P.Attack | 50 |
 | P.Defense | 51 |
@@ -193,7 +188,6 @@ This document details all character classes in The Path, including their abiliti
 
 | Stat | Value |
 | --- | --- |
-
 | Health | 45 |
 | P.Attack | 40 |
 | P.Defense | 35 |
@@ -338,7 +332,6 @@ Each class follows these power allocation rules:
 
 | Class | Health | Physical | Magical | Speed | Total |
 | --- | --- | --- | --- | --- | --- |
-
 | Primal Shifter | 62 | 47.5 | 52 | 61 | 322 |
 | Conjuror | 38 | 61.5 | 63 | 41 | 328 |
 | Crystal Vanguard | 54 | 51 | 50.5 | 58 | 315 |
