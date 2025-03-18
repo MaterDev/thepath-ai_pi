@@ -8,7 +8,7 @@ description: Comprehensive documentation for The Path AI project, including tech
 # The Path (AI-Pi)
 
 !!! info "Development Progress"
-    Total development time: 35.0 hours
+    Total development time: 46.0 hours
 
     This counter is automatically updated based on development logs.
 
