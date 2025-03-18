@@ -86,6 +86,11 @@ nav:
   - Setup:
     - Docker: technical/setup/docker.md
     - Dependencies: technical/dependencies.md
+  - Game Mechanics:
+    - Status Effects: technical/game-mechanics/status-effects.md
+    - Attack Types: technical/game-mechanics/attack-types.md
+    - Battle Conditions: technical/game-mechanics/battle-conditions.md
+    - Targeting System: technical/game-mechanics/targeting.md
   - API:
     - Endpoints: technical/api/endpoints.md
   - AI System:
