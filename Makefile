@@ -95,8 +95,12 @@ update-logs:
 
 update-docs:
 	@echo "$(COLOR_BLUE)Updating documentation...$(COLOR_RESET)"
-	@cp docs/scripts/README.md docs/scripts/README.md
-	@cp docs/scripts/doc_validation/README.md docs/scripts/doc_validation/README.md
+	@echo "$(COLOR_BLUE)Syncing world building documentation...$(COLOR_RESET)"
+	@mkdir -p docs/world_building
+	@git add docs/world_building/*.md
+	@echo "$(COLOR_BLUE)Syncing technical documentation...$(COLOR_RESET)"
+	@mkdir -p docs/technical/game-mechanics
+	@git add docs/technical/game-mechanics/*.md
 	@echo "$(COLOR_BLUE)Documentation updated$(COLOR_RESET)"
 
 # Images
