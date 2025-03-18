@@ -328,29 +328,3 @@ class AILogger:
         self.logger.info(f"Health check: {health_status}")
 
 ```
-
-## Best Practices
-
-1. **Resource Management**
-
-   - Monitor CPU usage
-
-   - Track memory consumption
-
-   - Handle resource constraints
-
-2. **Model Health**
-
-   - Regular inference tests
-
-   - Performance tracking
-
-   - Automatic recovery
-
-3. **System Health**
-
-   - Resource monitoring
-
-   - Garbage collection
-
-   - Error logging

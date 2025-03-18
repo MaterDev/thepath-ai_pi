@@ -225,3 +225,4 @@ def set_power_mode(mode: str) -> None:
 
     config = modes[mode]
     device.set_power_mode(mode, config)
+```

@@ -340,29 +340,3 @@ func New() *Logger {
 }
 
 ```
-
-## Best Practices
-
-1. **Regular Health Checks**
-
-   - Monitor every 30 seconds
-
-   - Quick timeout (5s max)
-
-   - Limited retries
-
-2. **Error Recovery**
-
-   - Automatic reconnection
-
-   - Graceful shutdown
-
-   - Connection pooling
-
-3. **Performance**
-
-   - Lightweight checks
-
-   - Connection reuse
-
-   - Efficient logging
