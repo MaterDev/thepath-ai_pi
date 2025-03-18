@@ -198,3 +198,4 @@ func (s *ReplayStorage) LoadReplay(id ID) (*BattleRecord, error) {
     }
     return &record, nil
 }
+```

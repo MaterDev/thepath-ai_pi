@@ -345,17 +345,106 @@ RATE_LIMIT_PERIOD=60
 
 ### Rate Limiting Configuration
 
+Rate limiting is implemented using SlowAPI to prevent abuse and ensure fair resource usage.
+
+#### Basic Setup
+
 ```python
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
+# Initialize limiter with IP-based rate limiting
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+```
 
+#### Endpoint-Specific Limits
+
+```python
+# Standard endpoints
 @app.get("/api/v1/game/state")
 @limiter.limit("100/minute")
 async def get_game_state(request: Request):
     return {"status": "success"}
+
+# Authentication endpoints (more restrictive)
+@app.post("/api/v1/auth/login")
+@limiter.limit("5/minute")
+async def login(request: Request):
+    return {"status": "success"}
+
+# Battle action endpoints
+@app.post("/api/v1/battles/{battle_id}/action")
+@limiter.limit("30/minute")
+async def battle_action(battle_id: str, request: Request):
+    return {"status": "success"}
+
+# AI interaction endpoints
+@app.post("/api/v1/ai/action")
+@limiter.limit("20/minute")
+async def ai_action(request: Request):
+    return {"status": "success"}
+```
+
+#### Custom Rate Limiting
+
+```python
+# Dynamic rate limiting based on user tier
+def get_user_limit(request: Request):
+    user = get_current_user(request)
+    limits = {
+        "free": "60/minute",
+        "premium": "120/minute",
+        "unlimited": "1000/minute"
+    }
+    return limits.get(user.tier, "30/minute")
+
+@app.get("/api/v1/premium/features")
+@limiter.limit(get_user_limit)
+async def premium_features(request: Request):
+    return {"status": "success"}
+
+# Burst handling for WebSocket connections
+@app.websocket("/ws/game")
+@limiter.limit("1000/minute", key_func=get_websocket_client_ip)
+async def game_websocket(websocket: WebSocket):
+    await websocket.accept()
+```
+
+#### Global Configuration
+
+```python
+# Default limits for different endpoint types
+DEFAULT_LIMITS = {
+    "auth": "5/minute",      # Authentication endpoints
+    "read": "100/minute",    # GET requests
+    "write": "30/minute",    # POST/PUT/DELETE requests
+    "ai": "20/minute",      # AI interaction endpoints
+    "websocket": "1000/minute" # WebSocket connections
+}
+```
+
+# Rate limit storage configuration
+
+```python
+limiter.storage = RedisStorage(redis_url)
+```
+
+# Custom error handling
+
+```python
+@app.exception_handler(RateLimitExceeded)
+async def custom_rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=429,
+        content={
+            "error": "Rate limit exceeded",
+            "reset_at": exc.reset_at.timestamp(),
+            "retry_after": exc.retry_after
+        }
+    )
+```

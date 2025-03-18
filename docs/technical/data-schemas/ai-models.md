@@ -194,3 +194,4 @@ class ModelDeployer:
         )[0]
 
         return ActionPrediction(probs)
+```
