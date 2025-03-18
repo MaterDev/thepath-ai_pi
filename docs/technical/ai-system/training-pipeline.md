@@ -1,22 +1,266 @@
-# Training Pipeline
+---
+title: AI Training Pipeline
+description: Overview of the AI model training and deployment process, from data collection to deployment on Raspberry Pi
+---
 
-## Overview
+# AI Training Pipeline
 
-The training pipeline runs on Mac Mini M1 for model development, with deployment to Raspberry Pi for inference. The system is designed to be simple and focused on battle mechanics.
+!!! info "Overview"
+    Our AI training system uses a Mac Mini M1 for developing and training models, which are then deployed to Raspberry Pi for gameplay. Think of it as teaching a computer to play our game by showing it examples of good gameplay, then packaging that knowledge into a format that can run efficiently on smaller devices.
+
+## Training Process
+
+### 1. Data Collection
+During this phase, we gather information about how players and AI agents interact in battles:
+
+* **Battle States**:
+    * Game State Snapshots:
+        * Player positions and health levels
+        * Current status effects on each entity
+        * Available action choices
+        * Environmental conditions
+    * State Transitions:
+        * How states change after actions
+        * Impact of different moves
+
+* **Action History**:
+    * Player Decisions:
+        * Chosen actions in each state
+        * Timing of action selections
+        * Action combinations used
+    * Outcome Analysis:
+        * Effectiveness of each action
+        * Damage or healing amounts
+        * Status effect applications
+
+* **Match Results**:
+    * Battle Statistics:
+        * Win/loss records by strategy
+        * Average battle duration
+        * Resource management patterns
+    * Strategic Analysis:
+        * Key turning points in battles
+        * Successful tactical patterns
+        * Common victory conditions
+
+### 2. Model Training
+Training process on the Mac Mini M1, leveraging its computational capabilities:
+
+* **Data Preparation**:
+    * Preprocessing Steps:
+        * Clean and normalize battle data
+        * Remove invalid or corrupt records
+        * Balance dataset across strategies
+    * Data Organization:
+        * Split into training/validation sets
+        * Create test scenarios
+        * Apply data augmentation techniques
+
+* **Learning Process**:
+    * Model Architecture:
+        * Initialize neural network layers
+        * Configure learning parameters
+        * Set up optimization strategy
+    * Training Execution:
+        * Run training iterations
+        * Monitor convergence metrics
+        * Adjust hyperparameters
+
+* **Model Optimization**:
+    * Performance Tuning:
+        * Optimize model architecture
+        * Reduce computational overhead
+        * Improve response time
+    * Format Conversion:
+        * Convert to TFLite format
+        * Verify behavior consistency
+        * Optimize memory usage
+
+### 3. Deployment
+Carefully deploying the trained model to Raspberry Pi hardware:
+
+* **Model Transfer**:
+    * Security Measures:
+        * Encrypt model during transfer
+        * Verify file integrity
+        * Backup previous version
+    * Version Control:
+        * Track model versions
+        * Document changes
+        * Maintain rollback points
+
+* **System Integration**:
+    * Runtime Setup:
+        * Configure TFLite interpreter
+        * Set memory allocations
+        * Initialize caching system
+    * Performance Validation:
+        * Measure inference speed
+        * Check memory usage
+        * Verify prediction quality
+
+* **Production Release**:
+    * Deployment Steps:
+        * Schedule maintenance window
+        * Update active model
+        * Enable monitoring systems
+    * Quality Assurance:
+        * Run validation battles
+        * Monitor performance metrics
+        * Prepare rollback procedure
 
 ## Pipeline Components
 
 ```mermaid
 graph TD
-    A[Battle Data] --> B[Data Collection]
-
-    B --> C[Mac Mini Training]
-
+    A[Data Collection] --> B[Data Processing]
+    B --> C[Model Training]
     C --> D[Model Export]
+    D --> E[Deployment]
+    E --> F[Monitoring]
+```
 
-    D --> E[Pi Deployment]
+### Data Processing Pipeline
+
+```python
+class DataPipeline:
+    """Transforms raw battle data into a format our AI can learn from.
+    
+    This pipeline handles three main tasks:
+    1. Converting game states into numbers (feature vectors)
+    2. Extracting the actions taken in each state
+    3. Creating additional training examples through augmentation
+    """
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.preprocessor = Preprocessor()      # Converts raw data to features
+        self.augmenter = DataAugmenter()       # Creates additional examples
+    
+    def process_battle_data(self, battle_records: List[BattleRecord]) -> np.ndarray:
+        """Transform battle recordings into training data
+        
+        Args:
+            battle_records: List of recorded battles to learn from
+            
+        Returns:
+            Processed data ready for model training
+        """
+        processed = []
+        
+        for record in battle_records:
+            # Step 1: Convert game states into numbers our model can understand
+            states = self.preprocessor.convert_states(record.states)
+            
+            # Step 2: Extract what actions were taken in each state
+            actions = self.preprocessor.extract_actions(record.actions)
+            
+            # Step 3: Create additional training examples if enabled
+            if self.config.get('use_augmentation'):
+                states, actions = self.augmenter.augment(states, actions)
+                
+            processed.append((states, actions))
+            
+        return np.array(processed)
 
 ```
+
+### Model Training
+
+```python
+class ModelTrainer:
+    """Teaches our AI model how to play the game using battle examples.
+    
+    This trainer:
+    1. Sets up the neural network structure
+    2. Shows it many examples of good gameplay
+    3. Tests how well it's learning
+    4. Adjusts its learning process as needed
+    """
+    
+    def train_model(self, data: np.ndarray, params: Dict[str, Any]) -> tf.keras.Model:
+        """Train the AI model using processed battle data
+        
+        Args:
+            data: Processed battle examples to learn from
+            params: Training settings (learning rate, etc.)
+            
+        Returns:
+            Trained model ready for gameplay
+        """
+        # Step 1: Set up the neural network structure
+        model = self._build_model(params)
+        
+        # Step 2: Split data into training set and test set
+        train_data, val_data = self._split_data(data)
+        
+        # Step 3: Train the model on our battle examples
+        history = model.fit(
+            train_data,
+            validation_data=val_data,
+            epochs=params['epochs'],           # Number of training rounds
+            callbacks=self._get_callbacks()    # Training monitors
+        )
+        
+        return model
+
+    def export_to_tflite(self, model: tf.keras.Model) -> bytes:
+        """Export trained model to TFLite format"""
+        converter = tf.lite.TFLiteConverter.from_keras_model(model)
+        converter.optimizations = [tf.lite.Optimize.DEFAULT]
+        return converter.convert()
+```
+
+## Monitoring
+
+We track several key metrics to ensure the pipeline is working effectively:
+
+### Training Metrics
+
+* **Model Performance**:
+    * Accuracy and loss curves over time
+    * Validation metrics against test data
+    * Convergence rate analysis
+
+* **Resource Usage**:
+    * Training speed per epoch
+    * Memory consumption patterns
+    * GPU utilization metrics
+
+### Deployment Health
+
+* **Runtime Performance**:
+    * Average inference speed on Pi
+    * Memory footprint during battles
+    * Temperature monitoring data
+
+* **Model Quality**:
+    * Prediction accuracy in battles
+    * Response time consistency
+    * Error rate tracking
+
+### Error Tracking
+
+* **Pipeline Issues**:
+    * Data processing errors
+    * Training interruptions
+    * Failed model conversions
+
+* **Runtime Issues**:
+    * Deployment failures
+    * Performance degradation
+    * Resource exhaustion
+
+!!! tip "Performance Tips"
+    * **Resource Management**:
+        * Monitor CPU/GPU usage patterns
+        * Track memory usage over time
+        * Watch for thermal throttling
+    
+    * **Quality Assurance**:
+        * Test with various batch sizes
+        * Validate against edge cases
+        * Keep recent model backups
 
 ## Data Collection
 
@@ -55,53 +299,6 @@ class DataCollector:
 
 ```
 
-## Model Training
-
-```python
-class BattleModelTrainer:
-    """Trains battle model on Mac Mini M1"""
-    def __init__(self):
-        self.model = self._create_model()
-
-    def _create_model(self) -> tf.keras.Model:
-
-        """Create simple battle model"""
-        return tf.keras.Sequential([
-            tf.keras.layers.Dense(64, activation='relu'),
-            tf.keras.layers.Dense(32, activation='relu'),
-            tf.keras.layers.Dense(len(ACTIONS), activation='softmax')
-        ])
-
-    def train(self,
-             states: np.ndarray,
-             actions: np.ndarray,
-             epochs: int = 10):
-        """Train model on battle data"""
-        self.model.compile(
-            optimizer='adam',
-            loss='sparse_categorical_crossentropy',
-            metrics=['accuracy']
-        )
-
-        self.model.fit(
-            states,
-            actions,
-            epochs=epochs,
-            validation_split=0.2
-        )
-
-    def export_for_pi(self, path: str):
-        """Export model for Raspberry Pi"""
-        converter = tf.lite.TFLiteConverter.from_keras_model(self.model)
-        converter.optimizations = [tf.lite.Optimize.DEFAULT]
-        converter.target_spec.supported_types = [tf.float32]
-
-        tflite_model = converter.convert()
-        with open(path, 'wb') as f:
-            f.write(tflite_model)
-
-```
-
 ## Model Deployment
 
 ```python
@@ -132,43 +329,3 @@ class ModelDeployer:
         )[0]
 
 ```
-
-## Training Process
-
-1. **Data Collection**
-
-   - Record battle states and actions
-
-   - Store win/loss outcomes
-
-   - Track action effectiveness
-
-2. **Model Training (Mac Mini M1)**
-
-   - Load collected data
-
-   - Train model using TensorFlow
-
-   - Validate performance
-
-   - Export to TFLite format
-
-3. **Deployment**
-
-   - Copy model to Raspberry Pi
-
-   - Load with TFLite interpreter
-
-   - Verify inference speed
-
-   - Update active model
-
-### Monitoring
-
-* Training progress metrics
-
-* Model performance stats
-
-* Resource utilization
-
-* Error tracking

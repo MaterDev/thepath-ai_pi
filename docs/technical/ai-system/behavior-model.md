@@ -168,7 +168,6 @@ difficulty: 0.5
 
 | Option | Description | Default |
 |--------|-------------|---------|
-
 | model_path | Path to TFLite model | 'path/to/model.tflite' |
 | difficulty | Difficulty level (0.2-0.95) | 0.5 |
 
